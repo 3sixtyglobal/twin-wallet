@@ -32,7 +32,8 @@ export class CLI extends CLIBase {
 				version: "0.0.2-next.2", // x-release-please-version
 				icon: "🌍",
 				supportsEnvFiles: true,
-				overrideOutputWidth: options?.overrideOutputWidth
+				overrideOutputWidth: options?.overrideOutputWidth,
+				showDevToolWarning: true
 			},
 			localesDirectory ?? path.join(path.dirname(fileURLToPath(import.meta.url)), "../locales"),
 			argv
