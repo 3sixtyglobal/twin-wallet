@@ -1,5 +1,19 @@
 # @twin.org/wallet-connector-iota - Changelog
 
+## [0.0.2-next.3](https://github.com/twinfoundation/wallet/compare/wallet-connector-iota-v0.0.2-next.2...wallet-connector-iota-v0.0.2-next.3) (2025-08-20)
+
+
+### Miscellaneous Chores
+
+* **wallet-connector-iota:** Synchronize repo versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/wallet-models bumped from 0.0.2-next.2 to 0.0.2-next.3
+
 ## [0.0.2-next.2](https://github.com/twinfoundation/wallet/compare/wallet-connector-iota-v0.0.2-next.1...wallet-connector-iota-v0.0.2-next.2) (2025-08-20)
 
 
