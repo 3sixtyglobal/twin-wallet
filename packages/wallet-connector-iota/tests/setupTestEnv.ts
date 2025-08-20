@@ -22,7 +22,10 @@ import type { IIotaFaucetConnectorConfig } from "../src/models/IIotaFaucetConnec
 
 console.debug("Setting up test environment from .env and .env.dev files");
 
-dotenv.config({ path: [path.join(__dirname, ".env"), path.join(__dirname, ".env.dev")] });
+dotenv.config({
+	path: [path.join(__dirname, ".env"), path.join(__dirname, ".env.dev")],
+	quiet: true
+});
 
 // Validate required environment variables
 Guards.stringValue("TestEnv", "TEST_NODE_ENDPOINT", process.env.TEST_NODE_ENDPOINT);
