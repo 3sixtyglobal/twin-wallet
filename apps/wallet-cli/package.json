@@ -1,6 +1,6 @@
 {
 	"name": "@twin.org/wallet-cli",
-	"version": "0.0.2-next.3",
+	"version": "0.0.2-next.4",
 	"description": "A command line interface for interacting with the wallet APIs",
 	"repository": {
 		"type": "git",
@@ -41,8 +41,8 @@
 		"@twin.org/entity-storage-connector-memory": "next",
 		"@twin.org/vault-connector-entity-storage": "next",
 		"@twin.org/vault-models": "next",
-		"@twin.org/wallet-connector-iota": "0.0.2-next.3",
-		"@twin.org/wallet-models": "0.0.2-next.3",
+		"@twin.org/wallet-connector-iota": "0.0.2-next.4",
+		"@twin.org/wallet-models": "0.0.2-next.4",
 		"commander": "14.0.0"
 	},
 	"devDependencies": {
