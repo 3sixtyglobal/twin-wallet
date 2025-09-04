@@ -41,7 +41,6 @@ Guards.stringValue(
 );
 
 if (!Is.stringValue(process.env.TEST_MNEMONIC)) {
-	// eslint-disable-next-line no-restricted-syntax
 	throw new Error(
 		`Please define TEST_MNEMONIC as a 24 word mnemonic either as an environment variable or inside an .env.dev file
          e.g. TEST_MNEMONIC="word0 word1 ... word23"
