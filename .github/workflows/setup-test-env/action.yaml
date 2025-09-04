@@ -15,18 +15,19 @@ runs:
       shell: bash
       run: |
         cd ..
-        wget https://github.com/iotaledger/iota/releases/download/v1.4.1/iota-v1.4.1-linux-x86_64.tgz -O iota-cli.tgz
+        echo "Downloading IOTA CLI v1.5.0..."
+        wget https://github.com/iotaledger/iota/releases/download/v1.5.0/iota-v1.5.0-linux-x86_64.tgz -O iota-cli.tgz
         tar xzf iota-cli.tgz
         rm iota-cli.tgz
         chmod +x iota
         sudo mv iota /usr/local/bin/iota
         iota --version
 
-    - name: Start Twin Gas Station Test Environment
-      if: inputs.package == 'packages/wallet-connector-iota' || inputs.package == 'all'
+    - name: Start TWIN Gas Station Test Environment
+      if: inputs.package == 'packages/identity-connector-iota' || inputs.package == 'all'
       shell: bash
       run: |
-        echo "Starting Twin Gas Station Test Environment (includes Redis + Gas Station)..."
+        echo "Starting TWIN Gas Station Test Environment (includes Redis + Gas Station)..."
         docker run -d --name twin-gas-station-test \
           -p 6379:6379 -p 9527:9527 -p 9184:9184 \
           -e IOTA_NODE_URL="https://api.testnet.iota.cafe" \
@@ -50,13 +51,13 @@ runs:
         done
 
         # Wait for Gas Station
-        for i in {1..30}; do
+        for i in {1..45}; do
           if curl -f http://localhost:9527/ 2>/dev/null; then
             echo "✅ Gas station is ready!"
             break
           fi
           echo "Attempt $i: Gas station not ready yet, waiting..."
-          sleep 2
+          sleep 5
         done
 
         echo "✅ All services are ready!"
@@ -86,13 +87,13 @@ runs:
         done
         # Verify Gas Station is ready after restart
         echo "Checking if gas station port is accessible..."
-        for i in {1..30}; do
+        for i in {1..45}; do
           if curl -f http://localhost:9527/ 2>/dev/null; then
             echo "✅ Gas station is ready after restart!"
             break
           fi
           echo "Attempt $i: Gas station not ready after restart, waiting..."
-          sleep 2
+          sleep 5
         done
 
     - name: Fund Gas Station Sponsor
