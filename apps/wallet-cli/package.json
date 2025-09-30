@@ -82,5 +82,16 @@
 	],
 	"bin": {
 		"twin-wallet": "bin/index.js"
-	}
+	},
+	"keywords": [
+		"twin",
+		"trade",
+		"iota",
+		"framework",
+		"blockchain",
+		"wallet",
+		"keys",
+		"signing",
+		"accounts"
+	]
 }

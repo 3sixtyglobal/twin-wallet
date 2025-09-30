@@ -66,5 +66,19 @@
 		"dist/types",
 		"locales",
 		"docs"
+	],
+	"keywords": [
+		"twin",
+		"trade",
+		"iota",
+		"framework",
+		"blockchain",
+		"wallet",
+		"keys",
+		"signing",
+		"accounts",
+		"models",
+		"types",
+		"schemas"
 	]
 }
