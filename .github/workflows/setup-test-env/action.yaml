@@ -93,6 +93,7 @@ runs:
         docker ps | grep twin-gas-station-test
         echo "Recent container logs:"
         docker logs twin-gas-station-test --tail 20
+
         # Re-verify Redis is ready after restart
         REDIS_RESTART_READY=false
         for i in {1..30}; do
