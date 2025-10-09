@@ -21,7 +21,7 @@ export class IotaFaucetConnector implements IFaucetConnector {
 	/**
 	 * Runtime name for the class.
 	 */
-	public readonly CLASS_NAME: string = nameof<IotaFaucetConnector>();
+	public static readonly CLASS_NAME: string = nameof<IotaFaucetConnector>();
 
 	/**
 	 * The configuration to use for IOTA operations.
@@ -40,18 +40,22 @@ export class IotaFaucetConnector implements IFaucetConnector {
 	 * @param options The options for the connector.
 	 */
 	constructor(options: IIotaFaucetConnectorConstructorOptions) {
-		Guards.object(this.CLASS_NAME, nameof(options), options);
+		Guards.object(IotaFaucetConnector.CLASS_NAME, nameof(options), options);
 		Guards.object<IIotaFaucetConnectorConfig>(
-			this.CLASS_NAME,
+			IotaFaucetConnector.CLASS_NAME,
 			nameof(options.config),
 			options.config
 		);
 		Guards.object(
-			this.CLASS_NAME,
+			IotaFaucetConnector.CLASS_NAME,
 			nameof(options.config.clientOptions),
 			options.config.clientOptions
 		);
-		Guards.string(this.CLASS_NAME, nameof(options.config.endpoint), options.config.endpoint);
+		Guards.string(
+			IotaFaucetConnector.CLASS_NAME,
+			nameof(options.config.endpoint),
+			options.config.endpoint
+		);
 
 		this._config = options.config;
 		Iota.populateConfig(this._config);
@@ -70,8 +74,8 @@ export class IotaFaucetConnector implements IFaucetConnector {
 		address: string,
 		timeoutInSeconds: number = 60
 	): Promise<bigint> {
-		Guards.stringValue(this.CLASS_NAME, nameof(identity), identity);
-		Guards.stringValue(this.CLASS_NAME, nameof(address), address);
+		Guards.stringValue(IotaFaucetConnector.CLASS_NAME, nameof(identity), identity);
+		Guards.stringValue(IotaFaucetConnector.CLASS_NAME, nameof(address), address);
 
 		try {
 			const initialBalance = await this._client.getBalance({
@@ -84,7 +88,12 @@ export class IotaFaucetConnector implements IFaucetConnector {
 			});
 
 			if (response?.error) {
-				throw new GeneralError(this.CLASS_NAME, "fundingFailed", undefined, response.error);
+				throw new GeneralError(
+					IotaFaucetConnector.CLASS_NAME,
+					"fundingFailed",
+					undefined,
+					response.error
+				);
 			}
 
 			// Poll for balance change
@@ -110,14 +119,14 @@ export class IotaFaucetConnector implements IFaucetConnector {
 				)
 			) {
 				throw new GeneralError(
-					this.CLASS_NAME,
+					IotaFaucetConnector.CLASS_NAME,
 					"faucetRateLimit",
 					undefined,
 					Iota.extractPayloadError(error)
 				);
 			}
 			throw new GeneralError(
-				this.CLASS_NAME,
+				IotaFaucetConnector.CLASS_NAME,
 				"fundingFailed",
 				undefined,
 				Iota.extractPayloadError(error)

@@ -109,6 +109,7 @@ export async function actionCommandTransfer(opts: {
 	CLIDisplay.value(I18n.formatMessage("commands.common.labels.address"), address);
 	CLIDisplay.value(I18n.formatMessage("commands.transfer.labels.destAddress"), destAddress);
 	CLIDisplay.value(I18n.formatMessage("commands.transfer.labels.amount"), amount.toString());
+	CLIDisplay.value(I18n.formatMessage("commands.common.labels.explorer"), explorerEndpoint);
 	CLIDisplay.break();
 
 	CLIDisplay.task(I18n.formatMessage("commands.transfer.progress.transferringFunds"));

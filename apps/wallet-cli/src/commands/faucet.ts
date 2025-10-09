@@ -91,6 +91,7 @@ export async function actionCommandFaucet(opts: {
 	}
 	CLIDisplay.value(I18n.formatMessage("commands.faucet.labels.faucet"), faucetEndpoint);
 	CLIDisplay.value(I18n.formatMessage("commands.common.labels.address"), address);
+	CLIDisplay.value(I18n.formatMessage("commands.common.labels.explorer"), explorerEndpoint);
 	CLIDisplay.break();
 
 	CLIDisplay.task(I18n.formatMessage("commands.faucet.progress.requestingFunds"));

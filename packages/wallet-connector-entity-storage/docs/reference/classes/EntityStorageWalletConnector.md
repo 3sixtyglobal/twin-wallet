@@ -28,23 +28,19 @@ The options for the wallet connector.
 
 ## Properties
 
+### CLASS\_NAME
+
+> `readonly` `static` **CLASS\_NAME**: `string`
+
+Runtime name for the class.
+
+***
+
 ### NAMESPACE
 
 > `readonly` `static` **NAMESPACE**: `string` = `"entity-storage"`
 
 The namespace supported by the wallet connector.
-
-***
-
-### CLASS\_NAME
-
-> `readonly` **CLASS\_NAME**: `string`
-
-Runtime name for the class.
-
-#### Implementation of
-
-`IWalletConnector.CLASS_NAME`
 
 ## Methods
 
