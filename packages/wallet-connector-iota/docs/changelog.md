@@ -1,5 +1,19 @@
 # @twin.org/wallet-connector-iota - Changelog
 
+## [0.0.2-next.5](https://github.com/twinfoundation/wallet/compare/wallet-connector-iota-v0.0.2-next.4...wallet-connector-iota-v0.0.2-next.5) (2025-10-09)
+
+
+### Features
+
+* add validate-locales ([e5200c2](https://github.com/twinfoundation/wallet/commit/e5200c279de60592b64eeb64279fa8ed289a677f))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/wallet-models bumped from 0.0.2-next.4 to 0.0.2-next.5
+
 ## [0.0.2-next.4](https://github.com/twinfoundation/wallet/compare/wallet-connector-iota-v0.0.2-next.3...wallet-connector-iota-v0.0.2-next.4) (2025-08-29)
 
 

@@ -1,5 +1,12 @@
 # @twin.org/wallet-models - Changelog
 
+## [0.0.2-next.5](https://github.com/twinfoundation/wallet/compare/wallet-models-v0.0.2-next.4...wallet-models-v0.0.2-next.5) (2025-10-09)
+
+
+### Features
+
+* add validate-locales ([e5200c2](https://github.com/twinfoundation/wallet/commit/e5200c279de60592b64eeb64279fa8ed289a677f))
+
 ## [0.0.2-next.4](https://github.com/twinfoundation/wallet/compare/wallet-models-v0.0.2-next.3...wallet-models-v0.0.2-next.4) (2025-08-29)
 
 
