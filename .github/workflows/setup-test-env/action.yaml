@@ -23,7 +23,7 @@ runs:
         iota --version
 
     - name: Start TWIN Gas Station Test Environment
-      if: inputs.package == 'packages/identity-connector-iota' || inputs.package == 'all'
+      if: inputs.package == 'packages/wallet-connector-iota' || inputs.package == 'all'
       shell: bash
       run: |
         echo "Starting TWIN Gas Station Test Environment (includes Redis + Gas Station)..."
