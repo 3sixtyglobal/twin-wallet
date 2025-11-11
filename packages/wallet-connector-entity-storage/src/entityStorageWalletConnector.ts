@@ -14,9 +14,9 @@ import {
 	type IFaucetConnector,
 	type IWalletConnector
 } from "@twin.org/wallet-models";
-import type { WalletAddress } from "./entities/walletAddress";
-import type { IEntityStorageWalletConnectorConfig } from "./models/IEntityStorageWalletConnectorConfig";
-import type { IEntityStorageWalletConnectorConstructorOptions } from "./models/IEntityStorageWalletConnectorConstructorOptions";
+import type { WalletAddress } from "./entities/walletAddress.js";
+import type { IEntityStorageWalletConnectorConfig } from "./models/IEntityStorageWalletConnectorConfig.js";
+import type { IEntityStorageWalletConnectorConstructorOptions } from "./models/IEntityStorageWalletConnectorConstructorOptions.js";
 
 /**
  * Class for performing wallet operations using in-memory storage.
@@ -89,6 +89,14 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 		this._config = options?.config ?? {};
 		this._config.coinType ??= EntityStorageWalletConnector._DEFAULT_COIN_TYPE;
 		this._config.networkName ??= EntityStorageWalletConnector._DEFAULT_NETWORK_NAME;
+	}
+
+	/**
+	 * Returns the class name of the component.
+	 * @returns The class name of the component.
+	 */
+	public className(): string {
+		return EntityStorageWalletConnector.CLASS_NAME;
 	}
 
 	/**

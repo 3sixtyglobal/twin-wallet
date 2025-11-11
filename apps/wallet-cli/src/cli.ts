@@ -5,8 +5,8 @@ import { fileURLToPath } from "node:url";
 import { CLIBase } from "@twin.org/cli-core";
 import { buildCommandAddress, buildCommandMnemonic } from "@twin.org/crypto-cli";
 import type { Command } from "commander";
-import { buildCommandFaucet } from "./commands/faucet";
-import { buildCommandTransfer } from "./commands/transfer";
+import { buildCommandFaucet } from "./commands/faucet.js";
+import { buildCommandTransfer } from "./commands/transfer.js";
 
 /**
  * The main entry point for the CLI.
@@ -29,7 +29,7 @@ export class CLI extends CLIBase {
 			{
 				title: "TWIN Wallet",
 				appName: "twin-wallet",
-				version: "0.0.2-next.5", // x-release-please-version
+				version: "0.0.3-next.0", // x-release-please-version
 				icon: "🌍",
 				supportsEnvFiles: true,
 				overrideOutputWidth: options?.overrideOutputWidth,

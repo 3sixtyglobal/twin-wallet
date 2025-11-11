@@ -12,7 +12,7 @@ import {
 import { VaultConnectorFactory } from "@twin.org/vault-models";
 import { IotaFaucetConnector, IotaWalletConnector } from "@twin.org/wallet-connector-iota";
 import type { IFaucetConnector, IWalletConnector } from "@twin.org/wallet-models";
-import type { WalletConnectorTypes } from "../models/walletConnectorTypes";
+import type { WalletConnectorTypes } from "../models/walletConnectorTypes.js";
 
 /**
  * Setup the vault for use in the CLI commands.

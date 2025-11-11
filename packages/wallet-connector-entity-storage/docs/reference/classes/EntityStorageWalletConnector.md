@@ -44,6 +44,24 @@ The namespace supported by the wallet connector.
 
 ## Methods
 
+### className()
+
+> **className**(): `string`
+
+Returns the class name of the component.
+
+#### Returns
+
+`string`
+
+The class name of the component.
+
+#### Implementation of
+
+`IWalletConnector.className`
+
+***
+
 ### create()
 
 > **create**(`identity`): `Promise`\<`void`\>
@@ -192,7 +210,7 @@ True if the balance has been ensured.
 
 ### transfer()
 
-> **transfer**(`identity`, `addressSource`, `addressDest`, `amount`): `Promise`\<`undefined` \| `string`\>
+> **transfer**(`identity`, `addressSource`, `addressDest`, `amount`): `Promise`\<`string` \| `undefined`\>
 
 Transfer funds to an address.
 
@@ -224,7 +242,7 @@ The amount to transfer.
 
 #### Returns
 
-`Promise`\<`undefined` \| `string`\>
+`Promise`\<`string` \| `undefined`\>
 
 An identifier for the transfer if there was one.
 

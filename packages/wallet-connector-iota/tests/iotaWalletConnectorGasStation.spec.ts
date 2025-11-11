@@ -20,11 +20,11 @@ import {
 	TEST_GAS_STATION_ENDPOINT,
 	TEST_MNEMONIC_NAME,
 	TEST_NETWORK
-} from "./setupTestEnv";
-import { IotaFaucetConnector } from "../src/iotaFaucetConnector";
-import { IotaWalletConnector } from "../src/iotaWalletConnector";
-import type { IIotaFaucetConnectorConfig } from "../src/models/IIotaFaucetConnectorConfig";
-import type { IIotaWalletConnectorConfig } from "../src/models/IIotaWalletConnectorConfig";
+} from "./setupTestEnv.js";
+import { IotaFaucetConnector } from "../src/iotaFaucetConnector.js";
+import { IotaWalletConnector } from "../src/iotaWalletConnector.js";
+import type { IIotaFaucetConnectorConfig } from "../src/models/IIotaFaucetConnectorConfig.js";
+import type { IIotaWalletConnectorConfig } from "../src/models/IIotaWalletConnectorConfig.js";
 
 /**
  * Test Identity.

@@ -6,14 +6,6 @@ Interface describing a wallet connector.
 
 - `IComponent`
 
-## Indexable
-
-\[`key`: `string`\]: `any`
-
-All methods are optional, so we introduce an index signature to allow
-any additional properties or methods, which removes the TypeScript error where
-the class has no properties in common with the type.
-
 ## Methods
 
 ### create()
@@ -148,7 +140,7 @@ True if the balance has been ensured.
 
 ### transfer()
 
-> **transfer**(`identity`, `addressSource`, `addressDest`, `amount`): `Promise`\<`undefined` \| `string`\>
+> **transfer**(`identity`, `addressSource`, `addressDest`, `amount`): `Promise`\<`string` \| `undefined`\>
 
 Transfer funds to an address.
 
@@ -180,6 +172,6 @@ The amount to transfer.
 
 #### Returns
 
-`Promise`\<`undefined` \| `string`\>
+`Promise`\<`string` \| `undefined`\>
 
 An identifier for the transfer if there was one.

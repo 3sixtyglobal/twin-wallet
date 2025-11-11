@@ -7,8 +7,8 @@ import {
 } from "@twin.org/entity-storage-models";
 import { nameof } from "@twin.org/nameof";
 import type { IFaucetConnector } from "@twin.org/wallet-models";
-import type { WalletAddress } from "./entities/walletAddress";
-import type { IEntityStorageFaucetConnectorConstructorOptions } from "./models/IEntityStorageFaucetConnectorConstructorOptions";
+import type { WalletAddress } from "./entities/walletAddress.js";
+import type { IEntityStorageFaucetConnectorConstructorOptions } from "./models/IEntityStorageFaucetConnectorConstructorOptions.js";
 
 /**
  * Class for performing faucet operations using entity storage.
@@ -38,6 +38,14 @@ export class EntityStorageFaucetConnector implements IFaucetConnector {
 		this._walletAddressEntityStorage = EntityStorageConnectorFactory.get(
 			options?.walletAddressEntityStorageType ?? "wallet-address"
 		);
+	}
+
+	/**
+	 * Returns the class name of the component.
+	 * @returns The class name of the component.
+	 */
+	public className(): string {
+		return EntityStorageFaucetConnector.CLASS_NAME;
 	}
 
 	/**

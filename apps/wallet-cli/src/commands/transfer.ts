@@ -4,8 +4,8 @@ import { CLIDisplay, CLIParam } from "@twin.org/cli-core";
 import { Converter, I18n, Is, StringHelper } from "@twin.org/core";
 import { VaultConnectorFactory } from "@twin.org/vault-models";
 import { Command, Option } from "commander";
-import { setupVault, setupWalletConnector } from "./setupCommands";
-import { WalletConnectorTypes } from "../models/walletConnectorTypes";
+import { setupVault, setupWalletConnector } from "./setupCommands.js";
+import { WalletConnectorTypes } from "../models/walletConnectorTypes.js";
 
 /**
  * Build the transfer command to be consumed by the CLI.

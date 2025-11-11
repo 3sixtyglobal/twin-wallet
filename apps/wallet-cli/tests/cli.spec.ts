@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0.
 import path from "node:path";
 import { CLIDisplay } from "@twin.org/cli-core";
-import { CLI } from "../src/cli";
+import { CLI } from "../src/cli.js";
 
 let writeBuffer: string[] = [];
 let errorBuffer: string[] = [];
@@ -29,7 +29,7 @@ describe("CLI", () => {
 		});
 		expect(exitCode).toBe(0);
 		expect(writeBuffer.length).toEqual(23);
-		expect(writeBuffer[0].includes("TWIN Wallet v0.0.2-next.5")).toEqual(true); // x-release-please-version
+		expect(writeBuffer[0].includes("TWIN Wallet v0.0.3-next.0")).toEqual(true); // x-release-please-version
 		expect(writeBuffer[1]).toEqual("");
 		expect(writeBuffer[2]).toEqual("");
 		expect(writeBuffer[3]).toEqual("");

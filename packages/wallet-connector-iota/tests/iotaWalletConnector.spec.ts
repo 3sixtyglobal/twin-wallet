@@ -17,9 +17,9 @@ import {
 	TEST_IDENTITY_ID,
 	TEST_MNEMONIC_NAME,
 	TEST_NETWORK
-} from "./setupTestEnv";
-import { IotaWalletConnector } from "../src/iotaWalletConnector";
-import type { IIotaWalletConnectorConfig } from "../src/models/IIotaWalletConnectorConfig";
+} from "./setupTestEnv.js";
+import { IotaWalletConnector } from "../src/iotaWalletConnector.js";
+import type { IIotaWalletConnectorConfig } from "../src/models/IIotaWalletConnectorConfig.js";
 
 describe("IotaWalletConnector", () => {
 	let wallet: IotaWalletConnector;

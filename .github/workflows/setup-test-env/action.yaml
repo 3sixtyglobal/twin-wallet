@@ -15,7 +15,7 @@ runs:
       shell: bash
       run: |
         cd ..
-        wget https://github.com/iotaledger/iota/releases/download/v1.7.0-rc/iota-v1.7.0-rc-linux-x86_64.tgz -O iota-cli.tgz
+        wget https://github.com/iotaledger/iota/releases/download/v1.10.0-rc/iota-v1.10.0-rc-linux-x86_64.tgz -O iota-cli.tgz
         tar xzf iota-cli.tgz
         rm iota-cli.tgz
         chmod +x iota
@@ -50,7 +50,7 @@ runs:
           echo "Attempt $i: Redis not ready yet, waiting..."
           sleep 2
         done
-        
+
         # Verify Redis is actually ready
         if [ "$REDIS_READY" = false ]; then
           echo "❌ Redis failed to start after 30 attempts (60 seconds)"
@@ -69,7 +69,7 @@ runs:
           echo "Attempt $i: Gas station not ready yet, waiting..."
           sleep 5
         done
-        
+
         # Verify Gas Station is actually ready
         if [ "$GAS_STATION_READY" = false ]; then
           echo "❌ Gas Station failed to start after 45 attempts (225 seconds)"
@@ -105,7 +105,7 @@ runs:
           echo "Attempt $i: Redis not ready yet after restart, waiting..."
           sleep 2
         done
-        
+
         # Verify Redis is actually ready after restart
         if [ "$REDIS_RESTART_READY" = false ]; then
           echo "❌ Redis failed to restart after 30 attempts (60 seconds)"
@@ -124,7 +124,7 @@ runs:
           echo "Attempt $i: Gas station not ready after restart, waiting..."
           sleep 5
         done
-        
+
         # Verify Gas Station is actually ready after restart
         if [ "$GAS_STATION_RESTART_READY" = false ]; then
           echo "❌ Gas Station failed to restart after 45 attempts (225 seconds)"

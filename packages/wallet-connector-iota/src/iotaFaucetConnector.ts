@@ -6,8 +6,8 @@ import { GeneralError, Guards } from "@twin.org/core";
 import { Iota } from "@twin.org/dlt-iota";
 import { nameof } from "@twin.org/nameof";
 import type { IFaucetConnector } from "@twin.org/wallet-models";
-import type { IIotaFaucetConnectorConfig } from "./models/IIotaFaucetConnectorConfig";
-import type { IIotaFaucetConnectorConstructorOptions } from "./models/IIotaFaucetConnectorConstructorOptions";
+import type { IIotaFaucetConnectorConfig } from "./models/IIotaFaucetConnectorConfig.js";
+import type { IIotaFaucetConnectorConstructorOptions } from "./models/IIotaFaucetConnectorConstructorOptions.js";
 
 /**
  * Class for performing faucet operations on IOTA.
@@ -60,6 +60,14 @@ export class IotaFaucetConnector implements IFaucetConnector {
 		this._config = options.config;
 		Iota.populateConfig(this._config);
 		this._client = Iota.createClient(this._config);
+	}
+
+	/**
+	 * Returns the class name of the component.
+	 * @returns The class name of the component.
+	 */
+	public className(): string {
+		return IotaFaucetConnector.CLASS_NAME;
 	}
 
 	/**

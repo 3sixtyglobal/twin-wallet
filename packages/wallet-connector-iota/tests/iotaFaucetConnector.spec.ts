@@ -9,9 +9,9 @@ import {
 	TEST_MNEMONIC,
 	TEST_NETWORK,
 	setupTestEnv
-} from "./setupTestEnv";
-import { IotaFaucetConnector } from "../src/iotaFaucetConnector";
-import type { IIotaFaucetConnectorConfig } from "../src/models/IIotaFaucetConnectorConfig";
+} from "./setupTestEnv.js";
+import { IotaFaucetConnector } from "../src/iotaFaucetConnector.js";
+import type { IIotaFaucetConnectorConfig } from "../src/models/IIotaFaucetConnectorConfig.js";
 
 describe("IotaFaucetConnector", () => {
 	beforeAll(async () => {

@@ -16,9 +16,9 @@ import {
 import { VaultConnectorFactory } from "@twin.org/vault-models";
 import { FaucetConnectorFactory } from "@twin.org/wallet-models";
 import dotenv from "dotenv";
-import { IotaFaucetConnector } from "../src/iotaFaucetConnector";
-import { IotaWalletConnector } from "../src/iotaWalletConnector";
-import type { IIotaFaucetConnectorConfig } from "../src/models/IIotaFaucetConnectorConfig";
+import { IotaFaucetConnector } from "../src/iotaFaucetConnector.js";
+import { IotaWalletConnector } from "../src/iotaWalletConnector.js";
+import type { IIotaFaucetConnectorConfig } from "../src/models/IIotaFaucetConnectorConfig.js";
 
 console.debug("Setting up test environment from .env and .env.dev files");
 

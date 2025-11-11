@@ -3,9 +3,9 @@
 import { MemoryEntityStorageConnector } from "@twin.org/entity-storage-connector-memory";
 import { EntityStorageConnectorFactory } from "@twin.org/entity-storage-models";
 import { nameof } from "@twin.org/nameof";
-import type { WalletAddress } from "../src/entities/walletAddress";
-import { EntityStorageFaucetConnector } from "../src/entityStorageFaucetConnector";
-import { initSchema } from "../src/schema";
+import type { WalletAddress } from "../src/entities/walletAddress.js";
+import { EntityStorageFaucetConnector } from "../src/entityStorageFaucetConnector.js";
+import { initSchema } from "../src/schema.js";
 
 export const TEST_IDENTITY_ID = "test-identity";
 

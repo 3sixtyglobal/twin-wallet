@@ -11,8 +11,8 @@ import {
 	type IFaucetConnector,
 	type IWalletConnector
 } from "@twin.org/wallet-models";
-import type { IIotaWalletConnectorConfig } from "./models/IIotaWalletConnectorConfig";
-import type { IIotaWalletConnectorConstructorOptions } from "./models/IIotaWalletConnectorConstructorOptions";
+import type { IIotaWalletConnectorConfig } from "./models/IIotaWalletConnectorConfig.js";
+import type { IIotaWalletConnectorConstructorOptions } from "./models/IIotaWalletConnectorConstructorOptions.js";
 
 /**
  * Class for performing wallet operations on IOTA.
@@ -71,6 +71,14 @@ export class IotaWalletConnector implements IWalletConnector {
 		this._config = options.config;
 		Iota.populateConfig(this._config);
 		this._client = Iota.createClient(this._config);
+	}
+
+	/**
+	 * Returns the class name of the component.
+	 * @returns The class name of the component.
+	 */
+	public className(): string {
+		return IotaWalletConnector.CLASS_NAME;
 	}
 
 	/**

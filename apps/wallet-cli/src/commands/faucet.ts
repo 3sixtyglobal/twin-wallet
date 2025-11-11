@@ -4,8 +4,8 @@ import { CLIDisplay, CLIParam } from "@twin.org/cli-core";
 import { Converter, I18n, Is, StringHelper } from "@twin.org/core";
 import { FaucetConnectorFactory } from "@twin.org/wallet-models";
 import { Command, Option } from "commander";
-import { setupFaucetConnector, setupVault, setupWalletConnector } from "./setupCommands";
-import { WalletConnectorTypes } from "../models/walletConnectorTypes";
+import { setupFaucetConnector, setupVault, setupWalletConnector } from "./setupCommands.js";
+import { WalletConnectorTypes } from "../models/walletConnectorTypes.js";
 
 /**
  * Build the faucet command to be consumed by the CLI.
