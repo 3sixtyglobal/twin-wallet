@@ -59,7 +59,7 @@ export class IotaFaucetConnector implements IFaucetConnector {
 
 		this._config = options.config;
 		Iota.populateConfig(this._config);
-		this._client = Iota.createClient(this._config);
+		this._client = Iota.createClient(this._config) as unknown as IotaClient;
 	}
 
 	/**

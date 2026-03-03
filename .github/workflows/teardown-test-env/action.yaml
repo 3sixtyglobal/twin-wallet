@@ -1,0 +1,12 @@
+name: 'Teardown Testing Environment'
+description: 'Stop and remove test environment services after workflow completion.'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Teardown Docker Test Environment
+      shell: bash
+      run: |
+        docker stop twin-gas-station-test 2>/dev/null || true
+        docker rm twin-gas-station-test 2>/dev/null || true
+        sudo rm -f /usr/local/bin/iota 2>/dev/null || true

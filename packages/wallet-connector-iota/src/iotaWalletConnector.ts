@@ -1,6 +1,5 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import type { IotaClient } from "@iota/iota-sdk/client";
 import { Converter, GeneralError, Guards } from "@twin.org/core";
 import { Bip39 } from "@twin.org/crypto";
 import { Iota } from "@twin.org/dlt-iota";
@@ -50,7 +49,7 @@ export class IotaWalletConnector implements IWalletConnector {
 	 * The IOTA client.
 	 * @internal
 	 */
-	private readonly _client: IotaClient;
+	private readonly _client: ReturnType<typeof Iota.createClient>;
 
 	/**
 	 * Create a new instance of IOTA Wallet Connector.

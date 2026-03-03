@@ -64,7 +64,7 @@ The class name of the component.
 
 ### fundAddress()
 
-> **fundAddress**(`identity`, `address`, `timeoutInSeconds`): `Promise`\<`bigint`\>
+> **fundAddress**(`identity`, `address`, `timeoutInSeconds?`): `Promise`\<`bigint`\>
 
 Fund the wallet from the faucet.
 
@@ -82,7 +82,7 @@ The identity of the user to access the vault keys.
 
 The hex encoded address of the address to fund.
 
-##### timeoutInSeconds
+##### timeoutInSeconds?
 
 `number` = `60`
 
