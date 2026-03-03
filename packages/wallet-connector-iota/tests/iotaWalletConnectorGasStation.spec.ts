@@ -136,7 +136,7 @@ describe("IotaWalletConnector Gas Station Tests", () => {
 	});
 
 	test("ensureBalance handles gas station errors gracefully", async () => {
-		// Create a wallet connector with invalid gas station config to throw
+		// Create a wallet connector with invalid gas station config to simulate gas station failure
 		const invalidGasStationConfig: IIotaWalletConnectorConfig = {
 			clientOptions: TEST_CLIENT_OPTIONS,
 			network: TEST_NETWORK,
