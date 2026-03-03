@@ -1,5 +1,20 @@
 # @twin.org/wallet-cli - Changelog
 
+## [0.0.3-next.3](https://github.com/twinfoundation/wallet/compare/wallet-cli-v0.0.3-next.2...wallet-cli-v0.0.3-next.3) (2026-03-03)
+
+
+### Miscellaneous Chores
+
+* **wallet-cli:** Synchronize repo versions
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/wallet-connector-iota bumped from 0.0.3-next.2 to 0.0.3-next.3
+    * @twin.org/wallet-models bumped from 0.0.3-next.2 to 0.0.3-next.3
+
 ## [0.0.3-next.2](https://github.com/twinfoundation/wallet/compare/wallet-cli-v0.0.3-next.1...wallet-cli-v0.0.3-next.2) (2026-02-25)
 
 
