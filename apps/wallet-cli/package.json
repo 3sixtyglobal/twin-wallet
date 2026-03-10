@@ -1,7 +1,7 @@
 {
 	"name": "@twin.org/wallet-cli",
 	"version": "0.0.3-next.3",
-	"description": "A command line interface for interacting with the wallet APIs",
+	"description": "Provides command-line tooling for creating wallets, requesting faucet funds, and transferring value",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/twinfoundation/wallet.git",

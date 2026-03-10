@@ -1,6 +1,6 @@
 # TWIN Wallet Models
 
-Models which define the structure of the wallet contracts and connectors.
+This package defines shared wallet and faucet connector interfaces together with factories for resolving connector implementations. It provides a consistent contract layer so downstream libraries and tools can integrate wallet capabilities without coupling to a specific connector implementation.
 
 ## Installation
 

@@ -35,6 +35,7 @@
 		"/from\\s+(['\"]).*\\1/",
 		"/eslint-disable.*/",
 		"/^```shell[\\s\\S]*?```$/gm",
+		"/^```typescript[\\s\\S]*?```$/gm",
 		"/^```json[\\s\\S]*?```$/gm",
 		"/tst1.*/"
 	]

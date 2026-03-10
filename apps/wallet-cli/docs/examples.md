@@ -1,4 +1,6 @@
-# @twin.org/wallet-cli - Examples
+# Wallet CLI Usage
+
+Use these command-line patterns to install, run, and inspect available commands for local wallet operations.
 
 ## Running
 
@@ -14,6 +16,8 @@ or run directly using NPX:
 ```shell
 npx "@twin.org/wallet-cli"
 ```
+
+## Help
 
 You should see output similar to the following:
 
@@ -37,7 +41,7 @@ Commands:
 
 The commands `mnemonic` and `address`, are described in more detail in the examples for `crypto-cli`.
 
-## Command
+## Faucet Command Output
 
 ### faucet
 

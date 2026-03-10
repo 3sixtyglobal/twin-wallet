@@ -1,7 +1,7 @@
 {
 	"name": "@twin.org/wallet-models",
 	"version": "0.0.3-next.3",
-	"description": "Models which define the structure of the wallet contracts and connectors",
+	"description": "Defines shared wallet and faucet connector interfaces together with factories for resolving connector implementations",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/twinfoundation/wallet.git",

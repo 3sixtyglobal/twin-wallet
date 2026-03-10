@@ -1,7 +1,7 @@
 {
 	"name": "@twin.org/wallet",
 	"version": "0.0.0",
-	"description": "Wallet",
+	"description": "Monorepo for wallet connector libraries and a wallet command-line application",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/twinfoundation/wallet.git"

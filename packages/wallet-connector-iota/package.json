@@ -1,7 +1,7 @@
 {
 	"name": "@twin.org/wallet-connector-iota",
 	"version": "0.0.3-next.3",
-	"description": "Wallet connector implementation using IOTA",
+	"description": "Implements wallet and faucet connectors for IOTA networks, including balance checks, transfers, and funding flows",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/twinfoundation/wallet.git",
