@@ -10,12 +10,19 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Set IOTA CLI versions
+      shell: bash
+      run: |
+        echo "IOTA_CLI_VERSION_MAINNET=1.17.2" >> $GITHUB_ENV
+        echo "IOTA_CLI_VERSION_TESTNET=1.18.1-rc" >> $GITHUB_ENV
+        echo "IOTA_CLI_VERSION_DEVNET=1.18.0-beta" >> $GITHUB_ENV
+
     - name: Download IOTA CLI
       if: inputs.package == 'packages/wallet-connector-iota' || inputs.package == 'all'
       shell: bash
       run: |
         cd ..
-        wget https://github.com/iotaledger/iota/releases/download/v1.17.2/iota-v1.17.2-linux-x86_64.tgz -O iota-cli.tgz
+        wget https://github.com/iotaledger/iota/releases/download/v$IOTA_CLI_VERSION_TESTNET/iota-v$IOTA_CLI_VERSION_TESTNET-linux-x86_64.tgz -O iota-cli.tgz
         tar xzf iota-cli.tgz
         rm iota-cli.tgz
         chmod +x iota
