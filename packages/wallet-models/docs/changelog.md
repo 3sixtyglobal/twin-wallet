@@ -1,4 +1,4 @@
-# @twin.org/wallet-models - Changelog
+# Changelog
 
 ## [0.0.3-next.3](https://github.com/twinfoundation/wallet/compare/wallet-models-v0.0.3-next.2...wallet-models-v0.0.3-next.3) (2026-03-03)
 

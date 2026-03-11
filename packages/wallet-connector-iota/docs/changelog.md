@@ -1,4 +1,4 @@
-# @twin.org/wallet-connector-iota - Changelog
+# Changelog
 
 ## [0.0.3-next.3](https://github.com/twinfoundation/wallet/compare/wallet-connector-iota-v0.0.3-next.2...wallet-connector-iota-v0.0.3-next.3) (2026-03-03)
 
