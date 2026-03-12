@@ -6,7 +6,7 @@ The wallet connector types.
 
 ## Type Declaration
 
-### Iota
+### Iota {#iota}
 
 > `readonly` **Iota**: `"iota"` = `"iota"`
 

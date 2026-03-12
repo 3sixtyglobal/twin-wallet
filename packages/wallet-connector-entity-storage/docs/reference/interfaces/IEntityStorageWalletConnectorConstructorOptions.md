@@ -4,49 +4,31 @@ Options for the entity storage wallet connector.
 
 ## Properties
 
-### vaultConnectorType?
+### vaultConnectorType? {#vaultconnectortype}
 
 > `optional` **vaultConnectorType**: `string`
 
 Vault connector to use for wallet secrets.
 
-#### Default
-
-```ts
-vault
-```
-
 ***
 
-### faucetConnectorType?
+### faucetConnectorType? {#faucetconnectortype}
 
 > `optional` **faucetConnectorType**: `string`
 
 Optional faucet for requesting funds.
 
-#### Default
-
-```ts
-faucet
-```
-
 ***
 
-### walletAddressEntityStorageType?
+### walletAddressEntityStorageType? {#walletaddressentitystoragetype}
 
 > `optional` **walletAddressEntityStorageType**: `string`
 
 The entity storage for wallets.
 
-#### Default
-
-```ts
-wallet-address
-```
-
 ***
 
-### config?
+### config? {#config}
 
 > `optional` **config**: [`IEntityStorageWalletConnectorConfig`](IEntityStorageWalletConnectorConfig.md)
 

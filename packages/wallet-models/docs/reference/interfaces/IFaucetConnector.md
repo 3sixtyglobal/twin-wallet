@@ -8,7 +8,7 @@ Interface describing a faucet connector.
 
 ## Methods
 
-### fundAddress()
+### fundAddress() {#fundaddress}
 
 > **fundAddress**(`identity`, `address`, `timeoutInSeconds?`): `Promise`\<`bigint`\>
 

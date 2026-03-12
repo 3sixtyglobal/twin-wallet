@@ -8,7 +8,7 @@ Interface describing a wallet connector.
 
 ## Methods
 
-### create()
+### create() {#create}
 
 > **create**(`identity`): `Promise`\<`void`\>
 
@@ -30,7 +30,7 @@ Nothing.
 
 ***
 
-### getAddresses()
+### getAddresses() {#getaddresses}
 
 > **getAddresses**(`identity`, `accountIndex`, `startAddressIndex`, `count`): `Promise`\<`string`[]\>
 
@@ -70,7 +70,7 @@ The list of addresses.
 
 ***
 
-### getBalance()
+### getBalance() {#getbalance}
 
 > **getBalance**(`identity`, `address`): `Promise`\<`bigint`\>
 
@@ -98,7 +98,7 @@ The balance of the wallet address.
 
 ***
 
-### ensureBalance()
+### ensureBalance() {#ensurebalance}
 
 > **ensureBalance**(`identity`, `address`, `ensureBalance`, `timeoutInSeconds?`): `Promise`\<`boolean`\>
 
@@ -138,7 +138,7 @@ True if the balance has been ensured.
 
 ***
 
-### transfer()
+### transfer() {#transfer}
 
 > **transfer**(`identity`, `addressSource`, `addressDest`, `amount`): `Promise`\<`string` \| `undefined`\>
 

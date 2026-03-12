@@ -14,7 +14,7 @@ Class describing a wallet address.
 
 ## Properties
 
-### address
+### address {#address}
 
 > **address**: `string`
 
@@ -22,7 +22,7 @@ The address in the wallet.
 
 ***
 
-### identity
+### identity {#identity}
 
 > **identity**: `string`
 
@@ -30,7 +30,7 @@ The identity of the owner.
 
 ***
 
-### balance
+### balance {#balance}
 
 > **balance**: `string`
 

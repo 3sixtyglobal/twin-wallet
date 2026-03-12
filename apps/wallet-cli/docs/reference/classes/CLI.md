@@ -22,7 +22,7 @@ The main entry point for the CLI.
 
 ## Methods
 
-### run()
+### run() {#run}
 
 > **run**(`argv`, `localesDirectory?`, `options?`): `Promise`\<`number`\>
 

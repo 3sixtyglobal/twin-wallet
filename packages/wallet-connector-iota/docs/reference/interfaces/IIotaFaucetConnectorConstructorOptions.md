@@ -4,7 +4,7 @@ Options for the IOTA Faucet Connector constructor.
 
 ## Properties
 
-### config
+### config {#config}
 
 > **config**: [`IIotaFaucetConnectorConfig`](IIotaFaucetConnectorConfig.md)
 
@@ -12,7 +12,7 @@ The configuration for the connector.
 
 ***
 
-### vaultConnectorType?
+### vaultConnectorType? {#vaultconnectortype}
 
 > `optional` **vaultConnectorType**: `string`
 

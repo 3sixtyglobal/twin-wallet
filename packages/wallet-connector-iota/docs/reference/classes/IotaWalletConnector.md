@@ -28,7 +28,7 @@ The options for the wallet connector.
 
 ## Properties
 
-### NAMESPACE
+### NAMESPACE {#namespace}
 
 > `readonly` `static` **NAMESPACE**: `string` = `"iota"`
 
@@ -36,7 +36,7 @@ The namespace supported by the wallet connector.
 
 ***
 
-### CLASS\_NAME
+### CLASS\_NAME {#class_name}
 
 > `readonly` `static` **CLASS\_NAME**: `string`
 
@@ -44,7 +44,7 @@ Runtime name for the class.
 
 ## Methods
 
-### className()
+### className() {#classname}
 
 > **className**(): `string`
 
@@ -62,7 +62,7 @@ The class name of the component.
 
 ***
 
-### create()
+### create() {#create}
 
 > **create**(`identity`): `Promise`\<`void`\>
 
@@ -88,7 +88,7 @@ Nothing.
 
 ***
 
-### getAddresses()
+### getAddresses() {#getaddresses}
 
 > **getAddresses**(`identity`, `accountIndex`, `startAddressIndex`, `count`, `isInternal?`): `Promise`\<`string`[]\>
 
@@ -138,7 +138,7 @@ The addresses.
 
 ***
 
-### getBalance()
+### getBalance() {#getbalance}
 
 > **getBalance**(`identity`, `address`): `Promise`\<`bigint`\>
 
@@ -170,7 +170,7 @@ The balance.
 
 ***
 
-### ensureBalance()
+### ensureBalance() {#ensurebalance}
 
 > **ensureBalance**(`identity`, `address`, `ensureBalance`, `timeoutInSeconds?`): `Promise`\<`boolean`\>
 
@@ -214,7 +214,7 @@ True if the balance is at least the given amount, false otherwise.
 
 ***
 
-### transfer()
+### transfer() {#transfer}
 
 > **transfer**(`identity`, `addressSource`, `addressDest`, `amount`): `Promise`\<`string` \| `undefined`\>
 
