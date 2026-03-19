@@ -14,6 +14,6 @@ The configuration for the connector.
 
 ### vaultConnectorType? {#vaultconnectortype}
 
-> `optional` **vaultConnectorType**: `string`
+> `optional` **vaultConnectorType?**: `string`
 
 Vault connector to use for faucet secrets.

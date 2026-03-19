@@ -6,6 +6,12 @@ Options for the entity storage faucet connector.
 
 ### walletAddressEntityStorageType? {#walletaddressentitystoragetype}
 
-> `optional` **walletAddressEntityStorageType**: `string`
+> `optional` **walletAddressEntityStorageType?**: `string`
 
 The entity storage type for wallet addresses.
+
+#### Default
+
+```ts
+wallet-address
+```
