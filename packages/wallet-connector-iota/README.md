@@ -10,24 +10,10 @@ npm install @twin.org/wallet-connector-iota
 
 ## Docker
 
-To perform testing of this component it may be necessary to launch a local instance to communicate with.
+To perform testing of this component it may be necessary to launch a local instance of the gas station to communicate with.
 
 ```shell
-docker run -d --name twin-gas-station-test -p 6379:6379 -p 9527:9527 -p 9184:9184 twinfoundation/twin-gas-station-test:latest
-```
-
-For local verification you can check service readiness and then run tests:
-
-```shell
-docker exec twin-wallet-iota redis-cli ping
-curl http://localhost:9527/
-npm run test
-```
-
-When finished, stop and remove the container:
-
-```shell
-docker stop twin-wallet-iota && docker rm twin-wallet-iota
+docker run -d --name twin-gas-station-test -p 6379:6379 -p 9527:9527 -p 9184:9184 -e IOTA_NODE_URL="https://api.testnet.iota.cafe" -e GAS_STATION_AUTH="qEyCL6d9BKKFl/tfDGAKeGFkhUlf7FkqiGV7Xw4JUsI=" twinfoundation/twin-gas-station-test:latest
 ```
 
 ## Examples
