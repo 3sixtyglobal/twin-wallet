@@ -250,7 +250,7 @@ jobs:
         run: |
           CONFIG_FILE=release/release-please-config.${{ needs.process-workspaces.outputs.branch == 'next' && 'prerelease' || 'prod' }}.json
           MANIFEST_FILE=release/release-please-manifest.${{ needs.process-workspaces.outputs.branch == 'next' && 'prerelease' || 'prod' }}.json
-          npx --yes release-please github-release --config-file=${CONFIG_FILE} --manifest-file=${MANIFEST_FILE} --repo-url=${{ github.repository }} --target-branch=${{ needs.process-workspaces.outputs.branch }} --token=${{ secrets.GHA_RELEASE_TOKEN }}
+          npx --yes release-please github-release --config-file=${CONFIG_FILE} --manifest-file=${MANIFEST_FILE} --repo-url=${{ github.repository }} --target-branch=${{ needs.process-workspaces.outputs.branch }} --token=${{ secrets.TWIN_GHA_RELEASE_TOKEN }}
 
   # Trigger workspace notification workflow after a successful release publish
   trigger-notify-workspace:

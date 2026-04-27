@@ -141,7 +141,7 @@ jobs:
         run: |
           gh pr review ${{ steps.create-pr.outputs.pr_number }} --approve
         env:
-          GH_TOKEN: ${{ secrets.GHA_RELEASE_TOKEN }}
+          GH_TOKEN: ${{ secrets.TWIN_GHA_RELEASE_TOKEN }}
 
       # Merge immediately when PR is ready; otherwise enable auto-merge.
       - name: Merge or enable auto-merge for docs update PR
@@ -160,7 +160,7 @@ jobs:
             gh pr merge "$PR_NUMBER" --auto --squash --delete-branch
           fi
         env:
-          GH_TOKEN: ${{ secrets.GHA_RELEASE_TOKEN }}
+          GH_TOKEN: ${{ secrets.TWIN_GHA_RELEASE_TOKEN }}
 
       # Block until the PR is actually merged so callers can safely continue.
       - name: Wait for docs update PR merge
@@ -189,7 +189,7 @@ jobs:
           echo "Timed out waiting for docs update PR #$PR_NUMBER to merge."
           exit 1
         env:
-          GH_TOKEN: ${{ secrets.GHA_RELEASE_TOKEN }}
+          GH_TOKEN: ${{ secrets.TWIN_GHA_RELEASE_TOKEN }}
 
       - name: Dry run summary
         if: ${{ inputs.dryRun }}

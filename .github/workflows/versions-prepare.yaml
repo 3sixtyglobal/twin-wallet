@@ -167,7 +167,7 @@ jobs:
         env:
           # We need to use a different token for the approval as you can't approve your own PRs
           # This token must be from a different user with write access to the repository
-          GH_TOKEN: ${{ secrets.GHA_RELEASE_TOKEN }} # Personal access token from a different user
+          GH_TOKEN: ${{ secrets.TWIN_GHA_RELEASE_TOKEN }} # Personal access token from a different user
 
       # Cleanup: Remove the imported GPG key
       - name: Cleanup GPG key
