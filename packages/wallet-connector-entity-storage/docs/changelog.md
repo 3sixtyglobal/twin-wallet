@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.0.3-next.3](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.3-next.2...wallet-connector-entity-storage-v0.0.3-next.3) (2026-03-03)
+## [0.0.3-next.3](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.3-next.2...wallet-connector-entity-storage-v0.0.3-next.3) (2026-03-03)
 
 
 ### Miscellaneous Chores
@@ -14,12 +14,12 @@
   * dependencies
     * @twin.org/wallet-models bumped from 0.0.3-next.2 to 0.0.3-next.3
 
-## [0.0.3-next.2](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.3-next.1...wallet-connector-entity-storage-v0.0.3-next.2) (2026-02-25)
+## [0.0.3-next.2](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.3-next.1...wallet-connector-entity-storage-v0.0.3-next.2) (2026-02-25)
 
 
 ### Bug Fixes
 
-* missing dependency ([6f02070](https://github.com/twinfoundation/wallet/commit/6f02070f3ad7d6dcdbbddd952c7d18a47386f15d))
+* missing dependency ([6f02070](https://github.com/iotaledger/twin-wallet/commit/6f02070f3ad7d6dcdbbddd952c7d18a47386f15d))
 
 
 ### Dependencies
@@ -28,19 +28,19 @@
   * dependencies
     * @twin.org/wallet-models bumped from 0.0.3-next.1 to 0.0.3-next.2
 
-## [0.0.3-next.1](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.3-next.0...wallet-connector-entity-storage-v0.0.3-next.1) (2025-11-11)
+## [0.0.3-next.1](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.3-next.0...wallet-connector-entity-storage-v0.0.3-next.1) (2025-11-11)
 
 
 ### Features
 
-* add context id features ([#46](https://github.com/twinfoundation/wallet/issues/46)) ([9389c28](https://github.com/twinfoundation/wallet/commit/9389c28084656666d04ed82575cbc8d3fa9f0d88))
-* add validate-locales ([e5200c2](https://github.com/twinfoundation/wallet/commit/e5200c279de60592b64eeb64279fa8ed289a677f))
-* eslint migration to flat config ([7068485](https://github.com/twinfoundation/wallet/commit/7068485f7c10121b76b6219798fdea4d3e91648a))
-* iota rebased release ([d0c617d](https://github.com/twinfoundation/wallet/commit/d0c617d894f3663f7c80f7d53d2da858a0bd64f0))
-* remove bech32 encoding for addresses ([869ef88](https://github.com/twinfoundation/wallet/commit/869ef8830eab0bcea6bc748f3bc637fc311e0709))
-* update dependencies ([4b47a7d](https://github.com/twinfoundation/wallet/commit/4b47a7d900d72d1502d6db54cb391a954818478b))
-* update framework core ([1c8a381](https://github.com/twinfoundation/wallet/commit/1c8a381e3c0544803a98db5560d87087fd095c23))
-* use shared store mechanism ([#27](https://github.com/twinfoundation/wallet/issues/27)) ([2ba7861](https://github.com/twinfoundation/wallet/commit/2ba7861a2a610cf83396a3285c7bbaebe5a31551))
+* add context id features ([#46](https://github.com/iotaledger/twin-wallet/issues/46)) ([9389c28](https://github.com/iotaledger/twin-wallet/commit/9389c28084656666d04ed82575cbc8d3fa9f0d88))
+* add validate-locales ([e5200c2](https://github.com/iotaledger/twin-wallet/commit/e5200c279de60592b64eeb64279fa8ed289a677f))
+* eslint migration to flat config ([7068485](https://github.com/iotaledger/twin-wallet/commit/7068485f7c10121b76b6219798fdea4d3e91648a))
+* iota rebased release ([d0c617d](https://github.com/iotaledger/twin-wallet/commit/d0c617d894f3663f7c80f7d53d2da858a0bd64f0))
+* remove bech32 encoding for addresses ([869ef88](https://github.com/iotaledger/twin-wallet/commit/869ef8830eab0bcea6bc748f3bc637fc311e0709))
+* update dependencies ([4b47a7d](https://github.com/iotaledger/twin-wallet/commit/4b47a7d900d72d1502d6db54cb391a954818478b))
+* update framework core ([1c8a381](https://github.com/iotaledger/twin-wallet/commit/1c8a381e3c0544803a98db5560d87087fd095c23))
+* use shared store mechanism ([#27](https://github.com/iotaledger/twin-wallet/issues/27)) ([2ba7861](https://github.com/iotaledger/twin-wallet/commit/2ba7861a2a610cf83396a3285c7bbaebe5a31551))
 
 
 ### Dependencies
@@ -49,12 +49,12 @@
   * dependencies
     * @twin.org/wallet-models bumped from 0.0.3-next.0 to 0.0.3-next.1
 
-## [0.0.2-next.5](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.2-next.4...wallet-connector-entity-storage-v0.0.2-next.5) (2025-10-09)
+## [0.0.2-next.5](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.2-next.4...wallet-connector-entity-storage-v0.0.2-next.5) (2025-10-09)
 
 
 ### Features
 
-* add validate-locales ([e5200c2](https://github.com/twinfoundation/wallet/commit/e5200c279de60592b64eeb64279fa8ed289a677f))
+* add validate-locales ([e5200c2](https://github.com/iotaledger/twin-wallet/commit/e5200c279de60592b64eeb64279fa8ed289a677f))
 
 
 ### Dependencies
@@ -63,12 +63,12 @@
   * dependencies
     * @twin.org/wallet-models bumped from 0.0.2-next.4 to 0.0.2-next.5
 
-## [0.0.2-next.4](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.2-next.3...wallet-connector-entity-storage-v0.0.2-next.4) (2025-08-29)
+## [0.0.2-next.4](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.2-next.3...wallet-connector-entity-storage-v0.0.2-next.4) (2025-08-29)
 
 
 ### Features
 
-* eslint migration to flat config ([7068485](https://github.com/twinfoundation/wallet/commit/7068485f7c10121b76b6219798fdea4d3e91648a))
+* eslint migration to flat config ([7068485](https://github.com/iotaledger/twin-wallet/commit/7068485f7c10121b76b6219798fdea4d3e91648a))
 
 
 ### Dependencies
@@ -77,7 +77,7 @@
   * dependencies
     * @twin.org/wallet-models bumped from 0.0.2-next.3 to 0.0.2-next.4
 
-## [0.0.2-next.3](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.2-next.2...wallet-connector-entity-storage-v0.0.2-next.3) (2025-08-20)
+## [0.0.2-next.3](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.2-next.2...wallet-connector-entity-storage-v0.0.2-next.3) (2025-08-20)
 
 
 ### Miscellaneous Chores
@@ -91,12 +91,12 @@
   * dependencies
     * @twin.org/wallet-models bumped from 0.0.2-next.2 to 0.0.2-next.3
 
-## [0.0.2-next.2](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.2-next.1...wallet-connector-entity-storage-v0.0.2-next.2) (2025-08-20)
+## [0.0.2-next.2](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.2-next.1...wallet-connector-entity-storage-v0.0.2-next.2) (2025-08-20)
 
 
 ### Features
 
-* update framework core ([1c8a381](https://github.com/twinfoundation/wallet/commit/1c8a381e3c0544803a98db5560d87087fd095c23))
+* update framework core ([1c8a381](https://github.com/iotaledger/twin-wallet/commit/1c8a381e3c0544803a98db5560d87087fd095c23))
 
 
 ### Dependencies
@@ -105,15 +105,15 @@
   * dependencies
     * @twin.org/wallet-models bumped from 0.0.2-next.1 to 0.0.2-next.2
 
-## [0.0.2-next.1](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.2-next.0...wallet-connector-entity-storage-v0.0.2-next.1) (2025-07-16)
+## [0.0.2-next.1](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.2-next.0...wallet-connector-entity-storage-v0.0.2-next.1) (2025-07-16)
 
 
 ### Features
 
-* iota rebased release ([d0c617d](https://github.com/twinfoundation/wallet/commit/d0c617d894f3663f7c80f7d53d2da858a0bd64f0))
-* remove bech32 encoding for addresses ([869ef88](https://github.com/twinfoundation/wallet/commit/869ef8830eab0bcea6bc748f3bc637fc311e0709))
-* update dependencies ([4b47a7d](https://github.com/twinfoundation/wallet/commit/4b47a7d900d72d1502d6db54cb391a954818478b))
-* use shared store mechanism ([#27](https://github.com/twinfoundation/wallet/issues/27)) ([2ba7861](https://github.com/twinfoundation/wallet/commit/2ba7861a2a610cf83396a3285c7bbaebe5a31551))
+* iota rebased release ([d0c617d](https://github.com/iotaledger/twin-wallet/commit/d0c617d894f3663f7c80f7d53d2da858a0bd64f0))
+* remove bech32 encoding for addresses ([869ef88](https://github.com/iotaledger/twin-wallet/commit/869ef8830eab0bcea6bc748f3bc637fc311e0709))
+* update dependencies ([4b47a7d](https://github.com/iotaledger/twin-wallet/commit/4b47a7d900d72d1502d6db54cb391a954818478b))
+* use shared store mechanism ([#27](https://github.com/iotaledger/twin-wallet/issues/27)) ([2ba7861](https://github.com/iotaledger/twin-wallet/commit/2ba7861a2a610cf83396a3285c7bbaebe5a31551))
 
 
 ### Dependencies
@@ -127,7 +127,7 @@
 
 ### Features
 
-* release to production ([4631961](https://github.com/twinfoundation/wallet/commit/4631961bf9c8cf82ffd0c8dd2a7d750456bbab39))
+* release to production ([4631961](https://github.com/iotaledger/twin-wallet/commit/4631961bf9c8cf82ffd0c8dd2a7d750456bbab39))
 
 
 ### Dependencies
@@ -136,14 +136,14 @@
   * dependencies
     * @twin.org/wallet-models bumped from ^0.0.0 to ^0.0.1
 
-## [0.0.1-next.24](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.1-next.23...wallet-connector-entity-storage-v0.0.1-next.24) (2025-07-03)
+## [0.0.1-next.24](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.1-next.23...wallet-connector-entity-storage-v0.0.1-next.24) (2025-07-03)
 
 
 ### Features
 
-* iota rebased release ([d0c617d](https://github.com/twinfoundation/wallet/commit/d0c617d894f3663f7c80f7d53d2da858a0bd64f0))
-* update dependencies ([4b47a7d](https://github.com/twinfoundation/wallet/commit/4b47a7d900d72d1502d6db54cb391a954818478b))
-* use shared store mechanism ([#27](https://github.com/twinfoundation/wallet/issues/27)) ([2ba7861](https://github.com/twinfoundation/wallet/commit/2ba7861a2a610cf83396a3285c7bbaebe5a31551))
+* iota rebased release ([d0c617d](https://github.com/iotaledger/twin-wallet/commit/d0c617d894f3663f7c80f7d53d2da858a0bd64f0))
+* update dependencies ([4b47a7d](https://github.com/iotaledger/twin-wallet/commit/4b47a7d900d72d1502d6db54cb391a954818478b))
+* use shared store mechanism ([#27](https://github.com/iotaledger/twin-wallet/issues/27)) ([2ba7861](https://github.com/iotaledger/twin-wallet/commit/2ba7861a2a610cf83396a3285c7bbaebe5a31551))
 
 
 ### Dependencies
@@ -152,7 +152,7 @@
   * dependencies
     * @twin.org/wallet-models bumped from 0.0.1-next.23 to 0.0.1-next.24
 
-## [0.0.1-next.23](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.1-next.22...wallet-connector-entity-storage-v0.0.1-next.23) (2025-07-03)
+## [0.0.1-next.23](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.1-next.22...wallet-connector-entity-storage-v0.0.1-next.23) (2025-07-03)
 
 
 ### Miscellaneous Chores
@@ -166,12 +166,12 @@
   * dependencies
     * @twin.org/wallet-models bumped from 0.0.1-next.22 to 0.0.1-next.23
 
-## [0.0.1-next.22](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.1-next.21...wallet-connector-entity-storage-v0.0.1-next.22) (2025-06-12)
+## [0.0.1-next.22](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.1-next.21...wallet-connector-entity-storage-v0.0.1-next.22) (2025-06-12)
 
 
 ### Features
 
-* update dependencies ([4b47a7d](https://github.com/twinfoundation/wallet/commit/4b47a7d900d72d1502d6db54cb391a954818478b))
+* update dependencies ([4b47a7d](https://github.com/iotaledger/twin-wallet/commit/4b47a7d900d72d1502d6db54cb391a954818478b))
 
 
 ### Dependencies
@@ -180,7 +180,7 @@
   * dependencies
     * @twin.org/wallet-models bumped from 0.0.1-next.21 to 0.0.1-next.22
 
-## [0.0.1-next.21](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.1-next.20...wallet-connector-entity-storage-v0.0.1-next.21) (2025-05-21)
+## [0.0.1-next.21](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.1-next.20...wallet-connector-entity-storage-v0.0.1-next.21) (2025-05-21)
 
 
 ### Miscellaneous Chores
@@ -194,12 +194,12 @@
   * dependencies
     * @twin.org/wallet-models bumped from 0.0.1-next.20 to 0.0.1-next.21
 
-## [0.0.1-next.20](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.1-next.19...wallet-connector-entity-storage-v0.0.1-next.20) (2025-05-06)
+## [0.0.1-next.20](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.1-next.19...wallet-connector-entity-storage-v0.0.1-next.20) (2025-05-06)
 
 
 ### Features
 
-* iota rebased release ([d0c617d](https://github.com/twinfoundation/wallet/commit/d0c617d894f3663f7c80f7d53d2da858a0bd64f0))
+* iota rebased release ([d0c617d](https://github.com/iotaledger/twin-wallet/commit/d0c617d894f3663f7c80f7d53d2da858a0bd64f0))
 
 
 ### Dependencies
@@ -208,12 +208,12 @@
   * dependencies
     * @twin.org/wallet-models bumped from 0.0.1-next.19 to 0.0.1-next.20
 
-## [0.0.1-next.19](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.1-next.18...wallet-connector-entity-storage-v0.0.1-next.19) (2025-04-17)
+## [0.0.1-next.19](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.1-next.18...wallet-connector-entity-storage-v0.0.1-next.19) (2025-04-17)
 
 
 ### Features
 
-* use shared store mechanism ([#27](https://github.com/twinfoundation/wallet/issues/27)) ([2ba7861](https://github.com/twinfoundation/wallet/commit/2ba7861a2a610cf83396a3285c7bbaebe5a31551))
+* use shared store mechanism ([#27](https://github.com/iotaledger/twin-wallet/issues/27)) ([2ba7861](https://github.com/iotaledger/twin-wallet/commit/2ba7861a2a610cf83396a3285c7bbaebe5a31551))
 
 
 ### Dependencies
@@ -222,7 +222,7 @@
   * dependencies
     * @twin.org/wallet-models bumped from 0.0.1-next.18 to 0.0.1-next.19
 
-## [0.0.1-next.18](https://github.com/twinfoundation/wallet/compare/wallet-connector-entity-storage-v0.0.1-next.17...wallet-connector-entity-storage-v0.0.1-next.18) (2025-03-28)
+## [0.0.1-next.18](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.0.1-next.17...wallet-connector-entity-storage-v0.0.1-next.18) (2025-03-28)
 
 
 ### Miscellaneous Chores
