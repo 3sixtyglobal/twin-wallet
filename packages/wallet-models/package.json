@@ -4,7 +4,7 @@
 	"description": "Defines shared wallet and faucet connector interfaces together with factories for resolving connector implementations",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/twinfoundation/wallet.git",
+		"url": "git+https://github.com/iotaledger/wallet.git",
 		"directory": "packages/wallet-models"
 	},
 	"author": "martyn.janes@iota.org",
@@ -77,7 +77,7 @@
 		"schemas"
 	],
 	"bugs": {
-		"url": "git+https://github.com/twinfoundation/wallet/issues"
+		"url": "git+https://github.com/iotaledger/wallet/issues"
 	},
 	"homepage": "https://twindev.org"
 }
