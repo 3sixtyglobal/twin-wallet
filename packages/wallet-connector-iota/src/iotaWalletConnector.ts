@@ -1,7 +1,6 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import { Converter, GeneralError, Guards } from "@twin.org/core";
-import { Bip39 } from "@twin.org/crypto";
+import { GeneralError, Guards } from "@twin.org/core";
 import { Iota } from "@twin.org/dlt-iota";
 import { nameof } from "@twin.org/nameof";
 import { VaultConnectorFactory, type IVaultConnector } from "@twin.org/vault-models";
@@ -87,16 +86,7 @@ export class IotaWalletConnector implements IWalletConnector {
 	 */
 	public async create(identity: string): Promise<void> {
 		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(identity), identity);
-		const mnemonic = Bip39.randomMnemonic();
-		await this._vaultConnector.setSecret<string>(
-			Iota.buildMnemonicKey(identity, this._config.vaultMnemonicId),
-			mnemonic
-		);
-		const seed = Bip39.mnemonicToSeed(mnemonic);
-		await this._vaultConnector.setSecret<string>(
-			Iota.buildSeedKey(identity, this._config.vaultSeedId),
-			Converter.bytesToBase64(seed)
-		);
+		await Iota.storeMnemonic(this._vaultConnector, this._config, identity, undefined, 0);
 	}
 
 	/**
@@ -117,11 +107,10 @@ export class IotaWalletConnector implements IWalletConnector {
 	): Promise<string[]> {
 		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(identity), identity);
 
-		const seed = await Iota.getSeed(this._config, this._vaultConnector, identity);
-
 		return Iota.getAddresses(
-			seed,
-			this._config.coinType ?? Iota.DEFAULT_COIN_TYPE,
+			this._vaultConnector,
+			this._config,
+			identity,
 			accountIndex,
 			startAddressIndex,
 			count,
@@ -164,9 +153,10 @@ export class IotaWalletConnector implements IWalletConnector {
 		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(address), address);
 		Guards.bigint(IotaWalletConnector.CLASS_NAME, nameof(ensureBalance), ensureBalance);
 
+		let currentBalance = await this.getBalance(identity, address);
+
 		if (this._faucetConnector) {
 			let retryCount = 10;
-			let currentBalance = await this.getBalance(identity, address);
 
 			while (currentBalance < ensureBalance && retryCount > 0) {
 				const addedBalance = await this._faucetConnector.fundAddress(
@@ -183,10 +173,9 @@ export class IotaWalletConnector implements IWalletConnector {
 					retryCount--;
 				}
 			}
-			return currentBalance >= ensureBalance;
 		}
 
-		return false;
+		return currentBalance >= ensureBalance;
 	}
 
 	/**

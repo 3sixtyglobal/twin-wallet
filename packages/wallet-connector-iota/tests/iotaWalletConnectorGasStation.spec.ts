@@ -11,7 +11,6 @@ import {
 } from "@twin.org/vault-connector-entity-storage";
 import { VaultConnectorFactory } from "@twin.org/vault-models";
 import { FaucetConnectorFactory } from "@twin.org/wallet-models";
-import { beforeAll, describe, expect, test } from "vitest";
 import {
 	TEST_CLIENT_OPTIONS,
 	TEST_COIN_TYPE,

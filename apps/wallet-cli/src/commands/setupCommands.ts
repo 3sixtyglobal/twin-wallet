@@ -52,8 +52,6 @@ export function setupWalletConnector(
 	options: { nodeEndpoint: string; network?: string; vaultSeedId?: string },
 	connector?: WalletConnectorTypes
 ): IWalletConnector {
-	connector ??= "iota";
-
 	return new IotaWalletConnector({
 		config: {
 			clientOptions: {
@@ -79,8 +77,6 @@ export function setupFaucetConnector(
 	options: { nodeEndpoint: string; network?: string; endpoint: string; vaultSeedId?: string },
 	connector?: WalletConnectorTypes
 ): IFaucetConnector {
-	connector ??= "iota";
-
 	return new IotaFaucetConnector({
 		config: {
 			clientOptions: {

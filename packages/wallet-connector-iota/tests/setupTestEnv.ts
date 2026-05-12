@@ -80,11 +80,6 @@ FaucetConnectorFactory.register(
 		})
 );
 
-// Generate test address
-const addresses = Iota.getAddresses(TEST_SEED, TEST_COIN_TYPE, 0, 0, 1);
-
-export const TEST_ADDRESS = addresses[0];
-
 // Initialize schema for entity storage
 initSchema();
 
@@ -102,8 +97,10 @@ const secretEntityStorage = new MemoryEntityStorageConnector<VaultSecret>({
 });
 EntityStorageConnectorFactory.register("vault-secret", () => secretEntityStorage);
 
-// Register vault connector
-VaultConnectorFactory.register("vault", () => new EntityStorageVaultConnector());
+const vaultConnector = new EntityStorageVaultConnector();
+VaultConnectorFactory.register("vault", () => vaultConnector);
+
+export let TEST_ADDRESS: string;
 
 // Register test wallet
 const TEST_WALLET_CONNECTOR = new IotaWalletConnector({
@@ -123,6 +120,21 @@ export async function setupTestEnv(): Promise<void> {
 		"Wallet Address",
 		`${process.env.TEST_EXPLORER_URL}address/${TEST_ADDRESS}?network=${TEST_NETWORK}`
 	);
-	await TEST_WALLET_CONNECTOR.create(TEST_IDENTITY_ID);
+
+	await vaultConnector.setSecret(`${TEST_IDENTITY_ID}/${TEST_MNEMONIC_NAME}`, TEST_MNEMONIC);
+
+	const addresses = await Iota.getAddresses(
+		vaultConnector,
+		{
+			...config,
+			vaultMnemonicId: TEST_MNEMONIC_NAME
+		},
+		TEST_IDENTITY_ID,
+		0,
+		0,
+		1
+	);
+	TEST_ADDRESS = addresses[0];
+
 	await TEST_WALLET_CONNECTOR.ensureBalance(TEST_IDENTITY_ID, TEST_ADDRESS, 1000000000n);
 }

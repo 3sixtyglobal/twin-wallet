@@ -2,10 +2,6 @@
 	"error": {
 		"iotaWalletConnector": {
 			"transferFailed": "The wallet transfer failed."
-		},
-		"iotaFaucetConnector": {
-			"fundingFailed": "Fund the address from faucet failed",
-			"faucetRateLimit": "Faucet rate limit exceeded"
 		}
 	}
 }
