@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.0.3-next.4](https://github.com/iotaledger/twin-wallet/compare/wallet-cli-v0.0.3-next.3...wallet-cli-v0.0.3-next.4) (2026-05-12)
+
+
+### Features
+
+* typescript 6 update ([7db75ad](https://github.com/iotaledger/twin-wallet/commit/7db75ade7482bc52f1da01014f0b66fa80d74d51))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/wallet-connector-iota bumped from 0.0.3-next.3 to 0.0.3-next.4
+    * @twin.org/wallet-models bumped from 0.0.3-next.3 to 0.0.3-next.4
+
 ## [0.0.3-next.3](https://github.com/iotaledger/twin-wallet/compare/wallet-cli-v0.0.3-next.2...wallet-cli-v0.0.3-next.3) (2026-03-03)
 
 

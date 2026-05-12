@@ -1,6 +1,6 @@
 {
-	"packages/wallet-models": "0.0.3-next.3",
-	"packages/wallet-connector-entity-storage": "0.0.3-next.3",
-	"packages/wallet-connector-iota": "0.0.3-next.3",
-	"apps/wallet-cli": "0.0.3-next.3"
+	"packages/wallet-models": "0.0.3-next.4",
+	"packages/wallet-connector-entity-storage": "0.0.3-next.4",
+	"packages/wallet-connector-iota": "0.0.3-next.4",
+	"apps/wallet-cli": "0.0.3-next.4"
 }
