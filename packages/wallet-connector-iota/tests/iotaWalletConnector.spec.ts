@@ -205,7 +205,7 @@ describe("IotaWalletConnector", () => {
 			const balance = await wallet.getBalance(TEST_IDENTITY_ID, address);
 			expect(balance).toBeGreaterThanOrEqual(1000000000n);
 		} catch (error) {
-			if (BaseError.fromError(error).message === "iotaFaucetConnector.faucetRateLimit") {
+			if (BaseError.fromError(error).message === "iota.faucetRateLimit") {
 				console.warn(
 					"Faucet rate limit exceeded, skipping test that requires funding from faucet."
 				);
@@ -226,7 +226,7 @@ describe("IotaWalletConnector", () => {
 			const balance = await wallet.getBalance(TEST_IDENTITY_ID, address);
 			expect(balance).toBeGreaterThan(0n);
 		} catch (error) {
-			if (BaseError.fromError(error).message === "iotaFaucetConnector.faucetRateLimit") {
+			if (BaseError.fromError(error).message === "iota.faucetRateLimit") {
 				console.warn(
 					"Faucet rate limit exceeded, skipping test that requires funding from faucet."
 				);

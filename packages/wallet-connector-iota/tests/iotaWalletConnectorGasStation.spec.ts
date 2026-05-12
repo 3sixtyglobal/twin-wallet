@@ -175,7 +175,7 @@ describe("IotaWalletConnector Gas Station Tests", () => {
 			// The test should not throw an error even if funding fails
 			expect(typeof result).toBe("boolean");
 		} catch (error) {
-			if (BaseError.fromError(error).message === "iotaFaucetConnector.faucetRateLimit") {
+			if (BaseError.fromError(error).message === "iota.faucetRateLimit") {
 				console.warn(
 					"Faucet rate limit exceeded, skipping test that requires funding from faucet."
 				);
@@ -210,7 +210,7 @@ describe("IotaWalletConnector Gas Station Tests", () => {
 			expect(balanceAfterFunding).toBeGreaterThan(initialBalance);
 			expect(balanceAfterFunding).toBeGreaterThanOrEqual(minimumRequired);
 		} catch (error) {
-			if (BaseError.fromError(error).message === "iotaFaucetConnector.faucetRateLimit") {
+			if (BaseError.fromError(error).message === "iota.faucetRateLimit") {
 				console.warn(
 					"Faucet rate limit exceeded, skipping test that requires funding from faucet."
 				);
