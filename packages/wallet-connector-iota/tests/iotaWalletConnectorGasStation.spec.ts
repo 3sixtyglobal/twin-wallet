@@ -124,7 +124,7 @@ describe("IotaWalletConnector Gas Station Tests", () => {
 			const finalBalance = await walletConnector.getBalance(TEST_IDENTITY, address);
 			expect(finalBalance).toBeGreaterThanOrEqual(targetBalance);
 		} catch (error) {
-			if (BaseError.fromError(error).message === "iotaFaucetConnector.faucetRateLimit") {
+			if (BaseError.fromError(error).message === "iota.faucetRateLimit") {
 				console.warn(
 					"Faucet rate limit exceeded, skipping test that requires funding from faucet."
 				);
