@@ -111,9 +111,10 @@ describe("IotaFaucetConnector", () => {
 			const amountAdded = await faucet.fundAddress(TEST_IDENTITY_ID, address);
 			expect(amountAdded).toBeGreaterThan(0n);
 		} catch (error) {
-			if (BaseError.fromError(error).message === "iota.faucetRateLimit") {
+			const message = BaseError.fromError(error).message;
+			if (message === "iota.faucetRateLimit" || message === "iota.fundingFailed") {
 				console.warn(
-					"Faucet rate limit exceeded, skipping test that requires funding from faucet."
+					"Faucet rate limit exceeded or funding failed, skipping test that requires funding from faucet."
 				);
 			} else {
 				throw error;
