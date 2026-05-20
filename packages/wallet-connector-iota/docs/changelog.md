@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.0.3-next.5](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-iota-v0.0.3-next.4...wallet-connector-iota-v0.0.3-next.5) (2026-05-20)
+
+
+### Features
+
+* update dependencies ([231e269](https://github.com/iotaledger/twin-wallet/commit/231e2693dcbfbf3a02e27f7a94df115a2fc37fb5))
+* update dependencies ([a7fc999](https://github.com/iotaledger/twin-wallet/commit/a7fc999be84f1fad40bfa845300b3cf7471cfc7d))
+
+
+### Bug Fixes
+
+* tests ([7b4d838](https://github.com/iotaledger/twin-wallet/commit/7b4d838a920411c1e55fad94faf8f00e496530fa))
+* tests ([1c89dac](https://github.com/iotaledger/twin-wallet/commit/1c89dacfe02248e40b227f37c251f01f302fb9c0))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/wallet-models bumped from 0.0.3-next.4 to 0.0.3-next.5
+
 ## [0.0.3-next.4](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-iota-v0.0.3-next.3...wallet-connector-iota-v0.0.3-next.4) (2026-05-12)
 
 

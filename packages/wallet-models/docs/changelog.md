@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3-next.5](https://github.com/iotaledger/twin-wallet/compare/wallet-models-v0.0.3-next.4...wallet-models-v0.0.3-next.5) (2026-05-20)
+
+
+### Miscellaneous Chores
+
+* **wallet-models:** Synchronize repo versions
+
 ## [0.0.3-next.4](https://github.com/iotaledger/twin-wallet/compare/wallet-models-v0.0.3-next.3...wallet-models-v0.0.3-next.4) (2026-05-12)
 
 

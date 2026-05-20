@@ -29,7 +29,7 @@ describe("CLI", () => {
 		});
 		expect(exitCode).toBe(0);
 		expect(writeBuffer.length).toEqual(23);
-		expect(writeBuffer[0].includes("TWIN Wallet v0.0.3-next.4")).toEqual(true); // x-release-please-version
+		expect(writeBuffer[0].includes("TWIN Wallet v0.0.3-next.5")).toEqual(true); // x-release-please-version
 		expect(writeBuffer[1]).toEqual("");
 		expect(writeBuffer[2]).toEqual("");
 		expect(writeBuffer[3]).toEqual("");
