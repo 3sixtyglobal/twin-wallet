@@ -4,7 +4,7 @@
 	"description": "Implements wallet and faucet connectors backed by entity storage for local and test workflows",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/iotaledger/wallet.git",
+		"url": "git+https://github.com/iotaledger/twin-wallet.git",
 		"directory": "packages/wallet-connector-entity-storage"
 	},
 	"author": "martyn.janes@iota.org",
@@ -89,7 +89,7 @@
 		"integration"
 	],
 	"bugs": {
-		"url": "git+https://github.com/iotaledger/wallet/issues"
+		"url": "git+https://github.com/iotaledger/twin-wallet/issues"
 	},
 	"homepage": "https://twindev.org"
 }
