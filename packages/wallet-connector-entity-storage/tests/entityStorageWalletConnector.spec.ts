@@ -31,7 +31,8 @@ describe("EntityStorageWalletConnector", () => {
 
 	beforeEach(() => {
 		walletAddressEntityStorage = new MemoryEntityStorageConnector<WalletAddress>({
-			entitySchema: nameof<WalletAddress>()
+			entitySchema: nameof<WalletAddress>(),
+			config: { storageKey: "wallet-address" }
 		});
 		EntityStorageConnectorFactory.register("wallet-address", () => walletAddressEntityStorage);
 		faucetConnector = new EntityStorageFaucetConnector();
