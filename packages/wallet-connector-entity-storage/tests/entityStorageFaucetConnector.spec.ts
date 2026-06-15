@@ -23,7 +23,8 @@ describe("EntityStorageFaucetConnector", () => {
 		EntityStorageConnectorFactory.register("wallet-address", () => walletAddressEntityStorage);
 	});
 
-	afterEach(() => {
+	afterEach(async () => {
+		await walletAddressEntityStorage.teardown();
 		EntityStorageConnectorFactory.unregister("wallet-address");
 	});
 
@@ -39,7 +40,7 @@ describe("EntityStorageFaucetConnector", () => {
 
 		expect(amountAdded).toBeGreaterThan(0);
 
-		const store = walletAddressEntityStorage.getStore();
+		const store = await walletAddressEntityStorage.getStore();
 		expect(store?.[0].address).toEqual("addr1");
 		expect(store?.[0].identity).toEqual(TEST_IDENTITY_ID);
 		expect(store?.[0].balance).toEqual("1000000000");
@@ -58,7 +59,7 @@ describe("EntityStorageFaucetConnector", () => {
 
 		expect(amountAdded).toBeGreaterThan(0);
 
-		const store = walletAddressEntityStorage.getStore();
+		const store = await walletAddressEntityStorage.getStore();
 		expect(store?.[0].address).toEqual("addr1");
 		expect(store?.[0].identity).toEqual(TEST_IDENTITY_ID);
 		expect(store?.[0].balance).toEqual("1000001000");

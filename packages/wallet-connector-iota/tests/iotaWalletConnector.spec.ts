@@ -106,7 +106,7 @@ describe("IotaWalletConnector", () => {
 	describe("create", () => {
 		test("can create a new wallet", async () => {
 			const store =
-				EntityStorageConnectorFactory.get<MemoryEntityStorageConnector<VaultSecret>>(
+				await EntityStorageConnectorFactory.get<MemoryEntityStorageConnector<VaultSecret>>(
 					"vault-secret"
 				).getStore();
 			expect(store?.[0].id).toEqual(`${TEST_IDENTITY_ID}/${TEST_MNEMONIC_NAME}`);
@@ -115,7 +115,7 @@ describe("IotaWalletConnector", () => {
 
 		test("stores both mnemonic and seed in vault", async () => {
 			const store =
-				EntityStorageConnectorFactory.get<MemoryEntityStorageConnector<VaultSecret>>(
+				await EntityStorageConnectorFactory.get<MemoryEntityStorageConnector<VaultSecret>>(
 					"vault-secret"
 				).getStore();
 

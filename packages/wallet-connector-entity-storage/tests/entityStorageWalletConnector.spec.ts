@@ -38,7 +38,8 @@ describe("EntityStorageWalletConnector", () => {
 		FaucetConnectorFactory.register("faucet", () => faucetConnector);
 	});
 
-	afterEach(() => {
+	afterEach(async () => {
+		await walletAddressEntityStorage.teardown();
 		EntityStorageConnectorFactory.unregister("wallet-address");
 	});
 
@@ -53,7 +54,7 @@ describe("EntityStorageWalletConnector", () => {
 		await wallet.create(TEST_IDENTITY_ID);
 
 		const store =
-			EntityStorageConnectorFactory.get<MemoryEntityStorageConnector<VaultSecret>>(
+			await EntityStorageConnectorFactory.get<MemoryEntityStorageConnector<VaultSecret>>(
 				"vault-secret"
 			).getStore();
 		expect(store?.[0].id).toEqual(`${TEST_IDENTITY_ID}/mnemonic`);
@@ -111,7 +112,7 @@ describe("EntityStorageWalletConnector", () => {
 
 		expect(ensured).toBeTruthy();
 
-		const store = walletAddressEntityStorage.getStore();
+		const store = await walletAddressEntityStorage.getStore();
 		expect(store?.[0].address).toEqual(testAddresses[0]);
 		expect(store?.[0].balance).toEqual("2000000000");
 	});
@@ -123,7 +124,7 @@ describe("EntityStorageWalletConnector", () => {
 
 		expect(ensured).toBeTruthy();
 
-		const store = walletAddressEntityStorage.getStore();
+		const store = await walletAddressEntityStorage.getStore();
 		expect(store?.[0].address).toEqual(testAddresses[0]);
 		expect(store?.[0].balance).toEqual("1000000000");
 		expect(store?.[0].identity).toEqual(TEST_IDENTITY_ID);
@@ -168,7 +169,7 @@ describe("EntityStorageWalletConnector", () => {
 
 		await wallet.transfer(TEST_IDENTITY_ID, testAddresses[1], testAddresses[2], 100n);
 
-		const store = walletAddressEntityStorage.getStore();
+		const store = await walletAddressEntityStorage.getStore();
 
 		expect(store?.[0].address).toEqual(testAddresses[0]);
 		expect(store?.[0].balance).toEqual("1");
@@ -204,7 +205,7 @@ describe("EntityStorageWalletConnector", () => {
 
 		await wallet.transfer(TEST_IDENTITY_ID, testAddresses[1], testAddresses[2], 100n);
 
-		const store = walletAddressEntityStorage.getStore();
+		const store = await walletAddressEntityStorage.getStore();
 
 		expect(store?.[0].address).toEqual(testAddresses[0]);
 		expect(store?.[0].balance).toEqual("1");
