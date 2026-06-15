@@ -13,6 +13,7 @@ export interface IIotaFaucetConnectorConstructorOptions {
 
 	/**
 	 * Vault connector to use for faucet secrets.
+	 * @default vault
 	 */
 	vaultConnectorType?: string;
 }

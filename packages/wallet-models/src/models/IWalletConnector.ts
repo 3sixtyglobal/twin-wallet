@@ -9,7 +9,7 @@ export interface IWalletConnector extends IComponent {
 	/**
 	 * Create a new wallet.
 	 * @param identity The identity of the user to access the vault keys.
-	 * @returns Nothing.
+	 * @returns A promise that resolves when the wallet has been created and the mnemonic stored.
 	 */
 	create(identity: string): Promise<void>;
 
@@ -18,7 +18,7 @@ export interface IWalletConnector extends IComponent {
 	 * @param identity The identity of the user to access the vault keys.
 	 * @param accountIndex The account index to get the addresses for.
 	 * @param startAddressIndex The start index for the addresses.
-	 * @param count The end index for the addresses.
+	 * @param count The number of addresses to generate.
 	 * @returns The list of addresses.
 	 */
 	getAddresses(

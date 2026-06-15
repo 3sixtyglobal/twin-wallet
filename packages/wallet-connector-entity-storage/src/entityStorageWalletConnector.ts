@@ -102,7 +102,7 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 	/**
 	 * Create a new wallet.
 	 * @param identity The identity of the user to access the vault keys.
-	 * @returns Nothing.
+	 * @returns A promise that resolves when the wallet has been created and the mnemonic stored.
 	 */
 	public async create(identity: string): Promise<void> {
 		Guards.stringValue(EntityStorageWalletConnector.CLASS_NAME, nameof(identity), identity);
