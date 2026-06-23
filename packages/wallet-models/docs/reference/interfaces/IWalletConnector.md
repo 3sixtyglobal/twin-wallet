@@ -26,7 +26,7 @@ The identity of the user to access the vault keys.
 
 `Promise`\<`void`\>
 
-Nothing.
+A promise that resolves when the wallet has been created and the mnemonic stored.
 
 ***
 
@@ -60,7 +60,7 @@ The start index for the addresses.
 
 `number`
 
-The end index for the addresses.
+The number of addresses to generate.
 
 #### Returns
 

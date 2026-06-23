@@ -17,3 +17,9 @@ The configuration for the connector.
 > `optional` **vaultConnectorType?**: `string`
 
 Vault connector to use for faucet secrets.
+
+#### Default
+
+```ts
+vault
+```

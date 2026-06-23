@@ -80,7 +80,7 @@ The identity of the user to access the vault keys.
 
 `Promise`\<`void`\>
 
-Nothing.
+A promise that resolves when the wallet has been created and the mnemonic stored.
 
 #### Implementation of
 
