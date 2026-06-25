@@ -8,7 +8,7 @@ Interface describing a wallet connector.
 
 ## Methods
 
-### create()
+### create() {#create}
 
 > **create**(`identity`): `Promise`\<`void`\>
 
@@ -26,11 +26,11 @@ The identity of the user to access the vault keys.
 
 `Promise`\<`void`\>
 
-Nothing.
+A promise that resolves when the wallet has been created and the mnemonic stored.
 
 ***
 
-### getAddresses()
+### getAddresses() {#getaddresses}
 
 > **getAddresses**(`identity`, `accountIndex`, `startAddressIndex`, `count`): `Promise`\<`string`[]\>
 
@@ -60,7 +60,7 @@ The start index for the addresses.
 
 `number`
 
-The end index for the addresses.
+The number of addresses to generate.
 
 #### Returns
 
@@ -70,7 +70,7 @@ The list of addresses.
 
 ***
 
-### getBalance()
+### getBalance() {#getbalance}
 
 > **getBalance**(`identity`, `address`): `Promise`\<`bigint`\>
 
@@ -88,7 +88,7 @@ The identity of the user to access the vault keys.
 
 `string`
 
-The bech32 encoded address.
+The hex encoded address.
 
 #### Returns
 
@@ -98,7 +98,7 @@ The balance of the wallet address.
 
 ***
 
-### ensureBalance()
+### ensureBalance() {#ensurebalance}
 
 > **ensureBalance**(`identity`, `address`, `ensureBalance`, `timeoutInSeconds?`): `Promise`\<`boolean`\>
 
@@ -116,7 +116,7 @@ The identity of the user to access the vault keys.
 
 `string`
 
-The bech32 encoded address.
+The hex encoded address.
 
 ##### ensureBalance
 
@@ -138,9 +138,9 @@ True if the balance has been ensured.
 
 ***
 
-### transfer()
+### transfer() {#transfer}
 
-> **transfer**(`identity`, `addressSource`, `addressDest`, `amount`): `Promise`\<`undefined` \| `string`\>
+> **transfer**(`identity`, `addressSource`, `addressDest`, `amount`): `Promise`\<`string` \| `undefined`\>
 
 Transfer funds to an address.
 
@@ -156,13 +156,13 @@ The identity of the user to access the vault keys.
 
 `string`
 
-The bech32 encoded address to send the funds from.
+The hex encoded address to send the funds from.
 
 ##### addressDest
 
 `string`
 
-The bech32 encoded address to send the funds to.
+The hex encoded address to send the funds to.
 
 ##### amount
 
@@ -172,6 +172,6 @@ The amount to transfer.
 
 #### Returns
 
-`Promise`\<`undefined` \| `string`\>
+`Promise`\<`string` \| `undefined`\>
 
 An identifier for the transfer if there was one.

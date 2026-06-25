@@ -4,9 +4,9 @@ Options for the entity storage wallet connector.
 
 ## Properties
 
-### vaultConnectorType?
+### vaultConnectorType? {#vaultconnectortype}
 
-> `optional` **vaultConnectorType**: `string`
+> `optional` **vaultConnectorType?**: `string`
 
 Vault connector to use for wallet secrets.
 
@@ -18,9 +18,9 @@ vault
 
 ***
 
-### faucetConnectorType?
+### faucetConnectorType? {#faucetconnectortype}
 
-> `optional` **faucetConnectorType**: `string`
+> `optional` **faucetConnectorType?**: `string`
 
 Optional faucet for requesting funds.
 
@@ -32,9 +32,9 @@ faucet
 
 ***
 
-### walletAddressEntityStorageType?
+### walletAddressEntityStorageType? {#walletaddressentitystoragetype}
 
-> `optional` **walletAddressEntityStorageType**: `string`
+> `optional` **walletAddressEntityStorageType?**: `string`
 
 The entity storage for wallets.
 
@@ -46,8 +46,8 @@ wallet-address
 
 ***
 
-### config?
+### config? {#config}
 
-> `optional` **config**: [`IEntityStorageWalletConnectorConfig`](IEntityStorageWalletConnectorConfig.md)
+> `optional` **config?**: [`IEntityStorageWalletConnectorConfig`](IEntityStorageWalletConnectorConfig.md)
 
 The configuration for the wallet connector.

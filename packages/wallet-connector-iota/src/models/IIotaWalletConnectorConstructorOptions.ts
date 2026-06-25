@@ -1,6 +1,6 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import type { IIotaWalletConnectorConfig } from "./IIotaWalletConnectorConfig";
+import type { IIotaWalletConnectorConfig } from "./IIotaWalletConnectorConfig.js";
 
 /**
  * Options for the IOTA Wallet connector.

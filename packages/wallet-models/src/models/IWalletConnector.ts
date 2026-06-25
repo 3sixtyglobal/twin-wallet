@@ -9,7 +9,7 @@ export interface IWalletConnector extends IComponent {
 	/**
 	 * Create a new wallet.
 	 * @param identity The identity of the user to access the vault keys.
-	 * @returns Nothing.
+	 * @returns A promise that resolves when the wallet has been created and the mnemonic stored.
 	 */
 	create(identity: string): Promise<void>;
 
@@ -18,7 +18,7 @@ export interface IWalletConnector extends IComponent {
 	 * @param identity The identity of the user to access the vault keys.
 	 * @param accountIndex The account index to get the addresses for.
 	 * @param startAddressIndex The start index for the addresses.
-	 * @param count The end index for the addresses.
+	 * @param count The number of addresses to generate.
 	 * @returns The list of addresses.
 	 */
 	getAddresses(
@@ -31,7 +31,7 @@ export interface IWalletConnector extends IComponent {
 	/**
 	 * Get the balance for an address in a wallet.
 	 * @param identity The identity of the user to access the vault keys.
-	 * @param address The bech32 encoded address.
+	 * @param address The hex encoded address.
 	 * @returns The balance of the wallet address.
 	 */
 	getBalance(identity: string, address: string): Promise<bigint>;
@@ -39,7 +39,7 @@ export interface IWalletConnector extends IComponent {
 	/**
 	 * Ensure the balance for an address in a wallet.
 	 * @param identity The identity of the user to access the vault keys.
-	 * @param address The bech32 encoded address.
+	 * @param address The hex encoded address.
 	 * @param ensureBalance The balance to ensure on the address.
 	 * @param timeoutInSeconds The timeout in seconds to wait for the funding to complete.
 	 * @returns True if the balance has been ensured.
@@ -54,8 +54,8 @@ export interface IWalletConnector extends IComponent {
 	/**
 	 * Transfer funds to an address.
 	 * @param identity The identity of the user to access the vault keys.
-	 * @param addressSource The bech32 encoded address to send the funds from.
-	 * @param addressDest The bech32 encoded address to send the funds to.
+	 * @param addressSource The hex encoded address to send the funds from.
+	 * @param addressDest The hex encoded address to send the funds to.
 	 * @param amount The amount to transfer.
 	 * @returns An identifier for the transfer if there was one.
 	 */

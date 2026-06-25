@@ -1,6 +1,6 @@
 # TWIN Wallet Connector IOTA
 
-Wallet connector implementation using IOTA.
+This package implements wallet and faucet connectors for IOTA networks, including balance checks, transfers, and funding flows. It is intended for applications and tooling that need connector behaviour aligned with node, faucet, and sponsorship infrastructure.
 
 ## Installation
 
@@ -8,51 +8,13 @@ Wallet connector implementation using IOTA.
 npm install @twin.org/wallet-connector-iota
 ```
 
-## Testing
+## Docker
 
-The tests developed are functional tests and need the following components to be running:
-
-### Quick Setup (Recommended)
-
-The simplest way to set up the testing environment using our unified container:
+To perform testing of this component it may be necessary to launch a local instance of the gas station to communicate with.
 
 ```shell
-# Start the unified container with Redis + Gas Station
-docker run -d --name twin-gas-station-test \
-  -p 6379:6379 -p 9527:9527 -p 9184:9184 \
-  twinfoundation/twin-gas-station-test:latest
-
-# Wait a moment for services to start, then verify
-docker exec twin-gas-station-test redis-cli ping  # Should return: PONG
-curl http://localhost:9527/  # Should return: OK
-
-# Services are ready - you can now run tests
-npm run test
-
-# When finished, cleanup
-docker stop twin-gas-station-test && docker rm twin-gas-station-test
+docker run -d --name twin-gas-station-test -p 6379:6379 -p 9527:9527 -p 9184:9184 -e IOTA_NODE_URL="https://api.testnet.iota.cafe" -e GAS_STATION_AUTH="qEyCL6d9BKKFl/tfDGAKeGFkhUlf7FkqiGV7Xw4JUsI=" twinfoundation/twin-gas-station-test:latest
 ```
-
-That's it! The unified container includes:
-
-- Redis server (port 6379)
-- IOTA Gas Station (port 9527, metrics 9184)
-- Pre-configured with test keypair and settings
-- Health checks and proper startup sequencing
-
-### Environment Configuration
-
-The tests require environment variables to be configured. The following files in the `tests` directory are already pre-configured for testnet:
-
-- `.env` - Basic configuration (node endpoints, network settings)
-- `.env.dev` - Test mnemonics and authentication tokens
-
-The tests include both basic wallet operations and gas station integration tests that verify:
-
-- Wallet creation and key management
-- Address generation and balance checking
-- Gas station sponsorship functionality
-- Faucet integration for test funding
 
 ## Examples
 

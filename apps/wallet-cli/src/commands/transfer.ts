@@ -4,8 +4,8 @@ import { CLIDisplay, CLIParam } from "@twin.org/cli-core";
 import { Converter, I18n, Is, StringHelper } from "@twin.org/core";
 import { VaultConnectorFactory } from "@twin.org/vault-models";
 import { Command, Option } from "commander";
-import { setupVault, setupWalletConnector } from "./setupCommands";
-import { WalletConnectorTypes } from "../models/walletConnectorTypes";
+import { setupVault, setupWalletConnector } from "./setupCommands.js";
+import { WalletConnectorTypes } from "../models/walletConnectorTypes.js";
 
 /**
  * Build the transfer command to be consumed by the CLI.
@@ -85,14 +85,11 @@ export async function actionCommandTransfer(opts: {
 	explorer: string;
 }): Promise<void> {
 	const seed: Uint8Array = CLIParam.hexBase64("seed", opts.seed);
-	const address: string =
-		opts.connector === WalletConnectorTypes.Iota
-			? Converter.bytesToHex(CLIParam.hex("address", opts.address), true)
-			: CLIParam.bech32("address", opts.address);
-	const destAddress: string =
-		opts.connector === WalletConnectorTypes.Iota
-			? Converter.bytesToHex(CLIParam.hex("destAddress", opts.destAddress), true)
-			: CLIParam.bech32("destAddress", opts.destAddress);
+	const address: string = Converter.bytesToHex(CLIParam.hex("address", opts.address), true);
+	const destAddress: string = Converter.bytesToHex(
+		CLIParam.hex("destAddress", opts.destAddress),
+		true
+	);
 	const amount: bigint = CLIParam.bigint("amount", opts.amount, false, 0n);
 	const nodeEndpoint: string = CLIParam.url("node", opts.node);
 	const network: string | undefined =
@@ -112,6 +109,7 @@ export async function actionCommandTransfer(opts: {
 	CLIDisplay.value(I18n.formatMessage("commands.common.labels.address"), address);
 	CLIDisplay.value(I18n.formatMessage("commands.transfer.labels.destAddress"), destAddress);
 	CLIDisplay.value(I18n.formatMessage("commands.transfer.labels.amount"), amount.toString());
+	CLIDisplay.value(I18n.formatMessage("commands.common.labels.explorer"), explorerEndpoint);
 	CLIDisplay.break();
 
 	CLIDisplay.task(I18n.formatMessage("commands.transfer.progress.transferringFunds"));

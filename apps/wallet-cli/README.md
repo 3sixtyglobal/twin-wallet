@@ -1,16 +1,16 @@
 # TWIN Wallet CLI
 
-A command line interface for interacting with the wallet APIs.
+This app provides command-line tooling for creating wallets, requesting faucet funds, and transferring value. It is designed for local operator workflows, scripted checks, and quick validation of wallet connector behaviour without needing a separate service layer.
 
 ## Installation
 
 ```shell
-npm install @twin.org/wallet-cli
+npm install -D @twin.org/wallet-cli
 ```
 
-## Examples
+## Usage
 
-Usage of the tool is shown in the examples [docs/examples.md](docs/examples.md)
+Usage of the tool is shown in the examples [docs/usage.md](docs/usage.md)
 
 ## Reference
 

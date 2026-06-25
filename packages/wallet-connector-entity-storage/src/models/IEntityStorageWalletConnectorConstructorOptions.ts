@@ -1,7 +1,6 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-
-import type { IEntityStorageWalletConnectorConfig } from "./IEntityStorageWalletConnectorConfig";
+import type { IEntityStorageWalletConnectorConfig } from "./IEntityStorageWalletConnectorConfig.js";
 
 /**
  * Options for the entity storage wallet connector.

@@ -1,8 +1,6 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import type { IotaClient } from "@iota/iota-sdk/client";
-import { Converter, GeneralError, Guards } from "@twin.org/core";
-import { Bip39 } from "@twin.org/crypto";
+import { GeneralError, Guards } from "@twin.org/core";
 import { Iota } from "@twin.org/dlt-iota";
 import { nameof } from "@twin.org/nameof";
 import { VaultConnectorFactory, type IVaultConnector } from "@twin.org/vault-models";
@@ -11,8 +9,8 @@ import {
 	type IFaucetConnector,
 	type IWalletConnector
 } from "@twin.org/wallet-models";
-import type { IIotaWalletConnectorConfig } from "./models/IIotaWalletConnectorConfig";
-import type { IIotaWalletConnectorConstructorOptions } from "./models/IIotaWalletConnectorConstructorOptions";
+import type { IIotaWalletConnectorConfig } from "./models/IIotaWalletConnectorConfig.js";
+import type { IIotaWalletConnectorConstructorOptions } from "./models/IIotaWalletConnectorConstructorOptions.js";
 
 /**
  * Class for performing wallet operations on IOTA.
@@ -26,7 +24,7 @@ export class IotaWalletConnector implements IWalletConnector {
 	/**
 	 * Runtime name for the class.
 	 */
-	public readonly CLASS_NAME: string = nameof<IotaWalletConnector>();
+	public static readonly CLASS_NAME: string = nameof<IotaWalletConnector>();
 
 	/**
 	 * The configuration to use for IOTA operations.
@@ -50,16 +48,16 @@ export class IotaWalletConnector implements IWalletConnector {
 	 * The IOTA client.
 	 * @internal
 	 */
-	private readonly _client: IotaClient;
+	private readonly _client: ReturnType<typeof Iota.createClient>;
 
 	/**
 	 * Create a new instance of IOTA Wallet Connector.
 	 * @param options The options for the wallet connector.
 	 */
 	constructor(options: IIotaWalletConnectorConstructorOptions) {
-		Guards.object(this.CLASS_NAME, nameof(options), options);
+		Guards.object(IotaWalletConnector.CLASS_NAME, nameof(options), options);
 		Guards.object<IIotaWalletConnectorConfig>(
-			this.CLASS_NAME,
+			IotaWalletConnector.CLASS_NAME,
 			nameof(options.config),
 			options.config
 		);
@@ -74,22 +72,21 @@ export class IotaWalletConnector implements IWalletConnector {
 	}
 
 	/**
+	 * Returns the class name of the component.
+	 * @returns The class name of the component.
+	 */
+	public className(): string {
+		return IotaWalletConnector.CLASS_NAME;
+	}
+
+	/**
 	 * Create a new wallet.
 	 * @param identity The identity of the user to access the vault keys.
-	 * @returns Nothing.
+	 * @returns A promise that resolves when the wallet has been created and the mnemonic stored.
 	 */
 	public async create(identity: string): Promise<void> {
-		Guards.stringValue(this.CLASS_NAME, nameof(identity), identity);
-		const mnemonic = Bip39.randomMnemonic();
-		await this._vaultConnector.setSecret<string>(
-			Iota.buildMnemonicKey(identity, this._config.vaultMnemonicId),
-			mnemonic
-		);
-		const seed = Bip39.mnemonicToSeed(mnemonic);
-		await this._vaultConnector.setSecret<string>(
-			Iota.buildSeedKey(identity, this._config.vaultSeedId),
-			Converter.bytesToBase64(seed)
-		);
+		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(identity), identity);
+		await Iota.storeMnemonic(this._vaultConnector, this._config, identity, undefined, 0);
 	}
 
 	/**
@@ -108,13 +105,12 @@ export class IotaWalletConnector implements IWalletConnector {
 		count: number,
 		isInternal?: boolean
 	): Promise<string[]> {
-		Guards.stringValue(this.CLASS_NAME, nameof(identity), identity);
-
-		const seed = await Iota.getSeed(this._config, this._vaultConnector, identity);
+		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(identity), identity);
 
 		return Iota.getAddresses(
-			seed,
-			this._config.coinType ?? Iota.DEFAULT_COIN_TYPE,
+			this._vaultConnector,
+			this._config,
+			identity,
 			accountIndex,
 			startAddressIndex,
 			count,
@@ -129,8 +125,8 @@ export class IotaWalletConnector implements IWalletConnector {
 	 * @returns The balance.
 	 */
 	public async getBalance(identity: string, address: string): Promise<bigint> {
-		Guards.stringValue(this.CLASS_NAME, nameof(identity), identity);
-		Guards.stringValue(this.CLASS_NAME, nameof(address), address);
+		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(identity), identity);
+		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(address), address);
 
 		const balance = await this._client.getBalance({
 			owner: address
@@ -153,13 +149,14 @@ export class IotaWalletConnector implements IWalletConnector {
 		ensureBalance: bigint,
 		timeoutInSeconds?: number
 	): Promise<boolean> {
-		Guards.stringValue(this.CLASS_NAME, nameof(identity), identity);
-		Guards.stringValue(this.CLASS_NAME, nameof(address), address);
-		Guards.bigint(this.CLASS_NAME, nameof(ensureBalance), ensureBalance);
+		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(identity), identity);
+		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(address), address);
+		Guards.bigint(IotaWalletConnector.CLASS_NAME, nameof(ensureBalance), ensureBalance);
+
+		let currentBalance = await this.getBalance(identity, address);
 
 		if (this._faucetConnector) {
 			let retryCount = 10;
-			let currentBalance = await this.getBalance(identity, address);
 
 			while (currentBalance < ensureBalance && retryCount > 0) {
 				const addedBalance = await this._faucetConnector.fundAddress(
@@ -176,10 +173,9 @@ export class IotaWalletConnector implements IWalletConnector {
 					retryCount--;
 				}
 			}
-			return currentBalance >= ensureBalance;
 		}
 
-		return false;
+		return currentBalance >= ensureBalance;
 	}
 
 	/**
@@ -196,10 +192,10 @@ export class IotaWalletConnector implements IWalletConnector {
 		addressDest: string,
 		amount: bigint
 	): Promise<string | undefined> {
-		Guards.stringValue(this.CLASS_NAME, nameof(identity), identity);
-		Guards.stringValue(this.CLASS_NAME, nameof(addressSource), addressSource);
-		Guards.stringValue(this.CLASS_NAME, nameof(addressDest), addressDest);
-		Guards.bigint(this.CLASS_NAME, nameof(amount), amount);
+		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(identity), identity);
+		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(addressSource), addressSource);
+		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(addressDest), addressDest);
+		Guards.bigint(IotaWalletConnector.CLASS_NAME, nameof(amount), amount);
 
 		try {
 			const result = await Iota.prepareAndPostValueTransaction(
@@ -216,7 +212,7 @@ export class IotaWalletConnector implements IWalletConnector {
 			return result.digest;
 		} catch (error) {
 			throw new GeneralError(
-				this.CLASS_NAME,
+				IotaWalletConnector.CLASS_NAME,
 				"transferFailed",
 				undefined,
 				Iota.extractPayloadError(error)

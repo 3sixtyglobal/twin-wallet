@@ -7,8 +7,8 @@ import {
 } from "@twin.org/entity-storage-models";
 import { nameof } from "@twin.org/nameof";
 import type { IFaucetConnector } from "@twin.org/wallet-models";
-import type { WalletAddress } from "./entities/walletAddress";
-import type { IEntityStorageFaucetConnectorConstructorOptions } from "./models/IEntityStorageFaucetConnectorConstructorOptions";
+import type { WalletAddress } from "./entities/walletAddress.js";
+import type { IEntityStorageFaucetConnectorConstructorOptions } from "./models/IEntityStorageFaucetConnectorConstructorOptions.js";
 
 /**
  * Class for performing faucet operations using entity storage.
@@ -22,7 +22,7 @@ export class EntityStorageFaucetConnector implements IFaucetConnector {
 	/**
 	 * Runtime name for the class.
 	 */
-	public readonly CLASS_NAME: string = nameof<EntityStorageFaucetConnector>();
+	public static readonly CLASS_NAME: string = nameof<EntityStorageFaucetConnector>();
 
 	/**
 	 * The entity storage for wallets.
@@ -41,9 +41,17 @@ export class EntityStorageFaucetConnector implements IFaucetConnector {
 	}
 
 	/**
+	 * Returns the class name of the component.
+	 * @returns The class name of the component.
+	 */
+	public className(): string {
+		return EntityStorageFaucetConnector.CLASS_NAME;
+	}
+
+	/**
 	 * Fund the wallet from the faucet.
 	 * @param identity The identity of the user to access the vault keys.
-	 * @param address The bech32 encoded address of the address to fund.
+	 * @param address The hex encoded address of the address to fund.
 	 * @param timeoutInSeconds The timeout in seconds to wait for the funding to complete.
 	 * @returns The amount added to the address by the faucet.
 	 */
@@ -52,8 +60,8 @@ export class EntityStorageFaucetConnector implements IFaucetConnector {
 		address: string,
 		timeoutInSeconds: number = 60
 	): Promise<bigint> {
-		Guards.stringValue(this.CLASS_NAME, nameof(identity), identity);
-		Guards.stringValue(this.CLASS_NAME, nameof(address), address);
+		Guards.stringValue(EntityStorageFaucetConnector.CLASS_NAME, nameof(identity), identity);
+		Guards.stringValue(EntityStorageFaucetConnector.CLASS_NAME, nameof(address), address);
 
 		let walletAddress = await this._walletAddressEntityStorage.get(address);
 		if (Is.empty(walletAddress)) {

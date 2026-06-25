@@ -9,7 +9,7 @@ export interface IFaucetConnector extends IComponent {
 	/**
 	 * Fund the wallet from the faucet.
 	 * @param identity The identity of the user to access the vault keys.
-	 * @param address The bech32 encoded address of the address to fund.
+	 * @param address The hex encoded address of the address to fund.
 	 * @param timeoutInSeconds The timeout in seconds to wait for the funding to complete.
 	 * @returns The amount added to the address by the faucet.
 	 */

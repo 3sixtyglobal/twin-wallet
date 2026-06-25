@@ -5,8 +5,8 @@ import { fileURLToPath } from "node:url";
 import { CLIBase } from "@twin.org/cli-core";
 import { buildCommandAddress, buildCommandMnemonic } from "@twin.org/crypto-cli";
 import type { Command } from "commander";
-import { buildCommandFaucet } from "./commands/faucet";
-import { buildCommandTransfer } from "./commands/transfer";
+import { buildCommandFaucet } from "./commands/faucet.js";
+import { buildCommandTransfer } from "./commands/transfer.js";
 
 /**
  * The main entry point for the CLI.
@@ -29,10 +29,11 @@ export class CLI extends CLIBase {
 			{
 				title: "TWIN Wallet",
 				appName: "twin-wallet",
-				version: "0.0.1", // x-release-please-version
+				version: "0.9.0-next.1", // x-release-please-version
 				icon: "🌍",
 				supportsEnvFiles: true,
-				overrideOutputWidth: options?.overrideOutputWidth
+				overrideOutputWidth: options?.overrideOutputWidth,
+				showDevToolWarning: true
 			},
 			localesDirectory ?? path.join(path.dirname(fileURLToPath(import.meta.url)), "../locales"),
 			argv
@@ -42,6 +43,7 @@ export class CLI extends CLIBase {
 	/**
 	 * Get the commands for the CLI.
 	 * @param program The main program to add the commands to.
+	 * @returns The list of commands.
 	 * @internal
 	 */
 	protected getCommands(program: Command): Command[] {

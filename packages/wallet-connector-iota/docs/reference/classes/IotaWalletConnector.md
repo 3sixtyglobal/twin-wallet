@@ -28,7 +28,7 @@ The options for the wallet connector.
 
 ## Properties
 
-### NAMESPACE
+### NAMESPACE {#namespace}
 
 > `readonly` `static` **NAMESPACE**: `string` = `"iota"`
 
@@ -36,19 +36,33 @@ The namespace supported by the wallet connector.
 
 ***
 
-### CLASS\_NAME
+### CLASS\_NAME {#class_name}
 
-> `readonly` **CLASS\_NAME**: `string`
+> `readonly` `static` **CLASS\_NAME**: `string`
 
 Runtime name for the class.
 
-#### Implementation of
-
-`IWalletConnector.CLASS_NAME`
-
 ## Methods
 
-### create()
+### className() {#classname}
+
+> **className**(): `string`
+
+Returns the class name of the component.
+
+#### Returns
+
+`string`
+
+The class name of the component.
+
+#### Implementation of
+
+`IWalletConnector.className`
+
+***
+
+### create() {#create}
 
 > **create**(`identity`): `Promise`\<`void`\>
 
@@ -66,7 +80,7 @@ The identity of the user to access the vault keys.
 
 `Promise`\<`void`\>
 
-Nothing.
+A promise that resolves when the wallet has been created and the mnemonic stored.
 
 #### Implementation of
 
@@ -74,7 +88,7 @@ Nothing.
 
 ***
 
-### getAddresses()
+### getAddresses() {#getaddresses}
 
 > **getAddresses**(`identity`, `accountIndex`, `startAddressIndex`, `count`, `isInternal?`): `Promise`\<`string`[]\>
 
@@ -124,7 +138,7 @@ The addresses.
 
 ***
 
-### getBalance()
+### getBalance() {#getbalance}
 
 > **getBalance**(`identity`, `address`): `Promise`\<`bigint`\>
 
@@ -156,7 +170,7 @@ The balance.
 
 ***
 
-### ensureBalance()
+### ensureBalance() {#ensurebalance}
 
 > **ensureBalance**(`identity`, `address`, `ensureBalance`, `timeoutInSeconds?`): `Promise`\<`boolean`\>
 
@@ -200,9 +214,9 @@ True if the balance is at least the given amount, false otherwise.
 
 ***
 
-### transfer()
+### transfer() {#transfer}
 
-> **transfer**(`identity`, `addressSource`, `addressDest`, `amount`): `Promise`\<`undefined` \| `string`\>
+> **transfer**(`identity`, `addressSource`, `addressDest`, `amount`): `Promise`\<`string` \| `undefined`\>
 
 Transfer an amount from one address to another.
 
@@ -234,7 +248,7 @@ The amount to transfer.
 
 #### Returns
 
-`Promise`\<`undefined` \| `string`\>
+`Promise`\<`string` \| `undefined`\>
 
 The transaction digest.
 

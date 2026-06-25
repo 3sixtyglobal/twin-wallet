@@ -14,14 +14,19 @@ import {
 	type IFaucetConnector,
 	type IWalletConnector
 } from "@twin.org/wallet-models";
-import type { WalletAddress } from "./entities/walletAddress";
-import type { IEntityStorageWalletConnectorConfig } from "./models/IEntityStorageWalletConnectorConfig";
-import type { IEntityStorageWalletConnectorConstructorOptions } from "./models/IEntityStorageWalletConnectorConstructorOptions";
+import type { WalletAddress } from "./entities/walletAddress.js";
+import type { IEntityStorageWalletConnectorConfig } from "./models/IEntityStorageWalletConnectorConfig.js";
+import type { IEntityStorageWalletConnectorConstructorOptions } from "./models/IEntityStorageWalletConnectorConstructorOptions.js";
 
 /**
  * Class for performing wallet operations using in-memory storage.
  */
 export class EntityStorageWalletConnector implements IWalletConnector {
+	/**
+	 * Runtime name for the class.
+	 */
+	public static readonly CLASS_NAME: string = nameof<EntityStorageWalletConnector>();
+
 	/**
 	 * The namespace supported by the wallet connector.
 	 */
@@ -40,15 +45,10 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 	private static readonly _DEFAULT_COIN_TYPE: number = 9999;
 
 	/**
-	 * Default bech32 hrp.
+	 * Default network name.
 	 * @internal
 	 */
-	private static readonly _DEFAULT_BECH32_HRP: string = "ent";
-
-	/**
-	 * Runtime name for the class.
-	 */
-	public readonly CLASS_NAME: string = nameof<EntityStorageWalletConnector>();
+	private static readonly _DEFAULT_NETWORK_NAME: string = "ent";
 
 	/**
 	 * The vault for the mnemonic.
@@ -88,16 +88,24 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 		);
 		this._config = options?.config ?? {};
 		this._config.coinType ??= EntityStorageWalletConnector._DEFAULT_COIN_TYPE;
-		this._config.bech32Hrp ??= EntityStorageWalletConnector._DEFAULT_BECH32_HRP;
+		this._config.networkName ??= EntityStorageWalletConnector._DEFAULT_NETWORK_NAME;
+	}
+
+	/**
+	 * Returns the class name of the component.
+	 * @returns The class name of the component.
+	 */
+	public className(): string {
+		return EntityStorageWalletConnector.CLASS_NAME;
 	}
 
 	/**
 	 * Create a new wallet.
 	 * @param identity The identity of the user to access the vault keys.
-	 * @returns Nothing.
+	 * @returns A promise that resolves when the wallet has been created and the mnemonic stored.
 	 */
 	public async create(identity: string): Promise<void> {
-		Guards.stringValue(this.CLASS_NAME, nameof(identity), identity);
+		Guards.stringValue(EntityStorageWalletConnector.CLASS_NAME, nameof(identity), identity);
 
 		const mnemonic = Bip39.randomMnemonic();
 		await this._vaultConnector.setSecret<string>(this.buildMnemonicKey(identity), mnemonic);
@@ -117,9 +125,13 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 		startAddressIndex: number,
 		count: number
 	): Promise<string[]> {
-		Guards.stringValue(this.CLASS_NAME, nameof(identity), identity);
-		Guards.integer(this.CLASS_NAME, nameof(startAddressIndex), startAddressIndex);
-		Guards.integer(this.CLASS_NAME, nameof(count), count);
+		Guards.stringValue(EntityStorageWalletConnector.CLASS_NAME, nameof(identity), identity);
+		Guards.integer(
+			EntityStorageWalletConnector.CLASS_NAME,
+			nameof(startAddressIndex),
+			startAddressIndex
+		);
+		Guards.integer(EntityStorageWalletConnector.CLASS_NAME, nameof(count), count);
 
 		const mnemonic = await this._vaultConnector.getSecret<string>(this.buildMnemonicKey(identity));
 
@@ -128,10 +140,9 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 		const keyPairs: string[] = [];
 
 		for (let i = startAddressIndex; i < startAddressIndex + count; i++) {
-			const addressKeyPair = Bip44.addressBech32(
+			const addressKeyPair = Bip44.address(
 				seed,
 				KeyType.Ed25519,
-				this._config.bech32Hrp ?? EntityStorageWalletConnector._DEFAULT_BECH32_HRP,
 				this._config.coinType ?? EntityStorageWalletConnector._DEFAULT_COIN_TYPE,
 				accountIndex,
 				false,
@@ -147,11 +158,11 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 	/**
 	 * Get the balance for an address in a wallet.
 	 * @param identity The identity of the user to access the vault keys.
-	 * @param address The bech32 encoded address.
+	 * @param address The hex encoded address.
 	 * @returns The balance of the wallet address.
 	 */
 	public async getBalance(identity: string, address: string): Promise<bigint> {
-		Guards.stringValue(this.CLASS_NAME, nameof(address), address);
+		Guards.stringValue(EntityStorageWalletConnector.CLASS_NAME, nameof(address), address);
 
 		const walletAddress = await this._walletAddressEntityStorage.get(address);
 
@@ -161,7 +172,7 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 	/**
 	 * Ensure the balance for an address in a wallet.
 	 * @param identity The identity of the user to access the vault keys.
-	 * @param address The bech32 encoded address.
+	 * @param address The hex encoded address.
 	 * @param ensureBalance The balance to ensure on the address.
 	 * @param timeoutInSeconds The timeout in seconds to wait for the funding to complete.
 	 * @returns True if the balance has been ensured.
@@ -172,9 +183,9 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 		ensureBalance: bigint,
 		timeoutInSeconds?: number
 	): Promise<boolean> {
-		Guards.stringValue(this.CLASS_NAME, nameof(identity), identity);
-		Guards.stringValue(this.CLASS_NAME, nameof(address), address);
-		Guards.bigint(this.CLASS_NAME, nameof(ensureBalance), ensureBalance);
+		Guards.stringValue(EntityStorageWalletConnector.CLASS_NAME, nameof(identity), identity);
+		Guards.stringValue(EntityStorageWalletConnector.CLASS_NAME, nameof(address), address);
+		Guards.bigint(EntityStorageWalletConnector.CLASS_NAME, nameof(ensureBalance), ensureBalance);
 
 		if (this._faucetConnector) {
 			let retryCount = 10;
@@ -206,8 +217,8 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 	/**
 	 * Transfer funds to an address.
 	 * @param identity The identity of the user to access the vault keys.
-	 * @param addressSource The bech32 encoded address to send the funds from.
-	 * @param addressDest The bech32 encoded address to send the funds to.
+	 * @param addressSource The hex encoded address to send the funds from.
+	 * @param addressDest The hex encoded address to send the funds to.
 	 * @param amount The amount to transfer.
 	 * @returns An identifier for the transfer if there was one.
 	 */
@@ -217,10 +228,14 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 		addressDest: string,
 		amount: bigint
 	): Promise<string | undefined> {
-		Guards.stringValue(this.CLASS_NAME, nameof(identity), identity);
-		Guards.stringValue(this.CLASS_NAME, nameof(addressSource), addressSource);
-		Guards.stringValue(this.CLASS_NAME, nameof(addressDest), addressDest);
-		Guards.bigint(this.CLASS_NAME, nameof(amount), amount);
+		Guards.stringValue(EntityStorageWalletConnector.CLASS_NAME, nameof(identity), identity);
+		Guards.stringValue(
+			EntityStorageWalletConnector.CLASS_NAME,
+			nameof(addressSource),
+			addressSource
+		);
+		Guards.stringValue(EntityStorageWalletConnector.CLASS_NAME, nameof(addressDest), addressDest);
+		Guards.bigint(EntityStorageWalletConnector.CLASS_NAME, nameof(amount), amount);
 
 		const walletAddresses = await this._walletAddressEntityStorage.query({
 			logicalOperator: LogicalOperator.And,
@@ -247,7 +262,7 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 		}
 
 		if (balance < amount) {
-			throw new GeneralError(this.CLASS_NAME, "insufficientFunds");
+			throw new GeneralError(EntityStorageWalletConnector.CLASS_NAME, "insufficientFunds");
 		}
 
 		if (!Is.empty(walletAddress)) {

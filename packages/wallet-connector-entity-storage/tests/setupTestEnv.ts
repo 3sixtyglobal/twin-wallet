@@ -15,7 +15,10 @@ import * as dotenv from "dotenv";
 
 console.debug("Setting up test environment from .env and .env.dev files");
 
-dotenv.config({ path: [path.join(__dirname, ".env"), path.join(__dirname, ".env.dev")] });
+dotenv.config({
+	path: [path.join(__dirname, ".env"), path.join(__dirname, ".env.dev")],
+	quiet: true
+});
 
 export const TEST_IDENTITY_ID = "test-identity";
 export const TEST_IDENTITY_ID_2 = "test-identity-2";
@@ -26,14 +29,16 @@ EntityStorageConnectorFactory.register(
 	"vault-key",
 	() =>
 		new MemoryEntityStorageConnector<VaultKey>({
-			entitySchema: nameof<VaultKey>()
+			entitySchema: nameof<VaultKey>(),
+			config: { storageKey: "vault-key" }
 		})
 );
 EntityStorageConnectorFactory.register(
 	"vault-secret",
 	() =>
 		new MemoryEntityStorageConnector<VaultSecret>({
-			entitySchema: nameof<VaultSecret>()
+			entitySchema: nameof<VaultSecret>(),
+			config: { storageKey: "vault-secret" }
 		})
 );
 

@@ -1,6 +1,6 @@
 # TWIN Wallet Connector Entity Storage
 
-Wallet connector implementation using entity storage.
+This package implements wallet and faucet connectors backed by entity storage for local and test workflows. It enables predictable address and balance handling through storage abstractions, which makes it useful for integration testing and scenarios where lightweight persistence is required.
 
 ## Installation
 

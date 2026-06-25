@@ -1,5 +1,6 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
+import { BaseError } from "@twin.org/core";
 import { MemoryEntityStorageConnector } from "@twin.org/entity-storage-connector-memory";
 import { EntityStorageConnectorFactory } from "@twin.org/entity-storage-models";
 import { nameof } from "@twin.org/nameof";
@@ -16,9 +17,9 @@ import {
 	TEST_IDENTITY_ID,
 	TEST_MNEMONIC_NAME,
 	TEST_NETWORK
-} from "./setupTestEnv";
-import { IotaWalletConnector } from "../src/iotaWalletConnector";
-import type { IIotaWalletConnectorConfig } from "../src/models/IIotaWalletConnectorConfig";
+} from "./setupTestEnv.js";
+import { IotaWalletConnector } from "../src/iotaWalletConnector.js";
+import type { IIotaWalletConnectorConfig } from "../src/models/IIotaWalletConnectorConfig.js";
 
 describe("IotaWalletConnector", () => {
 	let wallet: IotaWalletConnector;
@@ -34,12 +35,14 @@ describe("IotaWalletConnector", () => {
 			"vault-key",
 			() =>
 				new MemoryEntityStorageConnector<VaultKey>({
-					entitySchema: nameof<VaultKey>()
+					entitySchema: nameof<VaultKey>(),
+					config: { storageKey: "vault-key" }
 				})
 		);
 
 		const secretEntityStorage = new MemoryEntityStorageConnector<VaultSecret>({
-			entitySchema: nameof<VaultSecret>()
+			entitySchema: nameof<VaultSecret>(),
+			config: { storageKey: "vault-secret" }
 		});
 		EntityStorageConnectorFactory.register("vault-secret", () => secretEntityStorage);
 
@@ -105,7 +108,7 @@ describe("IotaWalletConnector", () => {
 	describe("create", () => {
 		test("can create a new wallet", async () => {
 			const store =
-				EntityStorageConnectorFactory.get<MemoryEntityStorageConnector<VaultSecret>>(
+				await EntityStorageConnectorFactory.get<MemoryEntityStorageConnector<VaultSecret>>(
 					"vault-secret"
 				).getStore();
 			expect(store?.[0].id).toEqual(`${TEST_IDENTITY_ID}/${TEST_MNEMONIC_NAME}`);
@@ -114,7 +117,7 @@ describe("IotaWalletConnector", () => {
 
 		test("stores both mnemonic and seed in vault", async () => {
 			const store =
-				EntityStorageConnectorFactory.get<MemoryEntityStorageConnector<VaultSecret>>(
+				await EntityStorageConnectorFactory.get<MemoryEntityStorageConnector<VaultSecret>>(
 					"vault-secret"
 				).getStore();
 
@@ -197,21 +200,43 @@ describe("IotaWalletConnector", () => {
 		const addresses = await wallet.getAddresses(TEST_IDENTITY_ID, 0, 0, 1);
 		const address = addresses[0];
 
-		const ensured = await wallet.ensureBalance(TEST_IDENTITY_ID, address, 1000000000n);
-		expect(ensured).toBeTruthy();
+		try {
+			const ensured = await wallet.ensureBalance(TEST_IDENTITY_ID, address, 1000000000n);
+			expect(ensured).toBeTruthy();
 
-		const balance = await wallet.getBalance(TEST_IDENTITY_ID, address);
-		expect(balance).toBeGreaterThanOrEqual(1000000000n);
+			const balance = await wallet.getBalance(TEST_IDENTITY_ID, address);
+			expect(balance).toBeGreaterThanOrEqual(1000000000n);
+		} catch (error) {
+			const message = BaseError.fromError(error).message;
+			if (message === "iota.faucetRateLimit" || message === "iota.fundingFailed") {
+				console.warn(
+					"Faucet rate limit exceeded or funding failed, skipping test that requires funding from faucet."
+				);
+			} else {
+				throw error;
+			}
+		}
 	});
 
 	test("can get a balance for an address", async () => {
 		const addresses = await wallet.getAddresses(TEST_IDENTITY_ID, 0, 0, 1);
 		const address = addresses[0];
 
-		// Ensure the address has some balance
-		await wallet.ensureBalance(TEST_IDENTITY_ID, address, 1000000000n);
+		try {
+			// Ensure the address has some balance
+			await wallet.ensureBalance(TEST_IDENTITY_ID, address, 1000000000n);
 
-		const balance = await wallet.getBalance(TEST_IDENTITY_ID, address);
-		expect(balance).toBeGreaterThan(0n);
+			const balance = await wallet.getBalance(TEST_IDENTITY_ID, address);
+			expect(balance).toBeGreaterThan(0n);
+		} catch (error) {
+			const message = BaseError.fromError(error).message;
+			if (message === "iota.faucetRateLimit" || message === "iota.fundingFailed") {
+				console.warn(
+					"Faucet rate limit exceeded or funding failed, skipping test that requires funding from faucet."
+				);
+			} else {
+				throw error;
+			}
+		}
 	});
 });

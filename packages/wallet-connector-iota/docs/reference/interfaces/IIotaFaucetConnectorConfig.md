@@ -8,7 +8,7 @@ Configuration for the IOTA Faucet Connector.
 
 ## Properties
 
-### endpoint
+### endpoint {#endpoint}
 
 > **endpoint**: `string`
 

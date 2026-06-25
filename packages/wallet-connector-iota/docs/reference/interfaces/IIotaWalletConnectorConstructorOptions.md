@@ -4,23 +4,23 @@ Options for the IOTA Wallet connector.
 
 ## Properties
 
-### vaultConnectorType?
+### vaultConnectorType? {#vaultconnectortype}
 
-> `optional` **vaultConnectorType**: `string`
+> `optional` **vaultConnectorType?**: `string`
 
 Optional vault connector to use for wallet secrets.
 
 ***
 
-### faucetConnectorType?
+### faucetConnectorType? {#faucetconnectortype}
 
-> `optional` **faucetConnectorType**: `string`
+> `optional` **faucetConnectorType?**: `string`
 
 Optional faucet connector for requesting funds.
 
 ***
 
-### config
+### config {#config}
 
 > **config**: `IIotaConfig`
 

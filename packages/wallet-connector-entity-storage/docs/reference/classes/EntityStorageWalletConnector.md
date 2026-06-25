@@ -28,27 +28,41 @@ The options for the wallet connector.
 
 ## Properties
 
-### NAMESPACE
+### CLASS\_NAME {#class_name}
+
+> `readonly` `static` **CLASS\_NAME**: `string`
+
+Runtime name for the class.
+
+***
+
+### NAMESPACE {#namespace}
 
 > `readonly` `static` **NAMESPACE**: `string` = `"entity-storage"`
 
 The namespace supported by the wallet connector.
 
-***
+## Methods
 
-### CLASS\_NAME
+### className() {#classname}
 
-> `readonly` **CLASS\_NAME**: `string`
+> **className**(): `string`
 
-Runtime name for the class.
+Returns the class name of the component.
+
+#### Returns
+
+`string`
+
+The class name of the component.
 
 #### Implementation of
 
-`IWalletConnector.CLASS_NAME`
+`IWalletConnector.className`
 
-## Methods
+***
 
-### create()
+### create() {#create}
 
 > **create**(`identity`): `Promise`\<`void`\>
 
@@ -66,7 +80,7 @@ The identity of the user to access the vault keys.
 
 `Promise`\<`void`\>
 
-Nothing.
+A promise that resolves when the wallet has been created and the mnemonic stored.
 
 #### Implementation of
 
@@ -74,7 +88,7 @@ Nothing.
 
 ***
 
-### getAddresses()
+### getAddresses() {#getaddresses}
 
 > **getAddresses**(`identity`, `accountIndex`, `startAddressIndex`, `count`): `Promise`\<`string`[]\>
 
@@ -118,7 +132,7 @@ The list of addresses.
 
 ***
 
-### getBalance()
+### getBalance() {#getbalance}
 
 > **getBalance**(`identity`, `address`): `Promise`\<`bigint`\>
 
@@ -136,7 +150,7 @@ The identity of the user to access the vault keys.
 
 `string`
 
-The bech32 encoded address.
+The hex encoded address.
 
 #### Returns
 
@@ -150,7 +164,7 @@ The balance of the wallet address.
 
 ***
 
-### ensureBalance()
+### ensureBalance() {#ensurebalance}
 
 > **ensureBalance**(`identity`, `address`, `ensureBalance`, `timeoutInSeconds?`): `Promise`\<`boolean`\>
 
@@ -168,7 +182,7 @@ The identity of the user to access the vault keys.
 
 `string`
 
-The bech32 encoded address.
+The hex encoded address.
 
 ##### ensureBalance
 
@@ -194,9 +208,9 @@ True if the balance has been ensured.
 
 ***
 
-### transfer()
+### transfer() {#transfer}
 
-> **transfer**(`identity`, `addressSource`, `addressDest`, `amount`): `Promise`\<`undefined` \| `string`\>
+> **transfer**(`identity`, `addressSource`, `addressDest`, `amount`): `Promise`\<`string` \| `undefined`\>
 
 Transfer funds to an address.
 
@@ -212,13 +226,13 @@ The identity of the user to access the vault keys.
 
 `string`
 
-The bech32 encoded address to send the funds from.
+The hex encoded address to send the funds from.
 
 ##### addressDest
 
 `string`
 
-The bech32 encoded address to send the funds to.
+The hex encoded address to send the funds to.
 
 ##### amount
 
@@ -228,7 +242,7 @@ The amount to transfer.
 
 #### Returns
 
-`Promise`\<`undefined` \| `string`\>
+`Promise`\<`string` \| `undefined`\>
 
 An identifier for the transfer if there was one.
 

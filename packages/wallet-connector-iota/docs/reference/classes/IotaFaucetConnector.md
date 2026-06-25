@@ -28,7 +28,7 @@ The options for the connector.
 
 ## Properties
 
-### NAMESPACE
+### NAMESPACE {#namespace}
 
 > `readonly` `static` **NAMESPACE**: `string` = `"iota"`
 
@@ -36,21 +36,35 @@ The namespace supported by the faucet connector.
 
 ***
 
-### CLASS\_NAME
+### CLASS\_NAME {#class_name}
 
-> `readonly` **CLASS\_NAME**: `string`
+> `readonly` `static` **CLASS\_NAME**: `string`
 
 Runtime name for the class.
 
-#### Implementation of
-
-`IFaucetConnector.CLASS_NAME`
-
 ## Methods
 
-### fundAddress()
+### className() {#classname}
 
-> **fundAddress**(`identity`, `address`, `timeoutInSeconds`): `Promise`\<`bigint`\>
+> **className**(): `string`
+
+Returns the class name of the component.
+
+#### Returns
+
+`string`
+
+The class name of the component.
+
+#### Implementation of
+
+`IFaucetConnector.className`
+
+***
+
+### fundAddress() {#fundaddress}
+
+> **fundAddress**(`identity`, `address`, `timeoutInSeconds?`): `Promise`\<`bigint`\>
 
 Fund an address with IOTA from the faucet.
 
@@ -68,7 +82,7 @@ The identity of the user to access the vault keys.
 
 The address to fund.
 
-##### timeoutInSeconds
+##### timeoutInSeconds?
 
 `number` = `60`
 

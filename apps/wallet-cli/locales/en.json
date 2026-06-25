@@ -6,7 +6,7 @@
 			"options": {
 				"address": {
 					"param": "--address '<'address'>'",
-					"description": "The address to fill from the faucet either bech32 or hex format, or start with ! to read environment variable."
+					"description": "The address to fill from the faucet in hex format, or start with ! to read environment variable."
 				},
 				"faucet": {
 					"param": "--faucet '<'url'>'",
@@ -31,11 +31,11 @@
 			"options": {
 				"address": {
 					"param": "--address '<'address'>'",
-					"description": "The address to send the funds from either in bech32 format, or start with ! to read environment variable."
+					"description": "The address to send the funds from in hex format, or start with ! to read environment variable."
 				},
 				"dest-address": {
 					"param": "--dest-address '<'address'>'",
-					"description": "The address to send the funds to either in bech32 format, or start with ! to read environment variable."
+					"description": "The address to send the funds to in hex format, or start with ! to read environment variable."
 				},
 				"amount": {
 					"param": "--amount '<'amount'>'",

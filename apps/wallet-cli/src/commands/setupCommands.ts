@@ -12,7 +12,7 @@ import {
 import { VaultConnectorFactory } from "@twin.org/vault-models";
 import { IotaFaucetConnector, IotaWalletConnector } from "@twin.org/wallet-connector-iota";
 import type { IFaucetConnector, IWalletConnector } from "@twin.org/wallet-models";
-import type { WalletConnectorTypes } from "../models/walletConnectorTypes";
+import type { WalletConnectorTypes } from "../models/walletConnectorTypes.js";
 
 /**
  * Setup the vault for use in the CLI commands.
@@ -24,14 +24,16 @@ export function setupVault(): void {
 		"vault-key",
 		() =>
 			new MemoryEntityStorageConnector<VaultKey>({
-				entitySchema: nameof<VaultKey>()
+				entitySchema: nameof<VaultKey>(),
+				config: { storageKey: "vault-key" }
 			})
 	);
 	EntityStorageConnectorFactory.register(
 		"vault-secret",
 		() =>
 			new MemoryEntityStorageConnector<VaultSecret>({
-				entitySchema: nameof<VaultSecret>()
+				entitySchema: nameof<VaultSecret>(),
+				config: { storageKey: "vault-secret" }
 			})
 	);
 
@@ -52,8 +54,6 @@ export function setupWalletConnector(
 	options: { nodeEndpoint: string; network?: string; vaultSeedId?: string },
 	connector?: WalletConnectorTypes
 ): IWalletConnector {
-	connector ??= "iota";
-
 	return new IotaWalletConnector({
 		config: {
 			clientOptions: {
@@ -79,8 +79,6 @@ export function setupFaucetConnector(
 	options: { nodeEndpoint: string; network?: string; endpoint: string; vaultSeedId?: string },
 	connector?: WalletConnectorTypes
 ): IFaucetConnector {
-	connector ??= "iota";
-
 	return new IotaFaucetConnector({
 		config: {
 			clientOptions: {

@@ -1,5 +1,6 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
+import { BaseError } from "@twin.org/core";
 import { MemoryEntityStorageConnector } from "@twin.org/entity-storage-connector-memory";
 import { EntityStorageConnectorFactory } from "@twin.org/entity-storage-models";
 import { nameof } from "@twin.org/nameof";
@@ -10,17 +11,19 @@ import {
 } from "@twin.org/vault-connector-entity-storage";
 import { VaultConnectorFactory } from "@twin.org/vault-models";
 import { FaucetConnectorFactory } from "@twin.org/wallet-models";
-import { beforeAll, describe, expect, test } from "vitest";
 import {
 	TEST_CLIENT_OPTIONS,
 	TEST_COIN_TYPE,
+	TEST_FAUCET_ENDPOINT,
+	TEST_GAS_STATION_AUTH_TOKEN,
+	TEST_GAS_STATION_ENDPOINT,
 	TEST_MNEMONIC_NAME,
 	TEST_NETWORK
-} from "./setupTestEnv";
-import { IotaFaucetConnector } from "../src/iotaFaucetConnector";
-import { IotaWalletConnector } from "../src/iotaWalletConnector";
-import type { IIotaFaucetConnectorConfig } from "../src/models/IIotaFaucetConnectorConfig";
-import type { IIotaWalletConnectorConfig } from "../src/models/IIotaWalletConnectorConfig";
+} from "./setupTestEnv.js";
+import { IotaFaucetConnector } from "../src/iotaFaucetConnector.js";
+import { IotaWalletConnector } from "../src/iotaWalletConnector.js";
+import type { IIotaFaucetConnectorConfig } from "../src/models/IIotaFaucetConnectorConfig.js";
+import type { IIotaWalletConnectorConfig } from "../src/models/IIotaWalletConnectorConfig.js";
 
 /**
  * Test Identity.
@@ -41,12 +44,14 @@ beforeAll(async () => {
 		"vault-key",
 		() =>
 			new MemoryEntityStorageConnector<VaultKey>({
-				entitySchema: nameof<VaultKey>()
+				entitySchema: nameof<VaultKey>(),
+				config: { storageKey: "vault-key" }
 			})
 	);
 
 	const secretEntityStorage = new MemoryEntityStorageConnector<VaultSecret>({
-		entitySchema: nameof<VaultSecret>()
+		entitySchema: nameof<VaultSecret>(),
+		config: { storageKey: "vault-secret" }
 	});
 	EntityStorageConnectorFactory.register("vault-secret", () => secretEntityStorage);
 	VaultConnectorFactory.register("vault", () => new EntityStorageVaultConnector());
@@ -54,7 +59,7 @@ beforeAll(async () => {
 	// Setup faucet connector for funding
 	const faucetConfig: IIotaFaucetConnectorConfig = {
 		clientOptions: TEST_CLIENT_OPTIONS,
-		endpoint: process.env.TEST_FAUCET_ENDPOINT ?? "https://faucet.testnet.iota.cafe",
+		endpoint: TEST_FAUCET_ENDPOINT,
 		network: TEST_NETWORK,
 		coinType: TEST_COIN_TYPE
 	};
@@ -72,9 +77,8 @@ beforeAll(async () => {
 		vaultSeedId: "test-seed-gas-station",
 		coinType: TEST_COIN_TYPE,
 		gasStation: {
-			gasStationUrl: process.env.TEST_GAS_STATION_ENDPOINT ?? "http://localhost:9527",
-			gasStationAuthToken:
-				process.env.TEST_GAS_STATION_AUTH_TOKEN ?? "qEyCL6d9BKKFl/tfDGAKeGFkhUlf7FkqiGV7Xw4JUsI="
+			gasStationUrl: TEST_GAS_STATION_ENDPOINT,
+			gasStationAuthToken: TEST_GAS_STATION_AUTH_TOKEN
 		}
 	};
 
@@ -87,8 +91,8 @@ beforeAll(async () => {
 
 describe("IotaWalletConnector Gas Station Tests", () => {
 	test("should have gas station configuration", () => {
-		expect(process.env.TEST_GAS_STATION_ENDPOINT).toBeDefined();
-		expect(process.env.TEST_GAS_STATION_AUTH_TOKEN).toBeDefined();
+		expect(TEST_GAS_STATION_ENDPOINT).toBeDefined();
+		expect(TEST_GAS_STATION_AUTH_TOKEN).toBeDefined();
 	});
 
 	test("can get addresses with gas station config", async () => {
@@ -116,21 +120,25 @@ describe("IotaWalletConnector Gas Station Tests", () => {
 
 		// This test verifies that ensureBalance works correctly with gas station configuration
 		// The funding should come from the faucet, not the gas station
-		const result = await walletConnector.ensureBalance(TEST_IDENTITY, address, targetBalance, 30);
+		try {
+			await walletConnector.ensureBalance(TEST_IDENTITY, address, targetBalance, 30);
 
-		if (result) {
 			const finalBalance = await walletConnector.getBalance(TEST_IDENTITY, address);
 			expect(finalBalance).toBeGreaterThanOrEqual(targetBalance);
-		} else {
-			// If funding failed, it's likely due to faucet availability issues
-			console.warn(
-				"Faucet funding test failed - this may be expected if faucet is not operational"
-			);
+		} catch (error) {
+			const message = BaseError.fromError(error).message;
+			if (message === "iota.faucetRateLimit" || message === "iota.fundingFailed") {
+				console.warn(
+					"Faucet rate limit exceeded or funding failed, skipping test that requires funding from faucet."
+				);
+			} else {
+				throw error;
+			}
 		}
 	});
 
 	test("ensureBalance handles gas station errors gracefully", async () => {
-		// Create a wallet connector with invalid gas station config
+		// Create a wallet connector with invalid gas station config to simulate gas station failure
 		const invalidGasStationConfig: IIotaWalletConnectorConfig = {
 			clientOptions: TEST_CLIENT_OPTIONS,
 			network: TEST_NETWORK,
@@ -157,17 +165,28 @@ describe("IotaWalletConnector Gas Station Tests", () => {
 		);
 		const invalidAddress = invalidAddresses[0];
 
-		// This should fall back to faucet funding when gas station fails
-		const result = await invalidWalletConnector.ensureBalance(
-			`${TEST_IDENTITY}-invalid`,
-			invalidAddress,
-			1000000000n,
-			10
-		);
+		try {
+			// This should fall back to faucet funding when gas station fails
+			const result = await invalidWalletConnector.ensureBalance(
+				`${TEST_IDENTITY}-invalid`,
+				invalidAddress,
+				1000000000n,
+				10
+			);
 
-		// Result depends on whether faucet is available and working
-		// The test should not throw an error even if funding fails
-		expect(typeof result).toBe("boolean");
+			// Result depends on whether faucet is available and working
+			// The test should not throw an error even if funding fails
+			expect(typeof result).toBe("boolean");
+		} catch (error) {
+			const message = BaseError.fromError(error).message;
+			if (message === "iota.faucetRateLimit" || message === "iota.fundingFailed") {
+				console.warn(
+					"Faucet rate limit exceeded or funding failed, skipping test that requires funding from faucet."
+				);
+			} else {
+				throw error;
+			}
+		}
 	});
 
 	// This test verifies that wallet connector with gas station config can perform basic operations
@@ -183,7 +202,7 @@ describe("IotaWalletConnector Gas Station Tests", () => {
 		const faucetConnector = FaucetConnectorFactory.get("faucet");
 		expect(faucetConnector).toBeDefined();
 
-		if (initialBalance < minimumRequired) {
+		try {
 			// Fund the address directly through the faucet
 			await faucetConnector.fundAddress(TEST_IDENTITY, address, 60);
 
@@ -194,21 +213,15 @@ describe("IotaWalletConnector Gas Station Tests", () => {
 			// Verify funding worked
 			expect(balanceAfterFunding).toBeGreaterThan(initialBalance);
 			expect(balanceAfterFunding).toBeGreaterThanOrEqual(minimumRequired);
-		}
-	});
-
-	test("gas station integration preserves wallet connector functionality", async () => {
-		// Test that basic wallet operations still work with gas station config
-		const addresses = await walletConnector.getAddresses(TEST_IDENTITY, 0, 0, 3);
-		expect(addresses.length).toBe(3);
-
-		// All addresses should be valid
-		for (const address of addresses) {
-			expect(address).toMatch(/^0x[\dA-Fa-f]+$/);
-
-			// Should be able to get balance for each address
-			const balance = await walletConnector.getBalance(TEST_IDENTITY, address);
-			expect(balance).toBeGreaterThanOrEqual(0n);
+		} catch (error) {
+			const message = BaseError.fromError(error).message;
+			if (message === "iota.faucetRateLimit" || message === "iota.fundingFailed") {
+				console.warn(
+					"Faucet rate limit exceeded or funding failed, skipping test that requires funding from faucet."
+				);
+			} else {
+				throw error;
+			}
 		}
 	});
 

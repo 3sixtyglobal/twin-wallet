@@ -18,8 +18,8 @@ export interface IEntityStorageWalletConnectorConfig {
 	coinType?: number;
 
 	/**
-	 * The bech32 human readable part for the addresses.
+	 * The network name part for the addresses.
 	 * @default ent
 	 */
-	bech32Hrp?: string;
+	networkName?: string;
 }

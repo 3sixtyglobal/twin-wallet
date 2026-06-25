@@ -4,8 +4,8 @@ import { CLIDisplay, CLIParam } from "@twin.org/cli-core";
 import { Converter, I18n, Is, StringHelper } from "@twin.org/core";
 import { FaucetConnectorFactory } from "@twin.org/wallet-models";
 import { Command, Option } from "commander";
-import { setupFaucetConnector, setupVault, setupWalletConnector } from "./setupCommands";
-import { WalletConnectorTypes } from "../models/walletConnectorTypes";
+import { setupFaucetConnector, setupVault, setupWalletConnector } from "./setupCommands.js";
+import { WalletConnectorTypes } from "../models/walletConnectorTypes.js";
 
 /**
  * Build the faucet command to be consumed by the CLI.
@@ -72,10 +72,7 @@ export async function actionCommandFaucet(opts: {
 	network?: string;
 	explorer: string;
 }): Promise<void> {
-	const address: string =
-		opts.connector === WalletConnectorTypes.Iota
-			? Converter.bytesToHex(CLIParam.hex("address", opts.address), true)
-			: CLIParam.bech32("address", opts.address);
+	const address: string = Converter.bytesToHex(CLIParam.hex("address", opts.address), true);
 	const faucetEndpoint: string = CLIParam.url("faucet", opts.faucet);
 	const nodeEndpoint: string = CLIParam.url("node", opts.node);
 	const network: string | undefined =
@@ -94,6 +91,7 @@ export async function actionCommandFaucet(opts: {
 	}
 	CLIDisplay.value(I18n.formatMessage("commands.faucet.labels.faucet"), faucetEndpoint);
 	CLIDisplay.value(I18n.formatMessage("commands.common.labels.address"), address);
+	CLIDisplay.value(I18n.formatMessage("commands.common.labels.explorer"), explorerEndpoint);
 	CLIDisplay.break();
 
 	CLIDisplay.task(I18n.formatMessage("commands.faucet.progress.requestingFunds"));

@@ -4,9 +4,9 @@ Configuration for the Entity Storage Wallet Connector.
 
 ## Properties
 
-### vaultMnemonicId?
+### vaultMnemonicId? {#vaultmnemonicid}
 
-> `optional` **vaultMnemonicId**: `string`
+> `optional` **vaultMnemonicId?**: `string`
 
 The id of the entry in the vault containing the mnemonic.
 
@@ -18,9 +18,9 @@ mnemonic
 
 ***
 
-### coinType?
+### coinType? {#cointype}
 
-> `optional` **coinType**: `number`
+> `optional` **coinType?**: `number`
 
 The coin type.
 
@@ -32,11 +32,11 @@ The coin type.
 
 ***
 
-### bech32Hrp?
+### networkName? {#networkname}
 
-> `optional` **bech32Hrp**: `string`
+> `optional` **networkName?**: `string`
 
-The bech32 human readable part for the addresses.
+The network name part for the addresses.
 
 #### Default
 
