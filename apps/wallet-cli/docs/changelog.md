@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.0](https://github.com/iotaledger/twin-wallet/compare/wallet-cli-v0.9.0...wallet-cli-v0.9.0) (2026-06-25)
+
+
+### Features
+
+* release to production ([4631961](https://github.com/iotaledger/twin-wallet/commit/4631961bf9c8cf82ffd0c8dd2a7d750456bbab39))
+* release to production ([#57](https://github.com/iotaledger/twin-wallet/issues/57)) ([2a2ec6c](https://github.com/iotaledger/twin-wallet/commit/2a2ec6c87f1d936650db483f8aba830403b9c784))
+
 ## [0.9.0-next.1](https://github.com/iotaledger/twin-wallet/compare/wallet-cli-v0.9.0-next.0...wallet-cli-v0.9.0-next.1) (2026-06-23)
 
 
