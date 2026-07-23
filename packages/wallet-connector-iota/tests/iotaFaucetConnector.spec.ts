@@ -1,7 +1,7 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 import { Ed25519Keypair } from "@iota/iota-sdk/keypairs/ed25519";
-import { BaseError } from "@twin.org/core";
+import { Is, BaseError } from "@twin.org/core";
 import {
 	TEST_CLIENT_OPTIONS,
 	TEST_FAUCET_ENDPOINT,
@@ -95,30 +95,33 @@ describe("IotaFaucetConnector", () => {
 		expect(faucet).toBeDefined();
 	});
 
-	test("can fund an address from the faucet", async () => {
-		const keypair = Ed25519Keypair.deriveKeypair(TEST_MNEMONIC);
-		const address = keypair.getPublicKey().toIotaAddress();
+	test.skipIf(!Is.stringValue(TEST_FAUCET_ENDPOINT))(
+		"can fund an address from the faucet",
+		async () => {
+			const keypair = Ed25519Keypair.deriveKeypair(TEST_MNEMONIC);
+			const address = keypair.getPublicKey().toIotaAddress();
 
-		const faucet = new IotaFaucetConnector({
-			config: {
-				clientOptions: TEST_CLIENT_OPTIONS,
-				network: TEST_NETWORK,
-				endpoint: TEST_FAUCET_ENDPOINT ?? ""
-			}
-		});
+			const faucet = new IotaFaucetConnector({
+				config: {
+					clientOptions: TEST_CLIENT_OPTIONS,
+					network: TEST_NETWORK,
+					endpoint: TEST_FAUCET_ENDPOINT ?? ""
+				}
+			});
 
-		try {
-			const amountAdded = await faucet.fundAddress(TEST_IDENTITY_ID, address);
-			expect(amountAdded).toBeGreaterThan(0n);
-		} catch (error) {
-			const message = BaseError.fromError(error).message;
-			if (message === "iota.faucetRateLimit" || message === "iota.fundingFailed") {
-				console.warn(
-					"Faucet rate limit exceeded or funding failed, skipping test that requires funding from faucet."
-				);
-			} else {
-				throw error;
+			try {
+				const amountAdded = await faucet.fundAddress(TEST_IDENTITY_ID, address);
+				expect(amountAdded).toBeGreaterThan(0n);
+			} catch (error) {
+				const message = BaseError.fromError(error).message;
+				if (message === "iota.faucetRateLimit" || message === "iota.fundingFailed") {
+					console.warn(
+						"Faucet rate limit exceeded or funding failed, skipping test that requires funding from faucet."
+					);
+				} else {
+					throw error;
+				}
 			}
 		}
-	});
+	);
 });
