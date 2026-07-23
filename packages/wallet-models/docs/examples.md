@@ -116,8 +116,7 @@ console.log(addresses.length); // 1
 import { FaucetConnectorFactory, type IFaucetConnector } from '@twin.org/wallet-models';
 
 const faucetConnector = FaucetConnectorFactory.getIfExists('faucet') as
-  | IFaucetConnector
-  | undefined;
+  IFaucetConnector | undefined;
 
 if (faucetConnector) {
   const amount = await faucetConnector.fundAddress('wallet-user', 'ent1qzexampleaddress', 30);
