@@ -67,7 +67,7 @@ export const TEST_GAS_STATION_ADDRESS = process.env.TEST_GAS_STATION_ADDRESS;
 // Minimum balance required for tests (1 IOTA in nano units)
 const MIN_BALANCE_REQUIRED = 1000000000n; // 1 IOTA = 1,000,000,000 nano IOTA
 
-const config: IIotaFaucetConnectorConfig = {
+const TEST_IOTA_CONFIG: IIotaFaucetConnectorConfig = {
 	clientOptions: TEST_CLIENT_OPTIONS,
 	endpoint: TEST_FAUCET_ENDPOINT ?? "",
 	network: TEST_NETWORK,
@@ -79,7 +79,7 @@ FaucetConnectorFactory.register(
 	"faucet",
 	() =>
 		new IotaFaucetConnector({
-			config
+			config: TEST_IOTA_CONFIG
 		})
 );
 
@@ -110,7 +110,7 @@ await vaultConnector.setSecret(`${TEST_IDENTITY_ID}/${TEST_MNEMONIC_NAME}`, TEST
 const addresses = await Iota.getAddresses(
 	vaultConnector,
 	{
-		...config,
+		...TEST_IOTA_CONFIG,
 		vaultMnemonicId: TEST_MNEMONIC_NAME
 	},
 	TEST_IDENTITY_ID,
@@ -140,7 +140,7 @@ async function ensureFundsForAddress(identity: string, address: string): Promise
 	try {
 		// Use ensureBalance which will automatically request from faucet if needed
 		const success = await Iota.ensureBalance(
-			config,
+			TEST_IOTA_CONFIG,
 			TEST_FAUCET_ENDPOINT,
 			identity,
 			address,
@@ -148,8 +148,10 @@ async function ensureFundsForAddress(identity: string, address: string): Promise
 			30
 		);
 
-		const currentBalance = await Iota.getBalance(config, address);
-		console.debug(`[ensureFundsForAddress] Address ${address} has balance: ${currentBalance}`);
+		const currentBalance = await Iota.getBalance(TEST_IOTA_CONFIG, address);
+		console.debug(
+			`[ensureFundsForAddress] Address ${TEST_EXPLORER_URL}address/${address}?network=${TEST_NETWORK} has balance: ${currentBalance}`
+		);
 
 		if (!success) {
 			console.warn(
