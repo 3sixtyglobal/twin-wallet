@@ -171,15 +171,25 @@ async function testFundGasStation(): Promise<void> {
 	// Fund the gas station if its address is provided
 	if (Is.stringValue(TEST_GAS_STATION_ADDRESS) && Is.stringValue(TEST_FAUCET_ENDPOINT)) {
 		try {
-			console.debug(
-				"Requesting IOTA from faucet to fund gas station address:",
-				`${TEST_EXPLORER_URL}address/${TEST_GAS_STATION_ADDRESS}?network=${TEST_NETWORK}`
+			const balance = await Iota.getBalance(
+				{
+					clientOptions: TEST_CLIENT_OPTIONS,
+					network: TEST_NETWORK
+				},
+				TEST_GAS_STATION_ADDRESS
 			);
-			const response = await requestIotaFromFaucetV0({
-				host: TEST_FAUCET_ENDPOINT,
-				recipient: TEST_GAS_STATION_ADDRESS
-			});
-			console.debug("Funded gas station address from faucet:", response);
+
+			if (balance < 2000000000) {
+				console.debug(
+					"Requesting IOTA from faucet to fund gas station address:",
+					`${TEST_EXPLORER_URL}address/${TEST_GAS_STATION_ADDRESS}?network=${TEST_NETWORK}`
+				);
+				const response = await requestIotaFromFaucetV0({
+					host: TEST_FAUCET_ENDPOINT,
+					recipient: TEST_GAS_STATION_ADDRESS
+				});
+				console.debug("Funded gas station address from faucet:", response);
+			}
 		} catch (error) {
 			console.error("Failed to request IOTA from faucet:", error);
 		}
