@@ -28,6 +28,7 @@
 		"nameof",
 		"Secp",
 		"Stiftung",
+		"teardown",
 		"Timelock",
 		"txblock",
 		"UTXO"

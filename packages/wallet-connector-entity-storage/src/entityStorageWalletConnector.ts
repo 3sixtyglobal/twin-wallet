@@ -1,7 +1,16 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import { Coerce, GeneralError, Guards, Is } from "@twin.org/core";
+import {
+	HealthCategory,
+	HealthStatus,
+	type HealthApplicationCallback,
+	type IHealth,
+	type IHealthProviderComponent
+} from "@twin.org/api-models";
+import { ContextIdKeys, ContextIdStore, type IContextIds } from "@twin.org/context";
+import { BaseError, Coerce, GeneralError, Guards, Is, RandomHelper } from "@twin.org/core";
 import { Bip39, Bip44, KeyType } from "@twin.org/crypto";
+import { AccountHelper } from "@twin.org/dlt-account";
 import { ComparisonOperator, LogicalOperator } from "@twin.org/entity";
 import {
 	EntityStorageConnectorFactory,
@@ -21,7 +30,7 @@ import type { IEntityStorageWalletConnectorConstructorOptions } from "./models/I
 /**
  * Class for performing wallet operations using in-memory storage.
  */
-export class EntityStorageWalletConnector implements IWalletConnector {
+export class EntityStorageWalletConnector implements IWalletConnector, IHealthProviderComponent {
 	/**
 	 * Runtime name for the class.
 	 */
@@ -75,6 +84,12 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 	private readonly _config: IEntityStorageWalletConnectorConfig;
 
 	/**
+	 * The temporary identity created during health init, kept for teardown cleanup.
+	 * @internal
+	 */
+	private _healthTempId?: string;
+
+	/**
 	 * Create a new instance of EntityStorageWalletConnector.
 	 * @param options The options for the wallet connector.
 	 */
@@ -97,6 +112,98 @@ export class EntityStorageWalletConnector implements IWalletConnector {
 	 */
 	public className(): string {
 		return EntityStorageWalletConnector.CLASS_NAME;
+	}
+
+	/**
+	 * Initialize the application health processing for a component.
+	 * @param contextIds The context IDs provisioned during the init pass.
+	 * @returns A promise that resolves when the initialization is complete.
+	 */
+	public async healthApplicationInit(contextIds: IContextIds): Promise<void> {
+		const tempId = `did:temp:${RandomHelper.generateUuidV7()}`;
+		this._healthTempId = tempId;
+		try {
+			// We create a temporary identity and store a mnemonic for it in the vault to
+			// for the identity create to have a known controller
+			await AccountHelper.createAccountKeys(undefined, this._vaultConnector, tempId);
+		} catch {}
+		contextIds[ContextIdKeys.Organization] = tempId;
+	}
+
+	/**
+	 * Returns the application health status of the component.
+	 * @param callback The callback to invoke when a deferred health result is ready.
+	 * @returns The health status of the component.
+	 */
+	public async healthApplication(
+		callback: HealthApplicationCallback
+	): Promise<IHealth[] | undefined> {
+		const contextIds = (await ContextIdStore.getContextIds()) ?? {};
+		const orgId = contextIds[ContextIdKeys.Organization];
+
+		if (Is.stringValue(orgId)) {
+			try {
+				if (!Is.undefined(this._faucetConnector)) {
+					const addresses = await this.getAddresses(orgId, 0, 0, 1);
+					await this._faucetConnector.fundAddress(orgId, addresses[0]);
+
+					return [
+						{
+							source: EntityStorageWalletConnector.CLASS_NAME,
+							category: HealthCategory.Application,
+							status: HealthStatus.Ok,
+							description: "healthDescription",
+							message: "fundFromFaucet",
+							data: {
+								address: addresses[0]
+							}
+						}
+					];
+				}
+
+				return [
+					{
+						source: EntityStorageWalletConnector.CLASS_NAME,
+						category: HealthCategory.Application,
+						status: HealthStatus.Ok,
+						description: "healthDescription",
+						message: "healthNoFaucet"
+					}
+				];
+			} catch (err) {
+				return [
+					{
+						source: EntityStorageWalletConnector.CLASS_NAME,
+						category: HealthCategory.Application,
+						status: HealthStatus.Error,
+						description: "healthDescription",
+						message: "fundWalletFailed",
+						error: BaseError.fromError(err)
+					}
+				];
+			}
+		}
+
+		return [];
+	}
+
+	/**
+	 * Teardown the application health processing for a component.
+	 * @returns A promise that resolves when the teardown is complete.
+	 */
+	public async healthApplicationTeardown(): Promise<void> {
+		const contextIds = (await ContextIdStore.getContextIds()) ?? {};
+		const orgId = contextIds[ContextIdKeys.Organization];
+
+		if (Is.stringValue(orgId)) {
+			await AccountHelper.removeAccountKeys(undefined, this._vaultConnector, orgId);
+		}
+
+		if (Is.stringValue(this._healthTempId) && this._healthTempId !== orgId) {
+			await AccountHelper.removeAccountKeys(undefined, this._vaultConnector, this._healthTempId);
+		}
+
+		this._healthTempId = undefined;
 	}
 
 	/**
