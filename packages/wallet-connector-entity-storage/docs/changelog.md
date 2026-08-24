@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.9.2](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.9.2...wallet-connector-entity-storage-v0.9.2) (2026-08-24)
+
+
+### Features
+
+* release to production ([4631961](https://github.com/iotaledger/twin-wallet/commit/4631961bf9c8cf82ffd0c8dd2a7d750456bbab39))
+* release to production ([#57](https://github.com/iotaledger/twin-wallet/issues/57)) ([2a2ec6c](https://github.com/iotaledger/twin-wallet/commit/2a2ec6c87f1d936650db483f8aba830403b9c784))
+* release to production ([#63](https://github.com/iotaledger/twin-wallet/issues/63)) ([4e1eb04](https://github.com/iotaledger/twin-wallet/commit/4e1eb0440651eeee861f107db0e3f64d90c8bd14))
+* release to production ([#71](https://github.com/iotaledger/twin-wallet/issues/71)) ([293cf02](https://github.com/iotaledger/twin-wallet/commit/293cf029279e57be2aef5506210c740732fa83e6))
+
 ## [0.9.2-next.1](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.9.2-next.0...wallet-connector-entity-storage-v0.9.2-next.1) (2026-08-07)
 
 
