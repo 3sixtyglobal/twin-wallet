@@ -3,5 +3,13 @@
 		"entityStorageWalletConnector": {
 			"insufficientFunds": "There are insufficient funds in the wallet."
 		}
+	},
+	"health": {
+		"entityStorageWalletConnector": {
+			"healthDescription": "Entity storage wallet connector application health check",
+			"fundFromFaucet": "Fund wallet from faucet on address \"{address}\"",
+			"healthNoFaucet": "No faucet available for the network",
+			"fundWalletFailed": "Failed to fund the wallet"
+		}
 	}
 }

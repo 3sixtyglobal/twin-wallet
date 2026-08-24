@@ -1,6 +1,15 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
-import { GeneralError, Guards } from "@twin.org/core";
+import {
+	HealthCategory,
+	HealthStatus,
+	type HealthApplicationCallback,
+	type IHealth,
+	type IHealthProviderComponent
+} from "@twin.org/api-models";
+import { ContextIdKeys, ContextIdStore, type IContextIds } from "@twin.org/context";
+import { BaseError, GeneralError, Guards, Is, RandomHelper } from "@twin.org/core";
+import { AccountHelper } from "@twin.org/dlt-account";
 import { Iota } from "@twin.org/dlt-iota";
 import { nameof } from "@twin.org/nameof";
 import { VaultConnectorFactory, type IVaultConnector } from "@twin.org/vault-models";
@@ -15,7 +24,7 @@ import type { IIotaWalletConnectorConstructorOptions } from "./models/IIotaWalle
 /**
  * Class for performing wallet operations on IOTA.
  */
-export class IotaWalletConnector implements IWalletConnector {
+export class IotaWalletConnector implements IWalletConnector, IHealthProviderComponent {
 	/**
 	 * The namespace supported by the wallet connector.
 	 */
@@ -51,6 +60,12 @@ export class IotaWalletConnector implements IWalletConnector {
 	private readonly _client: ReturnType<typeof Iota.createClient>;
 
 	/**
+	 * The temporary identity created during health init, kept for teardown cleanup.
+	 * @internal
+	 */
+	private _healthTempId?: string;
+
+	/**
 	 * Create a new instance of IOTA Wallet Connector.
 	 * @param options The options for the wallet connector.
 	 */
@@ -80,13 +95,117 @@ export class IotaWalletConnector implements IWalletConnector {
 	}
 
 	/**
+	 * Initialize the application health processing for a component.
+	 * @param contextIds The context IDs provisioned during the init pass.
+	 * @returns A promise that resolves when the initialization is complete.
+	 */
+	public async healthApplicationInit(contextIds: IContextIds): Promise<void> {
+		const tempId = `did:temp:${RandomHelper.generateUuidV7()}`;
+		this._healthTempId = tempId;
+		try {
+			// We create a temporary identity and store a mnemonic for it in the vault to
+			// for the identity create to have a known controller
+			await AccountHelper.createAccountKeys(undefined, this._vaultConnector, tempId);
+		} catch {}
+		contextIds[ContextIdKeys.Organization] = tempId;
+	}
+
+	/**
+	 * Returns the application health status of the component.
+	 * @param callback The callback to invoke when a deferred health result is ready.
+	 * @returns The health status of the component.
+	 */
+	public async healthApplication(
+		callback: HealthApplicationCallback
+	): Promise<IHealth[] | undefined> {
+		const contextIds = (await ContextIdStore.getContextIds()) ?? {};
+		const orgId = contextIds[ContextIdKeys.Organization];
+
+		if (Is.stringValue(orgId)) {
+			try {
+				if (!Is.undefined(this._faucetConnector)) {
+					const address = await AccountHelper.getAddress(
+						this._config,
+						this._vaultConnector,
+						orgId,
+						0,
+						0
+					);
+					await this._faucetConnector.fundAddress(orgId, address);
+
+					return [
+						{
+							source: IotaWalletConnector.CLASS_NAME,
+							category: HealthCategory.Application,
+							status: HealthStatus.Ok,
+							description: "healthDescription",
+							message: "fundFromFaucet",
+							data: {
+								address
+							}
+						}
+					];
+				}
+
+				return [
+					{
+						source: IotaWalletConnector.CLASS_NAME,
+						category: HealthCategory.Application,
+						status: HealthStatus.Ok,
+						description: "healthDescription",
+						message: "healthNoFaucet"
+					}
+				];
+			} catch (err) {
+				return [
+					{
+						source: IotaWalletConnector.CLASS_NAME,
+						category: HealthCategory.Application,
+						status: HealthStatus.Error,
+						description: "healthDescription",
+						message: "fundWalletFailed",
+						error: BaseError.fromError(err)
+					}
+				];
+			}
+		}
+
+		return [];
+	}
+
+	/**
+	 * Teardown the application health processing for a component.
+	 * @returns A promise that resolves when the teardown is complete.
+	 */
+	public async healthApplicationTeardown(): Promise<void> {
+		const contextIds = (await ContextIdStore.getContextIds()) ?? {};
+		const orgId = contextIds[ContextIdKeys.Organization];
+
+		if (Is.stringValue(orgId)) {
+			await AccountHelper.removeAccountKeys(undefined, this._vaultConnector, orgId);
+		}
+
+		if (Is.stringValue(this._healthTempId) && this._healthTempId !== orgId) {
+			await AccountHelper.removeAccountKeys(undefined, this._vaultConnector, this._healthTempId);
+		}
+
+		this._healthTempId = undefined;
+	}
+
+	/**
 	 * Create a new wallet.
 	 * @param identity The identity of the user to access the vault keys.
 	 * @returns A promise that resolves when the wallet has been created and the mnemonic stored.
 	 */
 	public async create(identity: string): Promise<void> {
 		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(identity), identity);
-		await Iota.storeMnemonic(this._vaultConnector, this._config, identity, undefined, 0);
+		await AccountHelper.createAccountKeys(
+			this._config,
+			this._vaultConnector,
+			identity,
+			undefined,
+			0
+		);
 	}
 
 	/**
@@ -107,9 +226,9 @@ export class IotaWalletConnector implements IWalletConnector {
 	): Promise<string[]> {
 		Guards.stringValue(IotaWalletConnector.CLASS_NAME, nameof(identity), identity);
 
-		return Iota.getAddresses(
-			this._vaultConnector,
+		return AccountHelper.getAddresses(
 			this._config,
+			this._vaultConnector,
 			identity,
 			accountIndex,
 			startAddressIndex,

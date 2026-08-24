@@ -5,6 +5,7 @@ Class for performing wallet operations using in-memory storage.
 ## Implements
 
 - `IWalletConnector`
+- `IHealthProviderComponent`
 
 ## Constructors
 
@@ -59,6 +60,76 @@ The class name of the component.
 #### Implementation of
 
 `IWalletConnector.className`
+
+***
+
+### healthApplicationInit() {#healthapplicationinit}
+
+> **healthApplicationInit**(`contextIds`): `Promise`\<`void`\>
+
+Initialize the application health processing for a component.
+
+#### Parameters
+
+##### contextIds
+
+`IContextIds`
+
+The context IDs provisioned during the init pass.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+A promise that resolves when the initialization is complete.
+
+#### Implementation of
+
+`IHealthProviderComponent.healthApplicationInit`
+
+***
+
+### healthApplication() {#healthapplication}
+
+> **healthApplication**(`callback`): `Promise`\<`IHealth`[] \| `undefined`\>
+
+Returns the application health status of the component.
+
+#### Parameters
+
+##### callback
+
+`HealthApplicationCallback`
+
+The callback to invoke when a deferred health result is ready.
+
+#### Returns
+
+`Promise`\<`IHealth`[] \| `undefined`\>
+
+The health status of the component.
+
+#### Implementation of
+
+`IHealthProviderComponent.healthApplication`
+
+***
+
+### healthApplicationTeardown() {#healthapplicationteardown}
+
+> **healthApplicationTeardown**(): `Promise`\<`void`\>
+
+Teardown the application health processing for a component.
+
+#### Returns
+
+`Promise`\<`void`\>
+
+A promise that resolves when the teardown is complete.
+
+#### Implementation of
+
+`IHealthProviderComponent.healthApplicationTeardown`
 
 ***
 

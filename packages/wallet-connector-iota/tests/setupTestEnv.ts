@@ -4,6 +4,7 @@ import path from "node:path";
 import { requestIotaFromFaucetV0 } from "@iota/iota-sdk/faucet";
 import { Guards, Is } from "@twin.org/core";
 import { Bip39 } from "@twin.org/crypto";
+import { AccountHelper } from "@twin.org/dlt-account";
 import { Iota } from "@twin.org/dlt-iota";
 import { MemoryEntityStorageConnector } from "@twin.org/entity-storage-connector-memory";
 import { EntityStorageConnectorFactory } from "@twin.org/entity-storage-models";
@@ -71,7 +72,8 @@ const TEST_IOTA_CONFIG: IIotaFaucetConnectorConfig = {
 	clientOptions: TEST_CLIENT_OPTIONS,
 	endpoint: TEST_FAUCET_ENDPOINT ?? "",
 	network: TEST_NETWORK,
-	coinType: TEST_COIN_TYPE
+	coinType: TEST_COIN_TYPE,
+	vaultMnemonicId: TEST_MNEMONIC_NAME
 };
 
 // Register faucet connector
@@ -105,14 +107,16 @@ EntityStorageConnectorFactory.register("vault-secret", () => secretEntityStorage
 const vaultConnector = new EntityStorageVaultConnector();
 VaultConnectorFactory.register("vault", () => vaultConnector);
 
-await vaultConnector.setSecret(`${TEST_IDENTITY_ID}/${TEST_MNEMONIC_NAME}`, TEST_MNEMONIC);
-
-const addresses = await Iota.getAddresses(
+await AccountHelper.createAccountKeys(
+	TEST_IOTA_CONFIG,
 	vaultConnector,
-	{
-		...TEST_IOTA_CONFIG,
-		vaultMnemonicId: TEST_MNEMONIC_NAME
-	},
+	TEST_IDENTITY_ID,
+	TEST_MNEMONIC
+);
+
+const addresses = await AccountHelper.getAddresses(
+	TEST_IOTA_CONFIG,
+	vaultConnector,
 	TEST_IDENTITY_ID,
 	0,
 	0,

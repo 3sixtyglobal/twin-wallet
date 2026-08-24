@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.9.2-next.1](https://github.com/iotaledger/twin-wallet/compare/wallet-cli-v0.9.2-next.0...wallet-cli-v0.9.2-next.1) (2026-08-07)
+
+
+### Features
+
+* add context id features ([#46](https://github.com/iotaledger/twin-wallet/issues/46)) ([9389c28](https://github.com/iotaledger/twin-wallet/commit/9389c28084656666d04ed82575cbc8d3fa9f0d88))
+* add dev tool warning ([27119c0](https://github.com/iotaledger/twin-wallet/commit/27119c0bf938ce0395060fb6e045ad6c9e296ef3))
+* add publish workflows ([a4ce48e](https://github.com/iotaledger/twin-wallet/commit/a4ce48ecaa83a182fb927631a5a4e6a9929b4ccc))
+* add validate-locales ([e5200c2](https://github.com/iotaledger/twin-wallet/commit/e5200c279de60592b64eeb64279fa8ed289a677f))
+* eslint migration to flat config ([7068485](https://github.com/iotaledger/twin-wallet/commit/7068485f7c10121b76b6219798fdea4d3e91648a))
+* health provider ([#66](https://github.com/iotaledger/twin-wallet/issues/66)) ([f220cbf](https://github.com/iotaledger/twin-wallet/commit/f220cbfcb048730a5e83e07e3206b0bad56458dd))
+* iota rebased release ([d0c617d](https://github.com/iotaledger/twin-wallet/commit/d0c617d894f3663f7c80f7d53d2da858a0bd64f0))
+* remove bech32 encoding for addresses ([869ef88](https://github.com/iotaledger/twin-wallet/commit/869ef8830eab0bcea6bc748f3bc637fc311e0709))
+* typescript 6 update ([7db75ad](https://github.com/iotaledger/twin-wallet/commit/7db75ade7482bc52f1da01014f0b66fa80d74d51))
+* update dependencies ([a7fc999](https://github.com/iotaledger/twin-wallet/commit/a7fc999be84f1fad40bfa845300b3cf7471cfc7d))
+* update dependencies ([4b47a7d](https://github.com/iotaledger/twin-wallet/commit/4b47a7d900d72d1502d6db54cb391a954818478b))
+* update framework core ([1c8a381](https://github.com/iotaledger/twin-wallet/commit/1c8a381e3c0544803a98db5560d87087fd095c23))
+* use shared store mechanism ([#27](https://github.com/iotaledger/twin-wallet/issues/27)) ([2ba7861](https://github.com/iotaledger/twin-wallet/commit/2ba7861a2a610cf83396a3285c7bbaebe5a31551))
+
+
+### Bug Fixes
+
+* use async getStore in tests ([985a549](https://github.com/iotaledger/twin-wallet/commit/985a5493ac79f878d01262f01cdaac7e39196676))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/wallet-connector-iota bumped from 0.9.2-next.0 to 0.9.2-next.1
+    * @twin.org/wallet-models bumped from 0.9.2-next.0 to 0.9.2-next.1
+
 ## [0.9.1](https://github.com/iotaledger/twin-wallet/compare/wallet-cli-v0.9.1...wallet-cli-v0.9.1) (2026-07-27)
 
 

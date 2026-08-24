@@ -3,5 +3,13 @@
 		"iotaWalletConnector": {
 			"transferFailed": "The wallet transfer failed."
 		}
+	},
+	"health": {
+		"iotaWalletConnector": {
+			"healthDescription": "IOTA wallet connector application health check",
+			"fundFromFaucet": "Fund wallet from faucet on address \"{address}\"",
+			"healthNoFaucet": "No faucet available for the network",
+			"fundWalletFailed": "Failed to fund the wallet"
+		}
 	}
 }

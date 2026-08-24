@@ -24,9 +24,11 @@
 		"bech",
 		"faucet",
 		"faucets",
+		"hotfixes",
 		"nameof",
 		"Secp",
 		"Stiftung",
+		"teardown",
 		"Timelock",
 		"txblock",
 		"UTXO"
