@@ -1,6 +1,6 @@
 {
 	"name": "@twin.org/wallet-connector-iota",
-	"version": "0.9.2-next.1",
+	"version": "0.9.3-next.0",
 	"description": "Implements wallet and faucet connectors for IOTA networks, including balance checks, transfers, and funding flows",
 	"repository": {
 		"type": "git",
@@ -35,7 +35,7 @@
 		"@twin.org/dlt-iota": "next",
 		"@twin.org/nameof": "next",
 		"@twin.org/vault-models": "next",
-		"@twin.org/wallet-models": "0.9.2-next.1"
+		"@twin.org/wallet-models": "0.9.3-next.0"
 	},
 	"devDependencies": {
 		"@iota/iota-sdk": "1.15.0",
