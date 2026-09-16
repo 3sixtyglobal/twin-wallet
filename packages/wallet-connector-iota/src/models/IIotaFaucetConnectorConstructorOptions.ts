@@ -10,10 +10,4 @@ export interface IIotaFaucetConnectorConstructorOptions {
 	 * The configuration for the connector.
 	 */
 	config: IIotaFaucetConnectorConfig;
-
-	/**
-	 * Vault connector to use for faucet secrets.
-	 * @default vault
-	 */
-	vaultConnectorType?: string;
 }
