@@ -1,6 +1,6 @@
 {
 	"name": "@twin.org/wallet-models",
-	"version": "0.10.1-next.0",
+	"version": "0.10.1-next.1",
 	"description": "Defines shared wallet and faucet connector interfaces together with factories for resolving connector implementations",
 	"repository": {
 		"type": "git",
