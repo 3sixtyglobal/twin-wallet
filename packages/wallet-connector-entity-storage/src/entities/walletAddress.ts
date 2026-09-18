@@ -10,18 +10,18 @@ export class WalletAddress {
 	/**
 	 * The address in the wallet.
 	 */
-	@property({ type: "string", isPrimary: true })
+	@property({ type: "string", isPrimary: true, maxLength: 255 })
 	public address!: string;
 
 	/**
 	 * The identity of the owner.
 	 */
-	@property({ type: "string" })
+	@property({ type: "string", maxLength: 255 })
 	public identity!: string;
 
 	/**
 	 * The balance of the wallet as bigint.
 	 */
-	@property({ type: "string" })
+	@property({ type: "string", maxLength: 128 })
 	public balance!: string;
 }
