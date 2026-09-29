@@ -1,5 +1,36 @@
 # Changelog
 
+## [0.10.1-next.1](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.10.1-next.0...wallet-connector-entity-storage-v0.10.1-next.1) (2026-09-18)
+
+
+### Features
+
+* add context id features ([#46](https://github.com/iotaledger/twin-wallet/issues/46)) ([9389c28](https://github.com/iotaledger/twin-wallet/commit/9389c28084656666d04ed82575cbc8d3fa9f0d88))
+* add validate-locales ([e5200c2](https://github.com/iotaledger/twin-wallet/commit/e5200c279de60592b64eeb64279fa8ed289a677f))
+* eslint migration to flat config ([7068485](https://github.com/iotaledger/twin-wallet/commit/7068485f7c10121b76b6219798fdea4d3e91648a))
+* health provider ([#66](https://github.com/iotaledger/twin-wallet/issues/66)) ([f220cbf](https://github.com/iotaledger/twin-wallet/commit/f220cbfcb048730a5e83e07e3206b0bad56458dd))
+* iota rebased release ([d0c617d](https://github.com/iotaledger/twin-wallet/commit/d0c617d894f3663f7c80f7d53d2da858a0bd64f0))
+* remove bech32 encoding for addresses ([869ef88](https://github.com/iotaledger/twin-wallet/commit/869ef8830eab0bcea6bc748f3bc637fc311e0709))
+* typescript 6 update ([7db75ad](https://github.com/iotaledger/twin-wallet/commit/7db75ade7482bc52f1da01014f0b66fa80d74d51))
+* update dependencies ([a7fc999](https://github.com/iotaledger/twin-wallet/commit/a7fc999be84f1fad40bfa845300b3cf7471cfc7d))
+* update dependencies ([4b47a7d](https://github.com/iotaledger/twin-wallet/commit/4b47a7d900d72d1502d6db54cb391a954818478b))
+* update framework core ([1c8a381](https://github.com/iotaledger/twin-wallet/commit/1c8a381e3c0544803a98db5560d87087fd095c23))
+* use shared store mechanism ([#27](https://github.com/iotaledger/twin-wallet/issues/27)) ([2ba7861](https://github.com/iotaledger/twin-wallet/commit/2ba7861a2a610cf83396a3285c7bbaebe5a31551))
+
+
+### Bug Fixes
+
+* missing dependency ([6f02070](https://github.com/iotaledger/twin-wallet/commit/6f02070f3ad7d6dcdbbddd952c7d18a47386f15d))
+* use async getStore in tests ([985a549](https://github.com/iotaledger/twin-wallet/commit/985a5493ac79f878d01262f01cdaac7e39196676))
+* use async getStore in tests ([4e6d379](https://github.com/iotaledger/twin-wallet/commit/4e6d3799ef9f3b1f6244ec4204d37a189db54913))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @twin.org/wallet-models bumped from 0.10.1-next.0 to 0.10.1-next.1
+
 ## [0.10.0](https://github.com/iotaledger/twin-wallet/compare/wallet-connector-entity-storage-v0.10.0...wallet-connector-entity-storage-v0.10.0) (2026-09-16)
 
 
