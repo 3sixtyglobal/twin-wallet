@@ -1,6 +1,6 @@
 {
 	"name": "@twin.org/wallet-cli",
-	"version": "0.10.1-next.1",
+	"version": "0.11.1-next.0",
 	"description": "Provides command-line tooling for creating wallets, requesting faucet funds, and transferring value",
 	"repository": {
 		"type": "git",
@@ -39,8 +39,8 @@
 		"@twin.org/nameof": "next",
 		"@twin.org/vault-connector-entity-storage": "next",
 		"@twin.org/vault-models": "next",
-		"@twin.org/wallet-connector-iota": "0.10.1-next.1",
-		"@twin.org/wallet-models": "0.10.1-next.1",
+		"@twin.org/wallet-connector-iota": "0.11.1-next.0",
+		"@twin.org/wallet-models": "0.11.1-next.0",
 		"commander": "15.0.0"
 	},
 	"devDependencies": {
