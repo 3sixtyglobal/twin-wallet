@@ -4,7 +4,7 @@
 	"description": "Implements wallet and faucet connectors for IOTA networks, including balance checks, transfers, and funding flows",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/iotaledger/twin-wallet.git",
+		"url": "git+https://github.com/3sixtyglobal/twin-wallet.git",
 		"directory": "packages/wallet-connector-iota"
 	},
 	"author": "cornel.filip@iota.org",
@@ -90,7 +90,7 @@
 		"integration"
 	],
 	"bugs": {
-		"url": "git+https://github.com/iotaledger/twin-wallet/issues"
+		"url": "git+https://github.com/3sixtyglobal/twin-wallet/issues"
 	},
 	"homepage": "https://twindev.org"
 }

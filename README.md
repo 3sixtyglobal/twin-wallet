@@ -17,3 +17,7 @@ Together, these components are designed to keep wallet integration consistent ac
 ## Contributing
 
 To contribute to this package see the guidelines for building and publishing in [CONTRIBUTING](./CONTRIBUTING.md)
+
+## Origin
+
+This repository is derived from the original [iotaledger/twin-wallet](https://github.com/iotaledger/twin-wallet) repository.

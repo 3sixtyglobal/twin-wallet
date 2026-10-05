@@ -4,7 +4,7 @@
 	"description": "Monorepo for wallet connector libraries and a wallet command-line application",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/iotaledger/twin-wallet.git"
+		"url": "git+https://github.com/3sixtyglobal/twin-wallet.git"
 	},
 	"author": "martyn.janes@iota.org",
 	"license": "Apache-2.0",
@@ -70,7 +70,7 @@
 	},
 	"type": "module",
 	"bugs": {
-		"url": "git+https://github.com/iotaledger/twin-wallet/issues"
+		"url": "git+https://github.com/3sixtyglobal/twin-wallet/issues"
 	},
 	"homepage": "https://twindev.org"
 }

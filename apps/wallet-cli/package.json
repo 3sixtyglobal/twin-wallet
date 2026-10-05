@@ -4,7 +4,7 @@
 	"description": "Provides command-line tooling for creating wallets, requesting faucet funds, and transferring value",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/iotaledger/twin-wallet.git",
+		"url": "git+https://github.com/3sixtyglobal/twin-wallet.git",
 		"directory": "apps/wallet-cli"
 	},
 	"author": "martyn.janes@iota.org",
@@ -92,7 +92,7 @@
 		"accounts"
 	],
 	"bugs": {
-		"url": "git+https://github.com/iotaledger/twin-wallet/issues"
+		"url": "git+https://github.com/3sixtyglobal/twin-wallet/issues"
 	},
 	"homepage": "https://twindev.org"
 }
