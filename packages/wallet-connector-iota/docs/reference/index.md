@@ -1,4 +1,4 @@
-# @twin.org/wallet-connector-iota
+# @3sixty/wallet-connector-iota
 
 ## Classes
 

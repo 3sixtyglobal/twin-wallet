@@ -6,18 +6,18 @@ import {
 	type HealthApplicationCallback,
 	type IHealth,
 	type IHealthProviderComponent
-} from "@twin.org/api-models";
-import { ContextIdKeys, ContextIdStore, type IContextIds } from "@twin.org/context";
-import { BaseError, GeneralError, Guards, Is, RandomHelper } from "@twin.org/core";
-import { AccountHelper } from "@twin.org/dlt-account";
-import { Iota } from "@twin.org/dlt-iota";
-import { nameof } from "@twin.org/nameof";
-import { VaultConnectorFactory, type IVaultConnector } from "@twin.org/vault-models";
+} from "@3sixty/api-models";
+import { ContextIdKeys, ContextIdStore, type IContextIds } from "@3sixty/context";
+import { BaseError, GeneralError, Guards, Is, RandomHelper } from "@3sixty/core";
+import { AccountHelper } from "@3sixty/dlt-account";
+import { Iota } from "@3sixty/dlt-iota";
+import { nameof } from "@3sixty/nameof";
+import { VaultConnectorFactory, type IVaultConnector } from "@3sixty/vault-models";
 import {
 	FaucetConnectorFactory,
 	type IFaucetConnector,
 	type IWalletConnector
-} from "@twin.org/wallet-models";
+} from "@3sixty/wallet-models";
 import type { IIotaWalletConnectorConfig } from "./models/IIotaWalletConnectorConfig.js";
 import type { IIotaWalletConnectorConstructorOptions } from "./models/IIotaWalletConnectorConstructorOptions.js";
 

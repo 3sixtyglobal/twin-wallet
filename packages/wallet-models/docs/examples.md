@@ -5,7 +5,7 @@ These examples show how to define connector contracts and resolve connector impl
 ## IWalletConnector
 
 ```typescript
-import type { IWalletConnector } from '@twin.org/wallet-models';
+import type { IWalletConnector } from '@3sixty/wallet-models';
 
 class DemoWalletConnector implements IWalletConnector {
   public className(): string {
@@ -75,7 +75,7 @@ console.log(transferId); // tx-demo-001
 ## IFaucetConnector
 
 ```typescript
-import type { IFaucetConnector } from '@twin.org/wallet-models';
+import type { IFaucetConnector } from '@3sixty/wallet-models';
 
 class DemoFaucetConnector implements IFaucetConnector {
   public className(): string {
@@ -102,7 +102,7 @@ console.log(funded.toString()); // 2000000
 ## WalletConnectorFactory
 
 ```typescript
-import { WalletConnectorFactory, type IWalletConnector } from '@twin.org/wallet-models';
+import { WalletConnectorFactory, type IWalletConnector } from '@3sixty/wallet-models';
 
 const walletConnector = WalletConnectorFactory.get('iota') as IWalletConnector;
 
@@ -113,7 +113,7 @@ console.log(addresses.length); // 1
 ## FaucetConnectorFactory
 
 ```typescript
-import { FaucetConnectorFactory, type IFaucetConnector } from '@twin.org/wallet-models';
+import { FaucetConnectorFactory, type IFaucetConnector } from '@3sixty/wallet-models';
 
 const faucetConnector = FaucetConnectorFactory.getIfExists('faucet') as
   IFaucetConnector | undefined;

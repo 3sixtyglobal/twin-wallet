@@ -7,14 +7,14 @@ Use these command-line patterns to install, run, and inspect available commands 
 To install and run the CLI locally use the following commands:
 
 ```shell
-npm install @twin.org/wallet-cli -g
-twin-wallet
+npm install @3sixty/wallet-cli -g
+3sixty-wallet
 ```
 
 or run directly using NPX:
 
 ```shell
-npx "@twin.org/wallet-cli"
+npx "@3sixty/wallet-cli"
 ```
 
 ## Help
@@ -22,9 +22,9 @@ npx "@twin.org/wallet-cli"
 You should see output similar to the following:
 
 ```shell
-🌍 TWIN Wallet v1.0.0
+🌍 3Sixty Wallet v1.0.0
 
-Usage: twin-wallet [command]
+Usage: 3sixty-wallet [command]
 
 Options:
   -V, --version        output the version number
@@ -48,13 +48,13 @@ The commands `mnemonic` and `address`, are described in more detail in the examp
 The faucet command can be used to provide funds to an address. At a minimum you must provide the address to supply with token, the node for performing transaction and the faucet url.
 
 ```shell
-twin-wallet faucet --address tst1qzl6pvdadahge7yyqdyknrutuwnjafntdjlnfv94vndue9qupkr9242gp8q --faucet https://faucet.testnet.iotaledger.net/api/enqueue --explorer https://explorer.iota.org/iota-testnet/ --node https://api.testnet.iotaledger.net
+3sixty-wallet faucet --address tst1qzl6pvdadahge7yyqdyknrutuwnjafntdjlnfv94vndue9qupkr9242gp8q --faucet https://faucet.testnet.iotaledger.net/api/enqueue --explorer https://explorer.iota.org/iota-testnet/ --node https://api.testnet.iotaledger.net
 ```
 
 Output
 
 ```shell
-🌍 TWIN Wallet v1.0.0
+🌍 3Sixty Wallet v1.0.0
 
 Node: https://api.testnet.iotaledger.net
 Faucet: https://faucet.testnet.iotaledger.net/api/enqueue
@@ -76,15 +76,15 @@ Explorer: https://explorer.iota.org/iota-testnet/addr/tst1qzl6pvdadahge7yyqdyknr
 There are additional options you can specify for this command, to get the detail on these options issue the following command to get help.
 
 ```shell
-twin-wallet faucet --help
+3sixty-wallet faucet --help
 ```
 
 Output
 
 ```shell
-🌍 TWIN Wallet v1.0.0
+🌍 3Sixty Wallet v1.0.0
 
-Usage: twin-wallet faucet [options]
+Usage: 3sixty-wallet faucet [options]
 
 Request funds from the faucet for the supplied address.
 
@@ -133,5 +133,5 @@ ADDRESS_1_PUBLIC_KEY="0x90e6dc42cc459f67daa3446b2ec5d4275d30f4513ee47dec9dc0d518
 You could use the following command script
 
 ```shell
-twin-wallet faucet --load-env config.env address.env --address !ADDRESS_0
+3sixty-wallet faucet --load-env config.env address.env --address !ADDRESS_0
 ```

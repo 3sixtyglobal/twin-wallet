@@ -1,4 +1,4 @@
-# TWIN Wallet
+# 3Sixty Wallet
 
 This repository provides a focused set of wallet building blocks and a companion command-line tool for practical operational workflows. The libraries define shared connector contracts, add storage-backed implementations for local and test scenarios, and provide network-backed implementations for interaction with IOTA infrastructure.
 

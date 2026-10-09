@@ -5,7 +5,7 @@ These examples show local wallet workflows with entity storage, including schema
 ## EntityStorageWalletConnector
 
 ```typescript
-import { EntityStorageWalletConnector } from '@twin.org/wallet-connector-entity-storage';
+import { EntityStorageWalletConnector } from '@3sixty/wallet-connector-entity-storage';
 
 const walletConnector = new EntityStorageWalletConnector({
   vaultConnectorType: 'vault',
@@ -22,7 +22,7 @@ console.log(walletConnector.className()); // EntityStorageWalletConnector
 ```
 
 ```typescript
-import { EntityStorageWalletConnector } from '@twin.org/wallet-connector-entity-storage';
+import { EntityStorageWalletConnector } from '@3sixty/wallet-connector-entity-storage';
 
 const walletConnector = new EntityStorageWalletConnector({
   walletAddressEntityStorageType: 'wallet-address'
@@ -38,7 +38,7 @@ console.log(addresses[2]); // ent1q...
 ```
 
 ```typescript
-import { EntityStorageWalletConnector } from '@twin.org/wallet-connector-entity-storage';
+import { EntityStorageWalletConnector } from '@3sixty/wallet-connector-entity-storage';
 
 const walletConnector = new EntityStorageWalletConnector({
   faucetConnectorType: 'faucet',
@@ -56,7 +56,7 @@ console.log(funded); // true
 ```
 
 ```typescript
-import { EntityStorageWalletConnector } from '@twin.org/wallet-connector-entity-storage';
+import { EntityStorageWalletConnector } from '@3sixty/wallet-connector-entity-storage';
 
 const walletConnector = new EntityStorageWalletConnector({
   walletAddressEntityStorageType: 'wallet-address'
@@ -75,7 +75,7 @@ console.log(transferId); // undefined
 ## EntityStorageFaucetConnector
 
 ```typescript
-import { EntityStorageFaucetConnector } from '@twin.org/wallet-connector-entity-storage';
+import { EntityStorageFaucetConnector } from '@3sixty/wallet-connector-entity-storage';
 
 const faucetConnector = new EntityStorageFaucetConnector({
   walletAddressEntityStorageType: 'wallet-address'
@@ -85,7 +85,7 @@ console.log(faucetConnector.className()); // EntityStorageFaucetConnector
 ```
 
 ```typescript
-import { EntityStorageFaucetConnector } from '@twin.org/wallet-connector-entity-storage';
+import { EntityStorageFaucetConnector } from '@3sixty/wallet-connector-entity-storage';
 
 const faucetConnector = new EntityStorageFaucetConnector({
   walletAddressEntityStorageType: 'wallet-address'
@@ -103,7 +103,7 @@ console.log(funded.toString()); // 1000000000
 ## WalletAddress
 
 ```typescript
-import { WalletAddress } from '@twin.org/wallet-connector-entity-storage';
+import { WalletAddress } from '@3sixty/wallet-connector-entity-storage';
 
 const walletAddress = new WalletAddress();
 walletAddress.address = 'ent1qzk3h4f8s8pl2nq8h8m5x4aclnvmf6m7l9h8v2j5f7dp5z8yqpd3r2';
@@ -117,7 +117,7 @@ console.log(walletAddress.balance); // 1500000000
 ## initSchema
 
 ```typescript
-import { initSchema } from '@twin.org/wallet-connector-entity-storage';
+import { initSchema } from '@3sixty/wallet-connector-entity-storage';
 
 initSchema();
 ```

@@ -1,4 +1,4 @@
-# @twin.org/wallet-cli
+# @3sixty/wallet-cli
 
 ## Classes
 

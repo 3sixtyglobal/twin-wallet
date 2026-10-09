@@ -6,23 +6,23 @@ import {
 	type HealthApplicationCallback,
 	type IHealth,
 	type IHealthProviderComponent
-} from "@twin.org/api-models";
-import { ContextIdKeys, ContextIdStore, type IContextIds } from "@twin.org/context";
-import { BaseError, Coerce, GeneralError, Guards, Is, RandomHelper } from "@twin.org/core";
-import { Bip39, Bip44, KeyType } from "@twin.org/crypto";
-import { AccountHelper } from "@twin.org/dlt-account";
-import { ComparisonOperator, LogicalOperator } from "@twin.org/entity";
+} from "@3sixty/api-models";
+import { ContextIdKeys, ContextIdStore, type IContextIds } from "@3sixty/context";
+import { BaseError, Coerce, GeneralError, Guards, Is, RandomHelper } from "@3sixty/core";
+import { Bip39, Bip44, KeyType } from "@3sixty/crypto";
+import { AccountHelper } from "@3sixty/dlt-account";
+import { ComparisonOperator, LogicalOperator } from "@3sixty/entity";
 import {
 	EntityStorageConnectorFactory,
 	type IEntityStorageConnector
-} from "@twin.org/entity-storage-models";
-import { nameof } from "@twin.org/nameof";
-import { VaultConnectorFactory, type IVaultConnector } from "@twin.org/vault-models";
+} from "@3sixty/entity-storage-models";
+import { nameof } from "@3sixty/nameof";
+import { VaultConnectorFactory, type IVaultConnector } from "@3sixty/vault-models";
 import {
 	FaucetConnectorFactory,
 	type IFaucetConnector,
 	type IWalletConnector
-} from "@twin.org/wallet-models";
+} from "@3sixty/wallet-models";
 import type { WalletAddress } from "./entities/walletAddress.js";
 import type { IEntityStorageWalletConnectorConfig } from "./models/IEntityStorageWalletConnectorConfig.js";
 import type { IEntityStorageWalletConnectorConstructorOptions } from "./models/IEntityStorageWalletConnectorConstructorOptions.js";

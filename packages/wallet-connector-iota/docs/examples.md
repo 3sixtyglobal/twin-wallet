@@ -5,7 +5,7 @@ These snippets cover common wallet and faucet flows for development and integrat
 ## IotaWalletConnector
 
 ```typescript
-import { IotaWalletConnector } from '@twin.org/wallet-connector-iota';
+import { IotaWalletConnector } from '@3sixty/wallet-connector-iota';
 
 const walletConnector = new IotaWalletConnector({
   vaultConnectorType: 'vault',
@@ -23,7 +23,7 @@ console.log(walletConnector.className()); // IotaWalletConnector
 ```
 
 ```typescript
-import { IotaWalletConnector } from '@twin.org/wallet-connector-iota';
+import { IotaWalletConnector } from '@3sixty/wallet-connector-iota';
 
 const walletConnector = new IotaWalletConnector({
   config: {
@@ -42,7 +42,7 @@ console.log(addresses[1]); // tst1q...
 ```
 
 ```typescript
-import { IotaWalletConnector } from '@twin.org/wallet-connector-iota';
+import { IotaWalletConnector } from '@3sixty/wallet-connector-iota';
 
 const walletConnector = new IotaWalletConnector({
   faucetConnectorType: 'faucet',
@@ -64,7 +64,7 @@ console.log(ready); // true
 ```
 
 ```typescript
-import { IotaWalletConnector } from '@twin.org/wallet-connector-iota';
+import { IotaWalletConnector } from '@3sixty/wallet-connector-iota';
 
 const walletConnector = new IotaWalletConnector({
   config: {
@@ -87,7 +87,7 @@ console.log(transferId); // FuqX...b9n
 ## IotaFaucetConnector
 
 ```typescript
-import { IotaFaucetConnector } from '@twin.org/wallet-connector-iota';
+import { IotaFaucetConnector } from '@3sixty/wallet-connector-iota';
 
 const faucetConnector = new IotaFaucetConnector({
   config: {
@@ -102,7 +102,7 @@ console.log(faucetConnector.className()); // IotaFaucetConnector
 ```
 
 ```typescript
-import { IotaFaucetConnector } from '@twin.org/wallet-connector-iota';
+import { IotaFaucetConnector } from '@3sixty/wallet-connector-iota';
 
 const faucetConnector = new IotaFaucetConnector({
   config: {

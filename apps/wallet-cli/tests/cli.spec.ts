@@ -1,7 +1,7 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
 import path from "node:path";
-import { CLIDisplay } from "@twin.org/cli-core";
+import { CLIDisplay } from "@3sixty/cli-core";
 import { CLI } from "../src/cli.js";
 
 let writeBuffer: string[] = [];
@@ -29,7 +29,7 @@ describe("CLI", () => {
 		});
 		expect(exitCode).toBe(0);
 		expect(writeBuffer.length).toEqual(23);
-		expect(writeBuffer[0].includes("TWIN Wallet v0.11.1-next.0")).toEqual(true); // x-release-please-version
+		expect(writeBuffer[0].includes("3Sixty Wallet v0.20.0-next.0")).toEqual(true); // x-release-please-version
 		expect(writeBuffer[1]).toEqual("");
 		expect(writeBuffer[2]).toEqual("");
 		expect(writeBuffer[3]).toEqual("");
@@ -40,7 +40,7 @@ describe("CLI", () => {
 		expect(writeBuffer[6]).toEqual("");
 		expect(writeBuffer[7]).toEqual("");
 		expect(writeBuffer[8]).toEqual("");
-		expect(writeBuffer[9]).toEqual("Usage: twin-wallet [command]");
+		expect(writeBuffer[9]).toEqual("Usage: 3sixty-wallet [command]");
 		expect(writeBuffer[10]).toEqual("");
 		expect(writeBuffer[11]).toEqual("Options:");
 		expect(writeBuffer[12]).toEqual("  -V, --version        output the version number");

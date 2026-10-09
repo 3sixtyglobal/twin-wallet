@@ -1,7 +1,7 @@
 // Copyright 2024 IOTA Stiftung.
 // SPDX-License-Identifier: Apache-2.0.
+import { Is, BaseError } from "@3sixty/core";
 import { Ed25519Keypair } from "@iota/iota-sdk/keypairs/ed25519";
-import { Is, BaseError } from "@twin.org/core";
 import {
 	TEST_CLIENT_OPTIONS,
 	TEST_FAUCET_ENDPOINT,

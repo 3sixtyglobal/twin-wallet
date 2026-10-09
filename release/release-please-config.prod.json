@@ -8,6 +8,7 @@
 	"release-type": "node",
 	"initial-version": "0.0.1",
 	"versioning": "default",
+	"last-release-sha": "0fa94de6bce1ccecaae4134138a797a82051d28a",
 	"packages": {
 		"packages/wallet-models": {
 			"package-name": "wallet-models",

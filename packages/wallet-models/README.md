@@ -1,11 +1,11 @@
-# TWIN Wallet Models
+# 3Sixty Wallet Models
 
 This package defines shared wallet and faucet connector interfaces together with factories for resolving connector implementations. It provides a consistent contract layer so downstream libraries and tools can integrate wallet capabilities without coupling to a specific connector implementation.
 
 ## Installation
 
 ```shell
-npm install @twin.org/wallet-models
+npm install @3sixty/wallet-models
 ```
 
 ## Examples

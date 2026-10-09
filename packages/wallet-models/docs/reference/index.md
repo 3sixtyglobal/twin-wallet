@@ -1,4 +1,4 @@
-# @twin.org/wallet-models
+# @3sixty/wallet-models
 
 ## Interfaces
 

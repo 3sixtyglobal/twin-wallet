@@ -1,4 +1,4 @@
-# @twin.org/wallet-connector-entity-storage
+# @3sixty/wallet-connector-entity-storage
 
 ## Classes
 

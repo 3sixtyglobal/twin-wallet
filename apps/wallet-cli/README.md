@@ -1,11 +1,11 @@
-# TWIN Wallet CLI
+# 3Sixty Wallet CLI
 
 This app provides command-line tooling for creating wallets, requesting faucet funds, and transferring value. It is designed for local operator workflows, scripted checks, and quick validation of wallet connector behaviour without needing a separate service layer.
 
 ## Installation
 
 ```shell
-npm install -D @twin.org/wallet-cli
+npm install -D @3sixty/wallet-cli
 ```
 
 ## Usage
